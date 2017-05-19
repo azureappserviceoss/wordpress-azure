@@ -86,7 +86,7 @@
           ],
           "properties": {
            
-            "phpVersion": "5.6"
+            "phpVersion": "7.0"
           }
         }
       ]
