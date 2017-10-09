@@ -1,0 +1,5 @@
+.htaccess
+wp-config.php
+wp-content/uploads/
+*.log
+wp-content/cache/
