@@ -73,6 +73,16 @@ define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
 
+
+/* Security for Wordpress : 
+you may wish to disable the plugin or theme editor to prevent overzealous users from being able to edit sensitive files and 
+potentially crash the site. Disabling these also provides an additional layer of security if a hacker gains access to a 
+well-privileged user account.
+Note : If your plugin or theme you use with your app requires editing of the files , comment the line below for 'DISALLOW_FILE_EDIT'
+*/
+define('DISALLOW_FILE_EDIT', true);
+
+
 /**#@-*/
 
 /**
