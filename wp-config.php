@@ -40,6 +40,18 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
+/** Turn OFF auto updates **/
+define( 'AUTOMATIC_UPDATER_DISABLED', true );
+
+/* Security for Wordpress : 
+you may wish to disable the plugin or theme editor to prevent overzealous users from being able to edit sensitive files and 
+potentially crash the site. Disabling these also provides an additional layer of security if a hacker gains access to a 
+well-privileged user account.
+Note : If your plugin or theme you use with your app requires editing of the files , comment the line below for 'DISALLOW_FILE_EDIT'
+*/
+define('DISALLOW_FILE_EDIT', true);
+
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
