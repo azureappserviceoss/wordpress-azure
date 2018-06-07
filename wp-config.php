@@ -109,11 +109,14 @@ define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy blogging. */
 
+//Chosing server variable to get the proper host name (direct connection vs via WAF)
+$http_host = isset($_SERVER['HTTP_X_ORIGINAL_HOST']) ? 'HTTP_X_ORIGINAL_HOST' : 'HTTP_HOST';
+
 //Relative URLs for swapping across app service deployment slots 
-define('WP_HOME', 'http://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
-define('WP_SITEURL', 'http://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
+define('WP_HOME', 'http://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
+define('WP_SITEURL', 'http://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
 define('WP_CONTENT_URL', '/wp-content');
-define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
+define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
 
 
 /** Absolute path to the WordPress directory. */
