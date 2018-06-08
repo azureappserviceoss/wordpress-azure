@@ -112,12 +112,22 @@ define('WP_DEBUG', false);
 //Chosing server variable to get the proper host name (direct connection vs via WAF)
 $http_host = isset($_SERVER['HTTP_X_ORIGINAL_HOST']) ? 'HTTP_X_ORIGINAL_HOST' : 'HTTP_HOST';
 
+//Protocol selection when behind a WAF
+$http_protocol = "http";
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https') {
+	$_SERVER['HTTPS'] = 'on';
+	$http_protocol = "https";
+}
+if (isset($_SERVER['HTTP_X_FORWARDED_PORT']) && $_SERVER['HTTP_X_FORWARDED_PORT'] > 0 && $_SERVER['HTTP_X_FORWARDED_PORT'] < 65535) {
+	$_SERVER['SERVER_PORT']	= $_SERVER['HTTP_X_FORWARDED_PORT'];
+}
+
 //Relative URLs for swapping across app service deployment slots 
-define('WP_HOME', 'http://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
-define('WP_SITEURL', 'http://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
+define('WP_HOME', $http_protocol . '://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
+define('WP_SITEURL', $http_protocol . '://'. filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, $http_host, FILTER_SANITIZE_STRING));
-
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
