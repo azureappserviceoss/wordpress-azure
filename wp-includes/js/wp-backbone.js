@@ -1,12 +1,7 @@
-/** @namespace wp */
 window.wp = window.wp || {};
 
 (function ($) {
-	/**
-	 * Create the WordPress Backbone namespace.
-	 *
-	 * @namespace wp.Backbone
-	 */
+	// Create the WordPress Backbone namespace.
 	wp.Backbone = {};
 
 
@@ -26,7 +21,7 @@ window.wp = window.wp || {};
 		//
 		// Returns an array of all subviews.
 		all: function() {
-			return _.flatten( _.values( this._views ) ); 
+			return _.flatten( this._views );
 		},
 
 		// ### Get a selector's subviews

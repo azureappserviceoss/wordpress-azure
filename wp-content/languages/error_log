@@ -1,0 +1,4 @@
+[13-Oct-2015 22:50:17 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-content/languages/zh_CN.php on line 31
+[15-Oct-2015 18:20:13 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-content/languages/zh_CN.php on line 31
+[21-Oct-2015 16:25:06 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-content/languages/zh_CN.php on line 31
+[06-Nov-2015 02:20:04 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-content/languages/zh_CN.php on line 31

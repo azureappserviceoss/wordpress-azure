@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { padding: 0; margin: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal; }
+ul { list-style: none; }
+caption, th { text-align: left; }
+h1, h2, h3, h4, h5, h6 { font-weight: 100%; }
+q:before, q:after { content:''; }
+abbr, acronym { border: 0; }
+
+/* clearfix */ 
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+body { font-family: Microsoft YaHei, Tahoma, Geneva, sans-serif; font-size: 13px; line-height: 1.6em; color: #fff; background: #007332 url(../images/bg_rp.png)  repeat; }
+a { text-decoration: none; color: #000; }
+a:hover { text-decoration: underline; }
+.wrap { width: 960px; margin: 0 auto; }
+
+
+.topnav { height: 38px; line-height: 38px; background: #232323 url(../images/topnav_bg.png) repeat-x; overflow: hidden; box-shadow: 3px 3px 3px rgba(0,0,0,0.2); color: #fff8a0; font-size: 12px; color: #ccc; }
+.topnav a { color: #fff8a0; margin: 0 4px; font-size: 13px; } 
+.topnav .leftbox { float: left; }
+.topnav .rightbox { float: right; }
+
+.high_light_box { width: 100%; float: left; clear: both; background: url(../images/high_line.png) center -90px no-repeat; }
+
+.mid_minibox { width: 294px; margin: 100px auto 0; padding-bottom: 200px; }
+.mid_minibox_support { margin-top: 20px; padding-bottom: 0; }
+.mid_minibox .toplogo { height: 108px; background: url(../images/minibox_title.png) center top no-repeat; }
+
+.mid_minibox .titlebox { height: 83px; }
+.minibox_bt { height: 27px; width: 100%; float: left; background: url(../images/minibox_bt.png) no-repeat; overflow: hidden; }
+.mid_minibox .formbox { width: 100%; float: left; background: url(../images/minibox_rp.png) repeat-y; }
+.mid_minibox .formboxlogin ul { padding-left: 30px; padding-top: 6px; }
+.mid_minibox .formboxlogin li { display: block; clear: both; margin: 10px 0; }
+.mid_minibox .formboxlogin li input { width: 235px; height: 38px; border: none; background: url(../images/login_inputbox1.png) no-repeat; font-family: "Microsoft YaHei", "微软雅黑", "黑体", Verdana; font-size: 14px; color: #ffffe8; line-height: 38px; text-indent: 20px; text-shadow: 1px 1px 1px rgba(0,0,0,0.2); }
+.mid_minibox .formboxlogin li button { width: 235px; height: 60px; border: none; background: url(../images/login_btn1.png) no-repeat; font-size: 18px; font-family: "Microsoft YaHei", "微软雅黑", "黑体", Verdana; padding-bottom: 10px; overflow: hidden; cursor: pointer; }
+.mid_minibox .formboxlogin li a.reg { width: 235px; height: 60px; border: none; background: url(../images/login_btn1.png) no-repeat; font-size: 18px; font-family: "Microsoft YaHei", "微软雅黑", "黑体", Verdana; padding-bottom: 10px; overflow: hidden; cursor: pointer; display: block; line-height: 46px; text-align: center; }
+
+.mid_minibox .formboxlanguage ul { display: block; margin-top: 30px; }
+.mid_minibox .formboxlanguage li { display: block; clear: both; margin: 10px 0; }
+.mid_minibox .formboxlanguage li a { width: 235px; height: 60px; display: block; margin: 0 auto; text-align: center; line-height: 44px; font-size: 20px; color: #085f00; background: url(../images/login_btn1.png) no-repeat; text-decoration: none; text-shadow: 1px 1px 1px #fff; }
+.mid_minibox .formboxlanguage li a:hover { background: url(../images/login_btn2.png) no-repeat; line-height: 50px; }
+
+.g_logotitle { height: 57px; background: url(../images/logo02.png) center top no-repeat; clear: both; margin: 20px 0; }
+
+.game_mainbox { width: 960px; margin: 0 auto; background: #690500; border: 1px solid #B5281F; box-shadow: 0 0 10px rgba(0,0,0,0.8); }
+
+.framebox { width: 920px; height: 500px; float: left; margin: 20px; background: #fff; border: 1px solid #9F5118; }
+.bt_box { height: 9px; background: url(../images/wood_shardow.png) repeat-x; width: 100%; clear: both; }
+
+.gamemainbox { width: 100%; clear: both; }
+
+.supportbox { padding: 0 30px; color: #222; }
+.supportboxtt { background: url(../images/minibox_title2.png) no-repeat !important; }
+.supportbox .li1 { position: relative; }
+.supportbox .li1 input { height: 26px; width: 230px; border: 1px solid #ABADB3; background: #fff; text-indent: 70px; }
+.supportbox .li1 label { padding-right: 8px; clear: both; display: block; position: absolute; left: 6px; top: 8px; }
+.supportbox div { padding: 4px 0; }
+.supportbox .li2 textarea { width: 230px; border: 1px solid #ABADB3; background: #fff; }
+.supportbox .li3 label { padding-right: 0; }
+.supportbox .li4 .tips { background: #F3F3E2; padding: 6px; margin-top: 6px; font-size: 12px; }
+.supportbox .btns button { width: 100%; height: 38px; text-align: center; line-height: 26px; background: #11483A; border: none; border-bottom: 2px solid #09261F; color: #fff; font-size: 16px; font-family: "Microsoft YaHei", "微软雅黑", "黑体", Verdana; cursor: pointer; }
+.supportbox p.z { font-size: 12px; line-height: 1.5em; }
+

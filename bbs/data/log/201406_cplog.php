@@ -1,0 +1,14 @@
+<?PHP exit;?>	1402064378	admin	1	70.25.53.46		GET={}; POST={};
+<?PHP exit;?>	1402064379	admin	1	70.25.53.46	index	GET={}; POST={};
+<?PHP exit;?>	1402064381	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};
+<?PHP exit;?>	1402064382	admin	1	70.25.53.46	members	GET={operation=add; }; POST={};
+<?PHP exit;?>	1402064428	admin	1	70.25.53.46	members	GET={operation=add; newusername=yingfuwang; newpassword=yingfuwang123; newemail=yingfuwang@gmail.com; newgroupid=10; emailnotify=1; }; POST={newusername=yingfuwang; newpassword=yingfuwang123; newemail=yingfuwang@gmail.com; newgroupid=10; emailnotify=1; };
+<?PHP exit;?>	1402064430	admin	1	70.25.53.46	members	GET={operation=add; }; POST={};
+<?PHP exit;?>	1402064433	admin	1	70.25.53.46	members	GET={operation=add; }; POST={};
+<?PHP exit;?>	1402064438	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};
+<?PHP exit;?>	1402064442	admin	1	70.25.53.46	members	GET={operation=search; username=yingfuwang; }; POST={username=yingfuwang; };
+<?PHP exit;?>	1402064445	admin	1	70.25.53.46	members	GET={operation=edit; uid=12; }; POST={};
+<?PHP exit;?>	1402064468	admin	1	70.25.53.46	members	GET={operation=edit; uid=12; passwordnew=yingfuwang123; emailnew=yingfuwang@gmail.com; regipnew=209.141.168.92; regdatenew=2013-10-23 07:14 PM; lastvisitnew=2013-10-23 07:14 PM; lastipnew=209.141.168.92; timeoffsetnew=9999; idcardtype=身份证; education=博士; bloodtype=A; editsubmit=提交; }; POST={passwordnew=yingfuwang123; emailnew=yingfuwang@gmail.com; regipnew=209.141.168.92; regdatenew=2013-10-23 07:14 PM; lastvisitnew=2013-10-23 07:14 PM; lastipnew=209.141.168.92; timeoffsetnew=9999; idcardtype=身份证; education=博士; bloodtype=A; editsubmit=提交; };
+<?PHP exit;?>	1402064469	admin	1	70.25.53.46	members	GET={operation=edit; uid=12; }; POST={};
+<?PHP exit;?>	1402064474	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};
+<?PHP exit;?>	1402064475	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};

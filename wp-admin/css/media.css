@@ -5,7 +5,7 @@
 .media-item .describe {
 	border-collapse: collapse;
 	width: 100%;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #dfdfdf;
 	clear: both;
 	cursor: default;
 }
@@ -124,7 +124,8 @@
 
 .media-upload-form .media-item,
 .media-upload-form .media-item .error {
-	box-shadow: 0 1px 0 #ddd;
+	-webkit-box-shadow: 0 1px 0 #dfdfdf;
+	box-shadow: 0 1px 0 #dfdfdf;
 }
 
 #media-items:empty {
@@ -162,8 +163,10 @@
 	line-height: 2em;
 	padding: 0;
 	overflow: hidden;
+	-webkit-border-radius: 22px;
 	border-radius: 22px;
 	background: #ddd;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
@@ -172,8 +175,10 @@
 	width: 0;
 	height: 100%;
 	margin-top: -22px;
+	-webkit-border-radius: 22px;
 	border-radius: 22px;
 	background-color: #0073aa;
+	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
 	box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
 }
 
@@ -223,6 +228,7 @@
 
 .find-box {
 	background-color: #fff;
+	-webkit-box-shadow: 0 3px 6px rgba( 0, 0, 0, 0.3 );
 	box-shadow: 0 3px 6px rgba( 0, 0, 0, 0.3 );
 	width: 600px;
 	overflow: hidden;
@@ -236,7 +242,7 @@
 
 .find-box-head {
 	background: #fcfcfc;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #dfdfdf;
 	height: 36px;
 	font-size: 18px;
 	font-weight: 600;
@@ -257,6 +263,8 @@
 	bottom: 45px;
 	overflow-y: scroll;
 	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -294,42 +302,31 @@
 #find-posts-close {
 	width: 36px;
 	height: 36px;
-	border: none;
-	padding: 0;
 	position: absolute;
 	top: 0;
 	right: 0;
 	cursor: pointer;
 	text-align: center;
-	background: none;
 	color: #666;
 }
 
-#find-posts-close:hover,
-#find-posts-close:focus {
+#find-posts-close:hover {
 	color: #00a0d2;
 }
 
-#find-posts-close:focus {
-	outline: none;
-	box-shadow:
-		0 0 0 1px #5b9dd9,
-		0 0 2px 1px rgba(30, 140, 190, .8);
-}
-
 #find-posts-close:before {
-	font: normal 20px/36px dashicons;
+	font: normal 20px/36px 'dashicons';
 	vertical-align: top;
 	speak: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	content: "\f158";
+	content: '\f158';
 }
 
 .find-box-buttons {
 	padding: 8px 16px;
 	background: #fcfcfc;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #dfdfdf;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -387,6 +384,8 @@ form.upgrade .hint {
 	border: 1px solid #ddd;
 	line-height: 1.8em;
 	word-spacing: 3px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 }
 
 .drag-drop #drag-drop-area {
@@ -458,11 +457,10 @@ border color while dragging a file over the uploader drop area */
 .upload-php .mode-grid .media-sidebar {
 	position: relative;
 	width: auto;
-	margin-top: 12px;
+	margin-bottom: 16px;
 	padding: 0 16px;
-	border-left: 4px solid #dd3d36;
- 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-	background-color: #fff;
+	border: 1px solid #c00;
+	background-color: #feebe8;
 }
 
 .upload-php .mode-grid .hide-sidebar .media-sidebar {
@@ -476,33 +474,30 @@ border color while dragging a file over the uploader drop area */
 }
 
 .upload-php .mode-grid .media-sidebar .upload-error {
-	margin: 12px 0;
-	padding: 4px 0 0;
+	margin: 20px 0;
+	padding: 0;
 	border: none;
-	box-shadow: none;
 	background: none;
 }
 
 .upload-php .mode-grid .media-sidebar .media-uploader-status .upload-dismiss-errors {
-	top: -10px;
-	right: -14px;
-	padding: 10px;
+	font-size: 0;
+	top: -12px;
+	right: -10px;
 }
 
 .upload-php .mode-grid .media-sidebar .media-uploader-status .upload-dismiss-errors:before {
-	content: "\f153";
-	display: block;
-	font: normal 16px/1 dashicons;
-	color: #72777c;
+	content: "\f158";
+	font: normal 20px/1 dashicons;
+	color: #666;
 }
 
 .upload-php .mode-grid .media-sidebar .media-uploader-status .upload-dismiss-errors:focus:before,
 .upload-php .mode-grid .media-sidebar .media-uploader-status .upload-dismiss-errors:hover:before {
-	color: #c00;
+	color: #00a0d2;
 }
 
-.upload-php .mode-grid .media-sidebar .media-uploader-status.errors h3, /* Back-compat for pre-4.4 */
-.upload-php .mode-grid .media-sidebar .media-uploader-status.errors h2 {
+.upload-php .mode-grid .media-sidebar .media-uploader-status.errors h3 {
 	display: none;
 }
 
@@ -513,7 +508,7 @@ border color while dragging a file over the uploader drop area */
 	left: auto;
 	bottom: auto;
 	padding-top: 0;
-	margin-top: 20px;
+	margin-top: 0;
 	border: 4px dashed #b4b9be;
 }
 
@@ -526,6 +521,9 @@ border color while dragging a file over the uploader drop area */
 .media-frame.mode-grid .attachment:focus,
 .media-frame.mode-grid .selected.attachment:focus,
 .media-frame.mode-grid .attachment.details:focus {
+	-webkit-box-shadow:
+		inset 0 0 2px 3px #f1f1f1,
+		inset 0 0 0 7px #5b9dd9;
 	box-shadow:
 		inset 0 0 2px 3px #f1f1f1,
 		inset 0 0 0 7px #5b9dd9;
@@ -533,12 +531,18 @@ border color while dragging a file over the uploader drop area */
 }
 
 .media-frame.mode-grid .selected.attachment {
+	-webkit-box-shadow:
+		inset 0 0 0 5px #f1f1f1,
+		inset 0 0 0 7px #ccc;
 	box-shadow:
 		inset 0 0 0 5px #f1f1f1,
 		inset 0 0 0 7px #ccc;
 }
 
 .media-frame.mode-grid .attachment.details {
+	-webkit-box-shadow:
+		inset 0 0 0 3px #f1f1f1,
+		inset 0 0 0 7px #1e8cbe;
 	box-shadow:
 		inset 0 0 0 3px #f1f1f1,
 		inset 0 0 0 7px #1e8cbe;
@@ -562,9 +566,9 @@ border color while dragging a file over the uploader drop area */
 	font-size: 14px;
 }
 
-.media-frame.mode-grid.mode-edit .media-toolbar-secondary > .select-mode-toggle-button {
-	margin: 0 8px 0 0;
-	vertical-align: middle;
+.media-frame.mode-grid .media-toolbar-secondary > .media-button {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .media-frame.mode-grid .attachments-browser .bulk-select {
@@ -577,7 +581,7 @@ border color while dragging a file over the uploader drop area */
 }
 
 .media-frame.mode-grid .spinner {
-	margin-top: 16px;
+	margin-top: 15px;
 }
 
 .attachments-browser .media-toolbar-secondary > .media-button {
@@ -601,7 +605,7 @@ border color while dragging a file over the uploader drop area */
 }
 
 .media-frame.mode-grid .attachments-browser .no-media {
-	color: #666; /* same as no plugins and no themes */
+	color: #999;
 	font-size: 18px;
 	font-style: normal;
 	margin: 0;
@@ -624,15 +628,20 @@ border color while dragging a file over the uploader drop area */
 }
 
 .upload-php .media-modal-close .media-modal-icon:before {
-	content: "\f335";
+	content: '\f335';
 	font-size: 22px;
+}
+
+.upload-php .media-modal-close .media-modal-icon {
+	margin: 14px;
+	width: 22px;
 }
 
 .upload-php .media-modal-close,
 .edit-attachment-frame .edit-media-header .left,
 .edit-attachment-frame .edit-media-header .right {
 	cursor: pointer;
-	color: #72777c;
+	color: #777;
 	background-color: transparent;
 	height: 50px;
 	width: 50px;
@@ -641,7 +650,8 @@ border color while dragging a file over the uploader drop area */
 	text-align: center;
 	border: 0;
 	border-left: 1px solid #ddd;
-	transition: color .1s ease-in-out, background .1s ease-in-out;
+	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+    transition: color .1s ease-in-out, background .1s ease-in-out;
 }
 
 .upload-php .media-modal-close {
@@ -664,7 +674,7 @@ border color while dragging a file over the uploader drop area */
 
 .edit-attachment-frame .edit-media-header .right:before,
 .edit-attachment-frame .edit-media-header .left:before {
-	font: normal 20px/50px dashicons !important;
+	font: normal 20px/50px 'dashicons' !important;
 	display: inline;
 	font-weight: 300;
 }
@@ -679,7 +689,6 @@ border color while dragging a file over the uploader drop area */
 	border-color: #ccc;
 	color: #000;
 	outline: none;
-	box-shadow: none;
 }
 
 .upload-php .media-modal-close:focus .media-modal-icon:before,
@@ -689,12 +698,12 @@ border color while dragging a file over the uploader drop area */
 
 .edit-attachment-frame .edit-media-header .left:before,
 .rtl .edit-attachment-frame .edit-media-header .right:before {
-	content: "\f341";
+	content: '\f341';
 }
 
 .edit-attachment-frame .edit-media-header .right:before,
 .rtl .edit-attachment-frame .edit-media-header .left:before {
-	content: "\f345";
+	content: '\f345';
 }
 
 .edit-attachment-frame .edit-media-header .left.disabled,
@@ -725,6 +734,7 @@ border color while dragging a file over the uploader drop area */
 	bottom: 0;
 	right: 0;
 	left: 0;
+	-webkit-box-shadow: inset 0px 4px 4px -4px rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0px 4px 4px -4px rgba(0, 0, 0, 0.1);
 }
 
@@ -735,6 +745,8 @@ border color while dragging a file over the uploader drop area */
 }
 
 .edit-attachment-frame .attachment-media-view .thumbnail {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	padding: 16px;
 	height: 100%;
@@ -742,17 +754,11 @@ border color while dragging a file over the uploader drop area */
 
 .edit-attachment-frame .attachment-media-view .details-image {
 	display: block;
-	margin: 0 auto 16px;
+	margin-bottom: 16px;
 	max-width: 100%;
 	max-height: 90%;
+	max-height: -webkit-calc( 100% - 42px );
 	max-height: calc( 100% - 42px ); /* leave space for actions underneath */
-	background-image: linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4), linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4);
-	background-position: 0 0, 10px 10px;
-	background-size: 20px 20px;
-}
-
-.edit-attachment-frame .attachment-media-view .attachment-actions {
-	text-align: center;
 }
 
 .edit-attachment-frame .wp-media-wrapper {
@@ -767,11 +773,14 @@ border color while dragging a file over the uploader drop area */
 
 .edit-attachment-frame .attachment-info {
 	overflow: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	margin-bottom: 0;
 	padding: 12px 16px 0;
 	width: 35%;
 	height: 100%;
+	-webkit-box-shadow: inset 0px 4px 4px -4px rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0px 4px 4px -4px rgba(0, 0, 0, 0.1);
 	border-bottom: 0;
 	border-left: 1px solid #ddd;
@@ -789,7 +798,7 @@ border color while dragging a file over the uploader drop area */
 }
 
 .edit-attachment-frame .attachment-info .filename {
-	font-weight: 400;
+	font-weight: normal;
 	color: #666;
 }
 
@@ -827,16 +836,10 @@ border color while dragging a file over the uploader drop area */
 
 .imgedit-wrap {
 	position: relative;
-	padding-top: 10px;
 }
 
-.imgedit-settings p,
-.imgedit-settings fieldset {
-	margin: 8px 0;
-}
-
-.imgedit-settings legend {
-	margin-bottom: 5px;
+.imgedit-settings p {
+	margin: 8px 0 0;
 }
 
 .describe .imgedit-wrap .imgedit-settings {
@@ -849,11 +852,13 @@ border color while dragging a file over the uploader drop area */
 
 .wp_attachment_holder .imgedit-wrap > div {
 	height: auto;
+	overflow: hidden;
 }
 
 .wp_attachment_holder .imgedit-wrap .imgedit-panel-content {
-	padding: 3px 16px 0 0;
-	float: left;
+	padding-right: 16px;
+	width: auto;
+	overflow: hidden;
 }
 
 .wp_attachment_holder .imgedit-wrap .imgedit-settings {
@@ -869,27 +874,14 @@ border color while dragging a file over the uploader drop area */
 .imgedit-wait {
 	position: absolute;
 	top: 0;
-	bottom: 0;
-	width: 100%;
-	background: #fff;
+	background: #fff url(../images/spinner.gif) no-repeat center;
+	-webkit-background-size: 20px 20px;
+	background-size: 20px 20px;
 	opacity: 0.7;
 	filter: alpha(opacity=70);
+	width: 100%;
+	height: 500px;
 	display: none;
-}
-
-.imgedit-wait:before {
-	content: "";
-	display: block;
-	width: 20px;
-	height: 20px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin: -10px 0 0 -10px;
-	background: transparent url(../images/spinner.gif) no-repeat center;
-	background-size: 20px 20px;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
 }
 
 .no-float {
@@ -898,11 +890,10 @@ border color while dragging a file over the uploader drop area */
 
 .media-disabled,
 .imgedit-settings .disabled {
-	/* WCAG 1.4.3 Text or images of text that are part of an inactive user
-	   interface component ... have no contrast requirement. */
-	color: #a0a5aa;
+	color: grey;
 }
 
+.wp_attachment_image,
 .A1B1 {
 	overflow: hidden;
 }
@@ -922,80 +913,76 @@ border color while dragging a file over the uploader drop area */
 }
 
 .imgedit-menu {
-	min-width: 300px;
 	margin: 0 0 12px;
+	min-width: 300px;
 }
 
-.imgedit-menu .note-no-rotate {
-	clear: both;
-	margin: 0;
-	padding: 1em 0 0;
-}
-
-.image-editor .imgedit-menu .button {
+.imgedit-menu div {
 	float: left;
 	width: 32px;
-	height: 32px;
-	margin: 0 8px 0 0;
-	padding: 0;
+	border: 1px solid #d5d5d5;
 	background: #f1f1f1;
+	margin: 0 8px 0 0;
+	height: 32px;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	line-height: 16px;
-	color: #72777c;
+	text-align: center;
+	line-height: 28px;
+	color: #777;
+	cursor: pointer;
 }
 
-.imgedit-menu .button:before {
-	font: normal 20px/1 dashicons;
+.imgedit-menu div:before {
+	font: normal 20px/1 'dashicons';
 	speak: none;
 	vertical-align: middle;
 }
 
-.imgedit-menu .button.disabled {
+.imgedit-menu div:hover {
+	border-color: #c1c1c1;
+	background-color: #eaeaea;
+	color: #32373c;
+}
+
+.imgedit-menu div.disabled {
 	border-color: #ccc;
 	background-color: #ddd;
-	color: #72777c;
+	color: #777;
 	filter: alpha(opacity=50);
 	opacity: 0.5;
 	cursor: default;
 }
 
 .imgedit-crop:before {
-	content: "\f165";
+	content:'\f165';
 }
 
 .imgedit-rleft:before {
-	content: "\f166";
+	content:'\f166';
 }
 
 .imgedit-rright:before {
-	content: "\f167";
+	content:'\f167';
 }
 
 .imgedit-flipv:before {
-	content: "\f168";
+	content:'\f168';
 }
 
 .imgedit-fliph:before {
-	content: "\f169";
+	content:'\f169';
 }
 
 .imgedit-undo:before {
-	content: "\f171";
+	content:'\f171';
 }
 
 .imgedit-redo:before {
-	content: "\f172";
+	content:'\f172';
 }
 
 .imgedit-crop-wrap {
 	position: relative;
-}
-
-.imgedit-crop-wrap img {
-	background-image: linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4), linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4);
-	background-position: 0 0, 10px 10px;
-	background-size: 20px 20px;
 }
 
 .imgedit-crop {
@@ -1026,31 +1013,25 @@ border color while dragging a file over the uploader drop area */
 	margin: 0 8px 0 3px;
 }
 
-.imgedit-thumbnail-preview {
-	margin: 10px 8px 0 0;
+.imgedit-applyto img {
+	margin: 0 8px 0 0;
 }
 
-.imgedit-thumbnail-preview-caption {
-	display: block;
+.imgedit-group-top {
+	margin: 5px 0;
 }
 
-#poststuff .imgedit-group-top h3, /* Back-compat for pre-4.4 */
-#poststuff .imgedit-group-top h2 {
-	display: inline-block;
-	margin: 0;
+#poststuff .imgedit-group-top h3 {
 	padding: 0;
-	font-size: 14px;
-	line-height: 1.4;
 }
 
-#poststuff .imgedit-group-top .button-link {
+.imgedit-group-top h3 a {
 	text-decoration: none;
-	color: #23282d;
 }
 
 .imgedit-applyto .imgedit-label {
+	padding: 2px 0 0;
 	display: block;
-	padding: .5em 0 0;
 }
 
 .imgedit-help {
@@ -1058,27 +1039,8 @@ border color while dragging a file over the uploader drop area */
 	font-style: italic;
 }
 
-/* higher specificity than buttons */
-.image-editor .imgedit-settings .imgedit-help-toggle,
-.image-editor .imgedit-settings .imgedit-help-toggle:hover,
-.image-editor .imgedit-settings .imgedit-help-toggle:active {
-	border: 1px solid transparent;
-	margin: -1px 0 0 -1px;
-	padding: 0;
-	background: transparent;
-	color: #0074a2;
-	font-size: 20px;
-	line-height: 1;
-	cursor: pointer;
-	box-sizing: content-box;
-	box-shadow: none;
-}
-
-.image-editor .imgedit-settings .imgedit-help-toggle:focus {
-	color: #0074a2;
-	border-color: #5b9dd9;
-	outline: none;
-	box-shadow: 0 0 3px rgba( 0, 115, 170, .8 );
+a.imgedit-help-toggle {
+	text-decoration: none;
 }
 
 .form-table td.imgedit-response {
@@ -1086,7 +1048,7 @@ border color while dragging a file over the uploader drop area */
 }
 
 .imgedit-submit {
-	margin: 8px 0 0;
+	margin: 8px 0;
 }
 
 .imgedit-submit-btn {
@@ -1095,46 +1057,19 @@ border color while dragging a file over the uploader drop area */
 
 .imgedit-wrap .nowrap {
 	white-space: nowrap;
-	font-size: 12px;
-	line-height: inherit;
 }
 
 span.imgedit-scale-warn {
-	color: #dc3232;
+	color: red;
 	font-size: 20px;
 	font-style: normal;
 	visibility: hidden;
 	vertical-align: middle;
 }
 
-.imgedit-save-target {
-	margin: 8px 0;
-}
-
 .imgedit-group {
 	margin-bottom: 8px;
-	padding: 10px;
-}
-
-.imgedit-settings .imgedit-scale input[type="text"],
-.imgedit-settings .imgedit-crop-ratio input[type="text"],
-.imgedit-settings .imgedit-crop-sel input[type="text"] {
-	width: 50px;
-	font-size: 14px;
-	padding: 5px 8px;
-}
-
-.imgedit-separator {
-	display: inline-block;
-	width: 7px;
-	text-align: center;
-	vertical-align: middle;
-	font-size: 13px;
-	color: #444;
-}
-
-.imgedit-settings .imgedit-scale .button {
-	margin-bottom: 0;
+	padding: 2px 10px;
 }
 
 audio, video {
@@ -1156,7 +1091,7 @@ audio, video {
 @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 120dpi) {
-	.imgedit-wait:before {
+	.imgedit-wait {
 		background-image: url(../images/spinner-2x.gif);
 	}
 }
@@ -1179,18 +1114,6 @@ audio, video {
 
 	.media-upload-form .media-item .error {
 		padding: 10px 0 10px 12px;
-	}
-
-	.imgedit-settings .imgedit-scale input[type="text"],
-	.imgedit-settings .imgedit-crop-ratio input[type="text"],
-	.imgedit-settings .imgedit-crop-sel input[type="text"] {
-		width: 60px;
-		font-size: 16px;
-		padding: 6px 10px;
-	}
-
-	.imgedit-applyto .imgedit-label {
-		vertical-align: middle;
 	}
 }
 

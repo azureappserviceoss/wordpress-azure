@@ -1,0 +1,18 @@
+<?PHP exit;?>	1391631161	admin	1	70.25.53.46		GET={}; POST={};
+<?PHP exit;?>	1391631162	admin	1	70.25.53.46	index	GET={}; POST={};
+<?PHP exit;?>	1391631168	admin	1	70.25.53.46	forums	GET={}; POST={};
+<?PHP exit;?>	1391631171	admin	1	70.25.53.46	forums	GET={operation=moderators; fid=1; }; POST={};
+<?PHP exit;?>	1391631176	admin	1	70.25.53.46	forums	GET={operation=moderators; fid=1; displayordernew={}; newmoderator=jydimi; newgroup=3; modsubmit=提交; }; POST={displayordernew={}; newmoderator=jydimi; newgroup=3; modsubmit=提交; };
+<?PHP exit;?>	1391631178	admin	1	70.25.53.46	forums	GET={mod=forum; operation=moderators; fid=1; }; POST={};
+<?PHP exit;?>	1391631180	admin	1	70.25.53.46	portalcategory	GET={}; POST={};
+<?PHP exit;?>	1391631181	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};
+<?PHP exit;?>	1391631185	admin	1	70.25.53.46	members	GET={operation=search; username=jydimi; }; POST={username=jydimi; };
+<?PHP exit;?>	1391631187	admin	1	70.25.53.46	members	GET={operation=group; uid=11256; }; POST={};
+<?PHP exit;?>	1391631196	admin	1	70.25.53.46	members	GET={operation=group; uid=11256; groupidnew=2; adminidnew={0=3; }; expgroupidnew=2; expadminidnew=3; extgroupexpirynew={}; editsubmit=提交; }; POST={groupidnew=2; adminidnew={0=3; }; expgroupidnew=2; expadminidnew=3; extgroupexpirynew={}; editsubmit=提交; };
+<?PHP exit;?>	1391631198	admin	1	70.25.53.46	members	GET={operation=group; uid=11256; }; POST={};
+<?PHP exit;?>	1391631199	admin	1	70.25.53.46	members	GET={operation=search; }; POST={};
+<?PHP exit;?>	1391631682	admin	1	70.25.53.46	index	GET={frames=yes; }; POST={};
+<?PHP exit;?>	1391631682	admin	1	70.25.53.46	index	GET={}; POST={};
+<?PHP exit;?>	1391631748	admin	1	70.25.53.46	moderate	GET={operation=members; }; POST={};
+<?PHP exit;?>	1391631748	admin	1	70.25.53.46	moderate	GET={frames=yes; operation=members; }; POST={};
+<?PHP exit;?>	1391631748	admin	1	70.25.53.46	moderate	GET={operation=members; }; POST={};

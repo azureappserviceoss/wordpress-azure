@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# BEGIN 51
+RewriteCond %{HTTP_HOST} ^mahjong\-ca\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.mahjong\-ca\.com$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^majiang\.ca$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.majiang\.ca$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^canadamahjong\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.canadamahjong\.org$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^canadamahjong\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.canadamahjong\.com$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+# END 51
+
+# BEGIN WordPress
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+# END WordPress
+
+</IfModule>
+

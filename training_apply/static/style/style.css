@@ -1,0 +1,183 @@
+@charset "utf-8";
+
+/* CSS Reset */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { padding: 0; margin: 0; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+fieldset, img { border: 0; }
+
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal; }
+
+ul { list-style: none; }
+
+caption, th { text-align: left; }
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; } /* font-size: 100%; */
+
+q:before, q:after { content:''; }
+
+abbr, acronym { border: 0; }
+
+/* clearfix */ 
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+.clearfix { display: inline-block; }
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+
+.clear { clear: both; }
+
+
+
+body { background: #FFFFFF; font-size: 16px; font-family: "微软雅黑", Verdana; color: #555; line-height: 1.7em; }
+
+a { color: #555; }
+
+a:hover { text-decoration: underline; }
+
+
+
+.wrap { width: 980px; margin: 0 auto; }
+
+.c_blue { color: #3F629E; }
+
+.font_heiti { font-family: "黑体", SimHei, Verdana; }
+
+h2.title { font-size: 40px; font-family: "黑体", SimHei, Verdana; color: #3F629E; font-weight: bold; line-height: 40px; }
+
+h2.title span { font-size: 16px; font-weight: normal; color: #555; }
+
+.mt30 { margin-top: 30px; }
+
+
+
+.navtop { height: 32px; clear: both; overflow: hidden; background: url(../images/mj_rp.png) repeat-x; }
+
+.header { height: 380px; clear: both; overflow: hidden; background: #FCE8CC; }
+
+.header .wrap { height: 380px; background: #FCE8CC url(../images/banner.png) center -32px no-repeat; }
+
+
+
+.container { width: 940px !important; padding: 20px; }
+
+
+
+.block1 { height: 150px; background: url(../images/mj.png) right top no-repeat; padding-right: 330px; padding-top: 35px; }
+
+.block1 .c_blue { font-size: 28px; margin-right: 6px; }
+
+
+
+.block2 { padding: 20px 0; }
+
+.block2 .info { font-size: 20px; margin: 30px 0; }
+
+.block2 .info li { line-height: 30px; overflow: hidden; margin: 8px 0; }
+
+.block2 .info li span { width: 100px; height: 30px; float: left; display: inline; text-align: center; background: #3F629E; color: #fff; margin-right: 16px; }
+.block2 .info li .add { margin-left: 118px; }
+
+.block2 .phone { border-radius: 8px; padding: 20px; text-align: center; font-family: "黑体", Verdana; font-size: 40px; color: #fff; background: #FAA977 url(../images/phone.png) 120px 10px no-repeat; }
+
+.block2 .phone .f_no { font-size: 52px; font-weight: bold; }
+
+
+
+.main_form { background: #FBE9D6; padding: 60px 120px; border-radius: 10px; margin-top: 30px; color: #000; }
+
+.main_form input, .main_form textarea { background: #fff; border: none; }
+
+.main_form ul.f01 { clear: both; }
+
+.main_form ul.f01 li { float: left; display: inline; line-height: 30px; margin: 6px 0; }
+
+.main_form ul.f01 li input { height: 30px; }
+
+.main_form ul.f01 li.h { width: 50%; }
+
+.main_form ul.f01 li.h input { width: 260px; text-indent: 8px; }
+
+.main_form ul.f01 li.a { width: 100%; }
+
+.main_form ul.f01 li.a input { width: 610px; } 
+
+
+
+.f01 .display_error_here { padding-left: 52px; }
+
+.error { color: #fff; padding: 0 6px; }
+
+
+
+.s_box { clear: both; margin: 30px 0; }
+
+.s_box label.tt { clear: both; display: block; padding-bottom: 10px; }
+
+.s_box label { margin-right: 50px; } 
+
+
+
+.jy label { display: block; clear: both; padding-bottom: 10px; }
+
+.jy textarea { width: 630px; height: 100px; padding: 20px; }
+
+
+
+.jj_lxr { margin-top: 30px; }
+
+.jj_lxr h3 { font-size: 20px; clear: both; display: block; padding-bottom: 10px; }
+
+
+
+.jj_lxr ul li { width: 50%; float: left; line-height: 30px; }
+
+.jj_lxr li input { width: 230px; height: 30px; }
+
+.jj_lxr .display_error_here { padding-left: 88px; }
+
+
+
+.sm { background: #FFF9F3; padding: 20px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; margin-top: 30px; line-height: 1.8em; }
+
+.sm ol { margin-left: 20px; }
+
+.sm h2 { text-align: center; font-size: 14px; font-weight: bold; }
+
+div.ty { text-align: center; padding: 10px 0; }
+
+div.ty button { padding: 10px 100px; cursor: pointer; background: #F25000; border: none; border-radius: 10px; color: #fff; font-size: 18px; font-family: "微软雅黑", "黑体", Verdana; }
+
+
+
+.block3 .left, .block3 .right { float: left; display: inline; width: 300px; }
+
+.block4 ol { list-style-position: inside; padding-top: 20px; }
+
+.block1 .download { padding: 10px 20px;  background: #F25000; color: #fff; font-size: 18px; font-family: "微软雅黑", "黑体", Verdana; display: block; clear: both; float: left; border-radius: 8px; text-decoration: none; margin-top: 20px; }
+
+
+
+.footer { padding: 20px 0 60px;  background: #FCE8CD url(../images/mj_rp.png) 0 bottom repeat-x; margin-top: 60px; text-align: center; color: #F25000; }
+
+
+
+
+
+.done_box { width: 230px; height: 53px; line-height: 63px; font-size: 20px; overflow: hidden; padding-left: 70px; margin: 0 auto; background: url(../images/g.png) no-repeat; }
+
+.done_button { text-align: center; text-decoration: none; margin-top: 20px;}
+
+.done_button a { padding: 6px 20px;  background: #F25000; color: #fff; font-size: 16px; font-family: "微软雅黑", "黑体", Verdana; }
+
+
+.zlogo { position: absolute; top: 100px; right: 20px; }
+.zlogo dt { float: left; line-height: 120px; }
+.zlogo dd { height: 83px; float: left; display: inline; margin-left: 20px; }
+.zlogo dd.l1 a { width: 82px; height: 83px; display: block; overflow: hidden; text-indent: -500px; background: url(../images/zlogo1.png) no-repeat; }
+.zlogo dd.l2 a { width: 114px; height: 83px; display: block; overflow: hidden; text-indent: -500px; background: url(../images/zlogo2.png) no-repeat; }

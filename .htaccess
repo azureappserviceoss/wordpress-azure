@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# BEGIN 51
+
+RewriteCond %{HTTP_HOST} ^mahjong\-ca\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.mahjong\-ca\.com$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^majiang\.ca$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.majiang\.ca$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^canadamahjong\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.canadamahjong\.org$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^canadamahjong\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.canadamahjong\.com$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^en\.mahjong\-ca\.org$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.en\.mahjong\-ca\.org$
+RewriteRule ^/?$ "http\:\/\/www\.mahjong\-ca\.org\/en" [R=301,L]
+
+# END 51
+
+# BEGIN WordPress
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
+RewriteRule . index.php [L]
+# END WordPress
+
+</IfModule>

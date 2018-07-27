@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[掌上论坛独立版]]></item>
+			<item id="identifier"><![CDATA[mobileoem]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[mobileoem/]]></item>
+			<item id="copyright"><![CDATA[Comsenz Inc.]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[mobileoem]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[mobileoem]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3.1]]></item>
+		<item id="language">			
+			<item id="scriptlang">
+				<item id="pushsuccess"><![CDATA[穿越成功]]></item>
+				<item id="sendtopcnotice"><![CDATA[您成功跨屏穿越了主题 <a href="forum.php?mod=viewthread&tid={tid}" target="_blank">{subject}</a>]]></item>
+				<item id="touch_tipsa"><![CDATA[安装手机客户端，有回复及时提醒]]></item>
+				<item id="touch_tipsb"><![CDATA[下载手机客户端，永久登录，回复提醒，更方便的阅读]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="pushtitle"><![CDATA[穿越]]></item>
+				<item id="pushtomobile"><![CDATA[发送到手机]]></item>
+				<item id="dg_title"><![CDATA[跨屏穿越]]></item>
+				<item id="dg_brief"><![CDATA[电脑/手机互传贴子，快捷方便！]]></item>
+				<item id="dg_scantoinstall"><![CDATA[如果您尚未安装手机客户端，请先<span class="txt-blue">扫描二维码安装！</span>]]></item>
+				<item id="dg_android"><![CDATA[Android版]]></item>
+				<item id="dg_ios"><![CDATA[iOS版/其他版本<br />敬请期待！]]></item>
+				<item id="dg_firstlogin"><![CDATA[如果您已经安装手机客户端，请在<span class="txt-blue">手机客户端上登录</span>在进行穿越！]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="enablefile"><![CDATA[switch.php]]></item>
+		<item id="disablefile"><![CDATA[switch.php]]></item>
+	</item>
+</root>

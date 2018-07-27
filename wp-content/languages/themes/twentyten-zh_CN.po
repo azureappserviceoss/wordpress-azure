@@ -1,0 +1,422 @@
+# Copyright (C) 2013 the WordPress team
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Twenty Ten 1.5\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/twentyten\n"
+"POT-Creation-Date: 2013-05-22 21:14:02+00:00\n"
+"PO-Revision-Date: 2013-06-24 05:55-0000\n"
+"Last-Translator: Jimmy Xu <me@jimmyxu.org>\n"
+"Language-Team: WordPress China\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.5\n"
+"Language: zh_CN\n"
+
+#: 404.php:16 loop.php:33
+msgid "Not Found"
+msgstr "未找到"
+
+#: 404.php:18
+msgid ""
+"Apologies, but the page you requested could not be found. Perhaps searching "
+"will help."
+msgstr "抱歉，您浏览的页面未找到。也许搜索能帮到您。"
+
+#: archive.php:33
+msgid "Daily Archives: <span>%s</span>"
+msgstr "日归档：<span>%s</span>"
+
+#: archive.php:35
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "月归档：<span>%s</span>"
+
+#: archive.php:35
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "Y年m月"
+
+#: archive.php:37
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "年归档：<span>%s</span>"
+
+#: archive.php:37
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y年"
+
+#: archive.php:39
+msgid "Blog Archives"
+msgstr "博客归档"
+
+#: author.php:27
+msgid "Author Archives: %s"
+msgstr "作者归档：%s"
+
+#: author.php:37 loop-single.php:43
+msgid "About %s"
+msgstr "关于%s"
+
+#: category.php:16
+msgid "Category Archives: %s"
+msgstr "分类目录归档：%s"
+
+#: comments.php:18
+msgid ""
+"This post is password protected. Enter the password to view any comments."
+msgstr "这篇文章受密码保护。输入密码以查看评论。"
+
+#: comments.php:35
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] "《%2$s》有 %1$s 条评论"
+
+#: comments.php:41 comments.php:60
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> 早期评论"
+
+#: comments.php:42 comments.php:61
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "较新评论 <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:70
+msgid "Comments are closed."
+msgstr "评论功能已关闭。"
+
+#. #-#-#-#-#  twentyten.pot (Twenty Ten 1.5)  #-#-#-#-#
+#. Author URI of the plugin/theme
+#: footer.php:33
+msgid "http://wordpress.org/"
+msgstr "http://cn.wordpress.org/"
+
+#: footer.php:33
+msgid "Semantic Personal Publishing Platform"
+msgstr "优雅的个人发布平台"
+
+#: footer.php:33
+msgid "Proudly powered by %s."
+msgstr "自豪地采用%s。"
+
+#: functions.php:93
+msgid "Primary Navigation"
+msgstr "主导航栏"
+
+#. translators: header image description
+#: functions.php:145
+msgid "Berries"
+msgstr "莓"
+
+#. translators: header image description
+#: functions.php:151
+msgid "Cherry Blossoms"
+msgstr "樱花"
+
+#. translators: header image description
+#: functions.php:157
+msgid "Concave"
+msgstr "凹面"
+
+#. translators: header image description
+#: functions.php:163
+msgid "Fern"
+msgstr "蕨"
+
+#. translators: header image description
+#: functions.php:169
+msgid "Forest Floor"
+msgstr "林间"
+
+#. translators: header image description
+#: functions.php:175
+msgid "Inkwell"
+msgstr "墨渍"
+
+#. translators: header image description
+#: functions.php:181
+msgid "Path"
+msgstr "小道"
+
+#. translators: header image description
+#: functions.php:187
+msgid "Sunset"
+msgstr "日落"
+
+#: functions.php:255 loop-attachment.php:104 loop.php:114 loop.php:142
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "继续阅读 <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:338
+msgid "%s <span class=\"says\">says:</span>"
+msgstr "%s<span class=\"says\">说：</span>"
+
+#: functions.php:341
+msgid "Your comment is awaiting moderation."
+msgstr "您的评论正等待审核。"
+
+#. translators: 1: date, 2: time
+#: functions.php:348
+msgid "%1$s at %2$s"
+msgstr "%1$s%2$s"
+
+#: functions.php:348 functions.php:365
+msgid "(Edit)"
+msgstr "(编辑)"
+
+#: functions.php:365
+msgid "Pingback:"
+msgstr "Pingback引用通告："
+
+#: functions.php:384
+msgid "Primary Widget Area"
+msgstr "第一小工具区域"
+
+#: functions.php:386
+msgid "Add widgets here to appear in your sidebar."
+msgstr "在这里添加要放在边栏的挂件。"
+
+#: functions.php:395
+msgid "Secondary Widget Area"
+msgstr "第二小工具区域"
+
+#: functions.php:397
+msgid ""
+"An optional secondary widget area, displays below the primary widget area in "
+"your sidebar."
+msgstr "添加可选的从挂件区，在侧边栏中显示在主挂件区之下。"
+
+#: functions.php:406
+msgid "First Footer Widget Area"
+msgstr "第一页脚小工具区域"
+
+#: functions.php:408 functions.php:419 functions.php:430 functions.php:441
+msgid "An optional widget area for your site footer."
+msgstr "站点页脚处可选的挂件区。"
+
+#: functions.php:417
+msgid "Second Footer Widget Area"
+msgstr "第二页脚小工具区域"
+
+#: functions.php:428
+msgid "Third Footer Widget Area"
+msgstr "第三页脚小工具区域"
+
+#: functions.php:439
+msgid "Fourth Footer Widget Area"
+msgstr "第四页脚小工具区域"
+
+#: functions.php:475
+msgid ""
+"<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</"
+"span> %3$s"
+msgstr ""
+"<span class=\"%1$s\">发表于</span>%2$s<span class=\"meta-sep\">由</span>%3$s"
+
+#: functions.php:484 loop-attachment.php:36
+msgid "View all posts by %s"
+msgstr "查看所有由%s发布的文章"
+
+#: functions.php:501
+msgid ""
+"This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" "
+"title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"此条目发表在%1$s分类目录，贴了%2$s标签。将<a href=\"%3$s\" title=\"链向%4$s的"
+"固定链接\" rel=\"bookmark\">固定链接</a>加入收藏夹。"
+
+#: functions.php:503
+msgid ""
+"This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title="
+"\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr ""
+"此条目发表在%1$s分类目录。将<a href=\"%3$s\" title=\"链向 %4$s 的固定链接\" "
+"rel=\"bookmark\">固定链接</a>加入收藏夹。 "
+
+#: functions.php:505
+msgid ""
+"Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark"
+"\">permalink</a>."
+msgstr ""
+"将<a href=\"%3$s\" title=\"链向%4$s的固定链接\" rel=\"bookmark\">固定链接</a>"
+"加入收藏夹。 "
+
+#: header.php:33
+msgid "Page %s"
+msgstr "第%s页"
+
+#: header.php:101
+msgid "Skip to content"
+msgstr "跳至正文"
+
+#: loop-attachment.php:21
+msgid "Return to %s"
+msgstr "回到%s"
+
+#. translators: %s - title of parent post
+#: loop-attachment.php:23
+msgid "<span class=\"meta-nav\">&larr;</span> %s"
+msgstr "<span class=\"meta-nav\">&larr;</span> %s"
+
+#: loop-attachment.php:32
+msgid "<span class=\"%1$s\">By</span> %2$s"
+msgstr "<span class=\"%1$s\">由</span> %2$s"
+
+#: loop-attachment.php:43
+msgid "<span class=\"%1$s\">Published</span> %2$s"
+msgstr "<span class=\"%1$s\">发表于</span> %2$s"
+
+#: loop-attachment.php:53
+msgid "Full size is %s pixels"
+msgstr "全尺寸大小是%s个像素"
+
+#: loop-attachment.php:56
+msgid "Link to full-size image"
+msgstr "链接到全尺寸版本图像"
+
+#: loop-attachment.php:63 loop-attachment.php:111 loop-page.php:30
+#: loop-single.php:56 loop.php:99 loop.php:122 loop.php:164
+msgid "Edit"
+msgstr "编辑"
+
+#: loop-attachment.php:105 loop-page.php:29 loop-single.php:34 loop.php:143
+msgid "Pages:"
+msgstr "页码："
+
+#: loop-single.php:21 loop-single.php:61
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: loop-single.php:22 loop-single.php:62
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: loop-single.php:47
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "查看由%s发表的所有文章 <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:25 loop.php:177
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 早期文章"
+
+#: loop.php:26 loop.php:178
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "较新文章 <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:35
+msgid ""
+"Apologies, but no results were found for the requested archive. Perhaps "
+"searching will help find a related post."
+msgstr "抱歉，您访问的归档页面未找到。也许搜索能帮到您。"
+
+#: loop.php:60 loop.php:94
+msgctxt "gallery category slug"
+msgid "gallery"
+msgstr "多媒体陈列厅"
+
+#: loop.php:81
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "此多媒体陈列厅包含 <a %1$s>%2$s 张图像</a>。"
+
+#: loop.php:82
+msgid "Permalink to %s"
+msgstr "链向%s的固定链接"
+
+#: loop.php:92
+msgid "View Galleries"
+msgstr "查看多媒体陈列厅"
+
+#: loop.php:92 loop.php:95
+msgid "More Galleries"
+msgstr "更多多媒体陈列厅"
+
+#: loop.php:95
+msgid "View posts in the Gallery category"
+msgstr "查看在“多媒体陈列”分类中的文章"
+
+#: loop.php:98 loop.php:121 loop.php:163
+msgid "Leave a comment"
+msgstr "留下评论"
+
+#: loop.php:98 loop.php:121 loop.php:163
+msgid "1 Comment"
+msgstr "一条评论"
+
+#: loop.php:98 loop.php:121 loop.php:163
+msgid "% Comments"
+msgstr "%条评论"
+
+#: loop.php:105
+msgctxt "asides category slug"
+msgid "asides"
+msgstr "asides"
+
+#: loop.php:150
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">发表在</span> %2$s"
+
+#: loop.php:159
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">标签为</span> %2$s"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "%s的搜索结果"
+
+#: search.php:26
+msgid "Nothing Found"
+msgstr "未找到"
+
+#: search.php:28
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr "抱歉，没有符合您搜索条件的结果。请换其它关键词再试。"
+
+#: sidebar.php:27
+msgid "Archives"
+msgstr "归档"
+
+#: sidebar.php:34
+msgid "Meta"
+msgstr "杂项"
+
+#: tag.php:16
+msgid "Tag Archives: %s"
+msgstr "标签归档：%s"
+
+#. Theme Name of the plugin/theme
+msgid "Twenty Ten"
+msgstr "Twenty Ten"
+
+#. Theme URI of the plugin/theme
+msgid "http://wordpress.org/themes/twentyten"
+msgstr "http://wordpress.org/themes/twentyten"
+
+#. Description of the plugin/theme
+msgid ""
+"The 2010 theme for WordPress is stylish, customizable, simple, and readable "
+"-- make it yours with a custom menu, header image, and background. Twenty "
+"Ten supports six widgetized areas (two in the sidebar, four in the footer) "
+"and featured images (thumbnails for gallery posts and custom header images "
+"for posts and pages). It includes stylesheets for print and the admin Visual "
+"Editor, special styles for posts in the \"Asides\" and \"Gallery\" "
+"categories, and has an optional one-column page template that removes the "
+"sidebar."
+msgstr ""
+"2010年的主题是新潮的、可自定义的，简单且可读性高。您可以随心定制菜单、顶部图"
+"像和背景。Twenty Ten支持多达6个小工具区域（其中2个在侧边栏，4个在页脚），以及"
+"一个特色图片区域（对于多媒体陈列厅内容的缩略图，对于文章和页面的自定义顶部图"
+"像）。它有丰富的CSS样式表，修改包含打印、管理员可视化编辑器、“Aside”和“多媒体"
+"陈列厅”分类在内的样式。它亦提供一个不带侧边栏的单栏的页面模版。"
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "WordPress团队"
+
+#. Template Name of the plugin/theme
+msgid "One column, no sidebar"
+msgstr "一栏，无边栏"

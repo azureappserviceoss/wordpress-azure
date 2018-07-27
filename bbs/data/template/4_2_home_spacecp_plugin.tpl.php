@@ -1,0 +1,2 @@
+<?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_plugin');?><?php include template('common/header'); include template('home/spacecp_header'); if($op == 'credit') { include template('home/spacecp_credit_header'); } include(template($_GET['id']));?></div></div>
+<div class="appl"><?php include template('home/spacecp_footer'); ?></div></div><?php include template('common/footer'); ?>

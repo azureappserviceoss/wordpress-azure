@@ -1,10 +1,6 @@
 /* global setUserSetting, ajaxurl, commonL10n, alert, confirm, pagenow */
 var showNotice, adminMenu, columns, validateForm, screenMeta;
 ( function( $, window, undefined ) {
-	var $document = $( document ),
-		$window = $( window ),
-		$body = $( document.body );
-
 // Removed in 3.3.
 // (perhaps) needed for back-compat
 adminMenu = {
@@ -41,19 +37,17 @@ columns = {
 	},
 
 	checked : function(column) {
-		$('.column-' + column).removeClass( 'hidden' );
+		$('.column-' + column).show();
 		this.colSpanChange(+1);
 	},
 
 	unchecked : function(column) {
-		$('.column-' + column).addClass( 'hidden' );
+		$('.column-' + column).hide();
 		this.colSpanChange(-1);
 	},
 
 	hidden : function() {
-		return $( '.manage-column[id]' ).filter( ':hidden' ).map(function() {
-			return this.id;
-		}).get().join( ',' );
+		return $('.manage-column').filter(':hidden').map(function() { return this.id; }).get().join(',');
 	},
 
 	useCheckboxesForHidden : function() {
@@ -74,16 +68,16 @@ columns = {
 	}
 };
 
-$document.ready(function(){columns.init();});
+$(document).ready(function(){columns.init();});
 
 validateForm = function( form ) {
 	return !$( form )
 		.find( '.form-required' )
-		.filter( function() { return $( ':input:visible', this ).val() === ''; } )
+		.filter( function() { return $( 'input:visible', this ).val() === ''; } )
 		.addClass( 'form-invalid' )
-		.find( ':input:visible' )
+		.find( 'input:visible' )
 		.change( function() { $( this ).closest( '.form-invalid' ).removeClass( 'form-invalid' ); } )
-		.length;
+		.size();
 };
 
 // stub for doing better warnings
@@ -109,14 +103,15 @@ screenMeta = {
 
 	init: function() {
 		this.element = $('#screen-meta');
-		this.toggles = $( '#screen-meta-links' ).find( '.show-settings' );
+		this.toggles = $('.screen-meta-toggle a');
 		this.page    = $('#wpcontent');
 
 		this.toggles.click( this.toggleEvent );
 	},
 
-	toggleEvent: function() {
-		var panel = $( '#' + $( this ).attr( 'aria-controls' ) );
+	toggleEvent: function( e ) {
+		var panel = $( this.href.replace(/.+#/, '#') );
+		e.preventDefault();
 
 		if ( !panel.length )
 			return;
@@ -127,27 +122,27 @@ screenMeta = {
 			screenMeta.open( panel, $(this) );
 	},
 
-	open: function( panel, button ) {
+	open: function( panel, link ) {
 
-		$( '#screen-meta-links' ).find( '.screen-meta-toggle' ).not( button.parent() ).css( 'visibility', 'hidden' );
+		$('.screen-meta-toggle').not( link.parent() ).css('visibility', 'hidden');
 
 		panel.parent().show();
 		panel.slideDown( 'fast', function() {
 			panel.focus();
-			button.addClass( 'screen-meta-active' ).attr( 'aria-expanded', true );
+			link.addClass('screen-meta-active').attr('aria-expanded', true);
 		});
 
-		$document.trigger( 'screen:options:open' );
+		$( document ).trigger( 'screen:options:open' );
 	},
 
-	close: function( panel, button ) {
+	close: function( panel, link ) {
 		panel.slideUp( 'fast', function() {
-			button.removeClass( 'screen-meta-active' ).attr( 'aria-expanded', false );
+			link.removeClass('screen-meta-active').attr('aria-expanded', false);
 			$('.screen-meta-toggle').css('visibility', '');
 			panel.parent().hide();
 		});
 
-		$document.trigger( 'screen:options:close' );
+		$( document ).trigger( 'screen:options:close' );
 	}
 };
 
@@ -175,137 +170,17 @@ $('.contextual-help-tabs').delegate('a', 'click', function(e) {
 	panel.addClass('active').show();
 });
 
-/**
- * Update custom permalink structure via buttons.
- */
-
-var permalinkStructureFocused = false,
-    $permalinkStructure       = $( '#permalink_structure' ),
-    $permalinkStructureInputs = $( '.permalink-structure input:radio' ),
-    $permalinkCustomSelection = $( '#custom_selection' ),
-    $availableStructureTags   = $( '.form-table.permalink-structure .available-structure-tags button' );
-
-// Change permalink structure input when selecting one of the common structures.
-$permalinkStructureInputs.on( 'change', function() {
-	if ( 'custom' === this.value ) {
-		return;
-	}
-
-	$permalinkStructure.val( this.value );
-
-	// Update button states after selection.
-	$availableStructureTags.each( function() {
-		changeStructureTagButtonState( $( this ) );
-	} );
-} );
-
-$permalinkStructure.on( 'click input', function() {
-	$permalinkCustomSelection.prop( 'checked', true );
-} );
-
-// Check if the permalink structure input field has had focus at least once.
-$permalinkStructure.on( 'focus', function( event ) {
-	permalinkStructureFocused = true;
-	$( this ).off( event );
-} );
-
-/**
- * Enables or disables a structure tag button depending on its usage.
- *
- * If the structure is already used in the custom permalink structure,
- * it will be disabled.
- *
- * @param {object} button Button jQuery object.
- */
-function changeStructureTagButtonState( button ) {
-	if ( -1 !== $permalinkStructure.val().indexOf( button.text().trim() ) ) {
-		button.attr( 'data-label', button.attr( 'aria-label' ) );
-		button.attr( 'aria-label', button.attr( 'data-used' ) );
-		button.attr( 'aria-pressed', true );
-		button.addClass( 'active' );
-	} else if ( button.attr( 'data-label' ) ) {
-		button.attr( 'aria-label', button.attr( 'data-label' ) );
-		button.attr( 'aria-pressed', false );
-		button.removeClass( 'active' );
-	}
-}
-
-// Check initial button state.
-$availableStructureTags.each( function() {
-	changeStructureTagButtonState( $( this ) );
-} );
-
-// Observe permalink structure field and disable buttons of tags that are already present.
-$permalinkStructure.on( 'change', function() {
-	$availableStructureTags.each( function() {
-		changeStructureTagButtonState( $( this ) );
-	} );
-} );
-
-$availableStructureTags.on( 'click', function() {
-	var permalinkStructureValue = $permalinkStructure.val(),
-	    selectionStart          = $permalinkStructure[ 0 ].selectionStart,
-	    selectionEnd            = $permalinkStructure[ 0 ].selectionEnd,
-	    textToAppend            = $( this ).text().trim(),
-	    textToAnnounce          = $( this ).attr( 'data-added' ),
-	    newSelectionStart;
-
-	// Remove structure tag if already part of the structure.
-	if ( -1 !== permalinkStructureValue.indexOf( textToAppend ) ) {
-		permalinkStructureValue = permalinkStructureValue.replace( textToAppend + '/', '' );
-
-		$permalinkStructure.val( '/' === permalinkStructureValue ? '' : permalinkStructureValue );
-
-		// Announce change to screen readers.
-		$( '#custom_selection_updated' ).text( textToAnnounce );
-
-		// Disable button.
-		changeStructureTagButtonState( $( this ) );
-
-		return;
-	}
-
-	// Input field never had focus, move selection to end of input.
-	if ( ! permalinkStructureFocused && 0 === selectionStart && 0 === selectionEnd ) {
-		selectionStart = selectionEnd = permalinkStructureValue.length;
-	}
-
-	$permalinkCustomSelection.prop( 'checked', true );
-
-	// Prepend and append slashes if necessary.
-	if ( '/' !== permalinkStructureValue.substr( 0, selectionStart ).substr( -1 ) ) {
-		textToAppend = '/' + textToAppend;
-	}
-
-	if ( '/' !== permalinkStructureValue.substr( selectionEnd, 1 ) ) {
-		textToAppend = textToAppend + '/';
-	}
-
-	// Insert structure tag at the specified position.
-	$permalinkStructure.val( permalinkStructureValue.substr( 0, selectionStart ) + textToAppend + permalinkStructureValue.substr( selectionEnd ) );
-
-	// Announce change to screen readers.
-	$( '#custom_selection_updated' ).text( textToAnnounce );
-
-	// Disable button.
-	changeStructureTagButtonState( $( this ) );
-
-	// If input had focus give it back with cursor right after appended text.
-	if ( permalinkStructureFocused && $permalinkStructure[0].setSelectionRange ) {
-		newSelectionStart = ( permalinkStructureValue.substr( 0, selectionStart ) + textToAppend ).length;
-		$permalinkStructure[0].setSelectionRange( newSelectionStart, newSelectionStart );
-		$permalinkStructure.focus();
-	}
-} );
-
-$document.ready( function() {
-	var checks, first, last, checked, sliced, mobileEvent, transitionTimeout, focusedRowActions,
+$(document).ready( function() {
+	var checks, first, last, checked, sliced, mobileEvent, transitionTimeout, focusedRowActions, $firstHeading,
 		lastClicked = false,
 		pageInput = $('input.current-page'),
 		currentPage = pageInput.val(),
 		isIOS = /iPhone|iPad|iPod/.test( navigator.userAgent ),
 		isAndroid = navigator.userAgent.indexOf( 'Android' ) !== -1,
 		isIE8 = $( document.documentElement ).hasClass( 'ie8' ),
+		$document = $( document ),
+		$window = $( window ),
+		$body = $( document.body ),
 		$adminMenuWrap = $( '#adminmenuwrap' ),
 		$wpwrap = $( '#wpwrap' ),
 		$adminmenu = $( '#adminmenu' ),
@@ -319,15 +194,13 @@ $document.ready( function() {
 		pinnedMenuTop = false,
 		pinnedMenuBottom = false,
 		menuTop = 0,
-		menuState,
 		menuIsPinned = false,
 		height = {
 			window: $window.height(),
 			wpwrap: $wpwrap.height(),
 			adminbar: $adminbar.height(),
 			menu: $adminMenuWrap.height()
-		},
-		$headerEnd = $( '.wp-header-end' );
+		};
 
 
 	// when the menu is folded, make the fly-out submenu header clickable
@@ -335,52 +208,45 @@ $document.ready( function() {
 		$(e.target).parent().siblings('a').get(0).click();
 	});
 
-	$( '#collapse-button' ).on( 'click.collapse-menu', function() {
-		var viewportWidth = getViewportWidth() || 961;
+	$('#collapse-menu').on('click.collapse-menu', function() {
+		var body = $( document.body ), respWidth, state;
 
 		// reset any compensation for submenus near the bottom of the screen
 		$('#adminmenu div.wp-submenu').css('margin-top', '');
 
-		if ( viewportWidth < 960 ) {
-			if ( $body.hasClass('auto-fold') ) {
-				$body.removeClass('auto-fold').removeClass('folded');
+		if ( window.innerWidth ) {
+			// window.innerWidth is affected by zooming on phones
+			respWidth = Math.max( window.innerWidth, document.documentElement.clientWidth );
+		} else {
+			// IE < 9 doesn't support @media CSS rules
+			respWidth = 961;
+		}
+
+		if ( respWidth && respWidth < 960 ) {
+			if ( body.hasClass('auto-fold') ) {
+				body.removeClass('auto-fold').removeClass('folded');
 				setUserSetting('unfold', 1);
 				setUserSetting('mfold', 'o');
-				menuState = 'open';
+				state = 'open';
 			} else {
-				$body.addClass('auto-fold');
+				body.addClass('auto-fold');
 				setUserSetting('unfold', 0);
-				menuState = 'folded';
+				state = 'folded';
 			}
 		} else {
-			if ( $body.hasClass('folded') ) {
-				$body.removeClass('folded');
+			if ( body.hasClass('folded') ) {
+				body.removeClass('folded');
 				setUserSetting('mfold', 'o');
-				menuState = 'open';
+				state = 'open';
 			} else {
-				$body.addClass('folded');
+				body.addClass('folded');
 				setUserSetting('mfold', 'f');
-				menuState = 'folded';
+				state = 'folded';
 			}
 		}
 
-		$document.trigger( 'wp-collapse-menu', { state: menuState } );
+		$( document ).trigger( 'wp-collapse-menu', { state: state } );
 	});
-
-	// Handle the `aria-haspopup` attribute on the current menu item when it has a sub-menu.
-	function currentMenuItemHasPopup() {
-		var $current = $( 'a.wp-has-current-submenu' );
-
-		if ( 'folded' === menuState ) {
-			// When folded or auto-folded and not responsive view, the current menu item does have a fly-out sub-menu.
-			$current.attr( 'aria-haspopup', 'true' );
-		} else {
-			// When expanded or in responsive view, reset aria-haspopup.
-			$current.attr( 'aria-haspopup', 'false' );
-		}
-	}
-
-	$document.on( 'wp-menu-state-set wp-collapse-menu wp-responsive-activate wp-responsive-deactivate', currentMenuItemHasPopup );
 
 	/**
 	 * Ensure an admin submenu is within the visual viewport.
@@ -422,7 +288,7 @@ $document.ready( function() {
 		mobileEvent = isIOS ? 'touchstart' : 'click';
 
 		// close any open submenus when touch/click is not on the menu
-		$body.on( mobileEvent+'.wp-mobile-hover', function(e) {
+		$(document.body).on( mobileEvent+'.wp-mobile-hover', function(e) {
 			if ( $adminmenu.data('wp-responsive') ) {
 				return;
 			}
@@ -502,51 +368,41 @@ $document.ready( function() {
 		});
 	}
 
-	/*
-	 * The `.below-h2` class is here just for backward compatibility with plugins
-	 * that are (incorrectly) using it. Do not use. Use `.inline` instead. See #34570.
-	 * If '.wp-header-end' is found, append the notices after it otherwise
-	 * after the first h1 or h2 heading found within the main content.
-	 */
-	if ( ! $headerEnd.length ) {
-		$headerEnd = $( '.wrap h1, .wrap h2' ).first();
-	}
-	$( 'div.updated, div.error, div.notice' ).not( '.inline, .below-h2' ).insertAfter( $headerEnd );
+	// Move .notice, .updated and .error alert boxes. Don't move boxes designed to be inline.
+	$firstHeading = $( 'div.wrap h2:first' );
+	$firstHeading.nextAll( 'div.updated, div.error, div.notice' ).addClass( 'below-h2' );
+	$( 'div.updated, div.error, div.notice' ).not( '.below-h2, .inline' ).insertAfter( $firstHeading );
 
 	// Make notices dismissible
-	function makeNoticesDismissible() {
-		$( '.notice.is-dismissible' ).each( function() {
-			var $el = $( this ),
-				$button = $( '<button type="button" class="notice-dismiss"><span class="screen-reader-text"></span></button>' ),
-				btnText = commonL10n.dismiss || '';
+	$( '.notice.is-dismissible' ).each( function() {
+		var $this = $( this ),
+			$button = $( '<button type="button" class="notice-dismiss"><span class="screen-reader-text"></span></button>' ),
+			btnText = commonL10n.dismiss || '';
 
-			// Ensure plain text
-			$button.find( '.screen-reader-text' ).text( btnText );
-			$button.on( 'click.wp-dismiss-notice', function( event ) {
-				event.preventDefault();
-				$el.fadeTo( 100, 0, function() {
-					$el.slideUp( 100, function() {
-						$el.remove();
-					});
+		// Ensure plain text
+		$button.find( '.screen-reader-text' ).text( btnText );
+
+		$this.append( $button );
+
+		$button.on( 'click.wp-dismiss-notice', function( event ) {
+			event.preventDefault();
+			$this.fadeTo( 100 , 0, function() {
+				$(this).slideUp( 100, function() {
+					$(this).remove();
 				});
 			});
-
-			$el.append( $button );
 		});
-	}
-
-	$document.on( 'wp-updates-notice-added wp-plugin-install-error wp-plugin-update-error wp-plugin-delete-error wp-theme-install-error wp-theme-delete-error', makeNoticesDismissible );
+	});
 
 	// Init screen meta
 	screenMeta.init();
 
-	// This event needs to be delegated. Ticket #37973.
-	$body.on( 'click', 'tbody > tr > .check-column :checkbox', function( event ) {
-		// Shift click to select a range of checkboxes.
-		if ( 'undefined' == event.shiftKey ) { return true; }
-		if ( event.shiftKey ) {
+	// check all checkboxes
+	$('tbody').children().children('.check-column').find(':checkbox').click( function(e) {
+		if ( 'undefined' == e.shiftKey ) { return true; }
+		if ( e.shiftKey ) {
 			if ( !lastClicked ) { return true; }
-			checks = $( lastClicked ).closest( 'form' ).find( ':checkbox' ).filter( ':visible:enabled' );
+			checks = $( lastClicked ).closest( 'form' ).find( ':checkbox' );
 			first = checks.index( lastClicked );
 			last = checks.index( this );
 			checked = $(this).prop('checked');
@@ -562,8 +418,8 @@ $document.ready( function() {
 		}
 		lastClicked = this;
 
-		// Toggle the "Select all" checkboxes depending if the other ones are all checked or not.
-		var unchecked = $(this).closest('tbody').find(':checkbox').filter(':visible:enabled').not(':checked');
+		// toggle "check all" checkboxes
+		var unchecked = $(this).closest('tbody').find(':checkbox').filter(':visible').not(':checked');
 		$(this).closest('table').children('thead, tfoot').find(':checkbox').prop('checked', function() {
 			return ( 0 === unchecked.length );
 		});
@@ -571,8 +427,7 @@ $document.ready( function() {
 		return true;
 	});
 
-	// This event needs to be delegated. Ticket #37973.
-	$body.on( 'click.wp-toggle-checkboxes', 'thead .check-column :checkbox, tfoot .check-column :checkbox', function( event ) {
+	$('thead, tfoot').find('.check-column :checkbox').on( 'click.wp-toggle-checkboxes', function( event ) {
 		var $this = $(this),
 			$table = $this.closest( 'table' ),
 			controlChecked = $this.prop('checked'),
@@ -581,7 +436,7 @@ $document.ready( function() {
 		$table.children( 'tbody' ).filter(':visible')
 			.children().children('.check-column').find(':checkbox')
 			.prop('checked', function() {
-				if ( $(this).is(':hidden,:disabled') ) {
+				if ( $(this).is(':hidden') ) {
 					return false;
 				}
 
@@ -623,12 +478,7 @@ $document.ready( function() {
 				focusedRowActions.removeClass( 'visible' );
 			}, 30 );
 		}
-	}, '.has-row-actions' );
-
-	// Toggle list table rows on small screens
-	$( 'tbody' ).on( 'click', '.toggle-row', function() {
-		$( this ).closest( 'tr' ).toggleClass( 'is-expanded' );
-	});
+	}, 'td.post-title, td.title, td.comment, .tags td.column-name, .bookmarks td.column-name, td.blogname, .users-network td.column-blogs, td.username, .dashboard-comment-wrap' );
 
 	$('#default-password-nag-no').click( function() {
 		setUserSetting('default_password_nag', 'hide');
@@ -890,10 +740,6 @@ $document.ready( function() {
 			// Toggle sidebar when toggle is clicked
 			$( '#wp-admin-bar-menu-toggle' ).on( 'click.wp-responsive', function( event ) {
 				event.preventDefault();
-
-				// close any open toolbar submenus
-				$adminbar.find( '.hover' ).removeClass( 'hover' );
-
 				$wpwrap.toggleClass( 'wp-responsive-open' );
 				if ( $wpwrap.hasClass( 'wp-responsive-open' ) ) {
 					$(this).find('a').attr( 'aria-expanded', 'true' );
@@ -944,14 +790,17 @@ $document.ready( function() {
 		},
 
 		trigger: function() {
-			var viewportWidth = getViewportWidth();
+			var width;
 
-			// Exclude IE < 9, it doesn't support @media CSS rules.
-			if ( ! viewportWidth ) {
+			if ( window.innerWidth ) {
+				// window.innerWidth is affected by zooming on phones
+				width = Math.max( window.innerWidth, document.documentElement.clientWidth );
+			} else {
+				// Exclude IE < 9, it doesn't support @media CSS rules
 				return;
 			}
 
-			if ( viewportWidth <= 782 ) {
+			if ( width <= 782 ) {
 				if ( ! wpResponsiveActive ) {
 					$document.trigger( 'wp-responsive-activate' );
 					wpResponsiveActive = true;
@@ -963,7 +812,7 @@ $document.ready( function() {
 				}
 			}
 
-			if ( viewportWidth <= 480 ) {
+			if ( width <= 480 ) {
 				this.enableOverlay();
 			} else {
 				this.disableOverlay();
@@ -1008,118 +857,10 @@ $document.ready( function() {
 		}
 	};
 
-	// Add an ARIA role `button` to elements that behave like UI controls when JavaScript is on.
-	function aria_button_if_js() {
-		$( '.aria-button-if-js' ).attr( 'role', 'button' );
-	}
-
-	$( document ).ajaxComplete( function() {
-		aria_button_if_js();
-	});
-
-	/**
-	 * @summary Get the viewport width.
-	 *
-	 * @since 4.7.0
-	 *
-	 * @returns {number|boolean} The current viewport width or false if the
-	 *                           browser doesn't support innerWidth (IE < 9).
-	 */
-	function getViewportWidth() {
-		var viewportWidth = false;
-
-		if ( window.innerWidth ) {
-			// On phones, window.innerWidth is affected by zooming.
-			viewportWidth = Math.max( window.innerWidth, document.documentElement.clientWidth );
-		}
-
-		return viewportWidth;
-	}
-
-	/**
-	 * @summary Set the admin menu collapsed/expanded state.
-	 *
-	 * Sets the global variable `menuState` and triggers a custom event passing
-	 * the current menu state.
-	 *
-	 * @since 4.7.0
-	 *
-	 * @returns {void}
-	 */
-	function setMenuState() {
-		var viewportWidth = getViewportWidth() || 961;
-
-		if ( viewportWidth <= 782  ) {
-			menuState = 'responsive';
-		} else if ( $body.hasClass( 'folded' ) || ( $body.hasClass( 'auto-fold' ) && viewportWidth <= 960 && viewportWidth > 782 ) ) {
-			menuState = 'folded';
-		} else {
-			menuState = 'open';
-		}
-
-		$document.trigger( 'wp-menu-state-set', { state: menuState } );
-	}
-
-	// Set the menu state when the window gets resized.
-	$document.on( 'wp-window-resized.set-menu-state', setMenuState );
-
-	/**
-	 * @summary Set ARIA attributes on the collapse/expand menu button.
-	 *
-	 * When the admin menu is open or folded, updates the `aria-expanded` and
-	 * `aria-label` attributes of the button to give feedback to assistive
-	 * technologies. In the responsive view, the button is always hidden.
-	 *
-	 * @since 4.7.0
-	 *
-	 * @returns {void}
-	 */
-	$document.on( 'wp-menu-state-set wp-collapse-menu', function( event, eventData ) {
-		var $collapseButton = $( '#collapse-button' ),
-			ariaExpanded = 'true',
-			ariaLabelText = commonL10n.collapseMenu;
-
-		if ( 'folded' === eventData.state ) {
-			ariaExpanded = 'false';
-			ariaLabelText = commonL10n.expandMenu;
-		}
-
-		$collapseButton.attr({
-			'aria-expanded': ariaExpanded,
-			'aria-label': ariaLabelText
-		});
-	});
-
 	window.wpResponsive.init();
 	setPinMenu();
-	setMenuState();
-	currentMenuItemHasPopup();
-	makeNoticesDismissible();
-	aria_button_if_js();
 
-	$document.on( 'wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', setPinMenu );
-
-	// Set initial focus on a specific element.
-	$( '.wp-initial-focus' ).focus();
-
-	// Toggle update details on update-core.php.
-	$body.on( 'click', '.js-update-details-toggle', function() {
-		var $updateNotice = $( this ).closest( '.js-update-details' ),
-			$progressDiv = $( '#' + $updateNotice.data( 'update-details' ) );
-
-		/*
-		 * When clicking on "Show details" move the progress div below the update
-		 * notice. Make sure it gets moved just the first time.
-		 */
-		if ( ! $progressDiv.hasClass( 'update-details-moved' ) ) {
-			$progressDiv.insertAfter( $updateNotice ).addClass( 'update-details-moved' );
-		}
-
-		// Toggle the progress div visibility.
-		$progressDiv.toggle();
-		// Toggle the Show Details button expanded state.
-		$( this ).attr( 'aria-expanded', $progressDiv.is( ':visible' ) );
-	});
+	$document.on( 'wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu', setPinMenu );
 });
 
 // Fire a custom jQuery event at the end of window resize
@@ -1127,7 +868,7 @@ $document.ready( function() {
 	var timeout;
 
 	function triggerEvent() {
-		$document.trigger( 'wp-window-resized' );
+		$(document).trigger( 'wp-window-resized' );
 	}
 
 	function fireOnce() {
@@ -1135,7 +876,7 @@ $document.ready( function() {
 		timeout = window.setTimeout( triggerEvent, 200 );
 	}
 
-	$window.on( 'resize.wp-fire-once', fireOnce );
+	$(window).on( 'resize.wp-fire-once', fireOnce );
 }());
 
 // Make Windows 8 devices play along nicely.

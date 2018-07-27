@@ -2,13 +2,13 @@
 /**
  * Class for generating SQL clauses that filter a primary query according to date.
  *
- * WP_Date_Query is a helper that allows primary query classes, such as WP_Query, to filter
- * their results by date columns, by generating `WHERE` subclauses to be attached to the
- * primary SQL query string.
+ * `WP_Date_Query` is a helper that allows primary query classes, such as {@see WP_Query},
+ * to filter their results by date columns, by generating `WHERE` subclauses to be attached
+ * to the primary SQL query string.
  *
  * Attempting to filter by an invalid date value (eg month=13) will generate SQL that will
  * return no results. In these cases, a _doing_it_wrong() error notice is also thrown.
- * See WP_Date_Query::validate_date_values().
+ * See {@link WP_Date_Query::validate_date_values()}.
  *
  * @link https://codex.wordpress.org/Function_Reference/WP_Query Codex page.
  *
@@ -18,9 +18,10 @@ class WP_Date_Query {
 	/**
 	 * Array of date queries.
 	 *
-	 * See WP_Date_Query::__construct() for information on date query arguments.
+	 * See {@see WP_Date_Query::__construct()} for information on date query arguments.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 * @var array
 	 */
 	public $queries = array();
@@ -29,6 +30,7 @@ class WP_Date_Query {
 	 * The default relation between top-level queries. Can be either 'AND' or 'OR'.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 * @var string
 	 */
 	public $relation = 'AND';
@@ -37,6 +39,7 @@ class WP_Date_Query {
 	 * The column to query against. Can be changed via the query arguments.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 * @var string
 	 */
 	public $column = 'post_date';
@@ -45,6 +48,7 @@ class WP_Date_Query {
 	 * The value comparison operator. Can be changed via the query arguments.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 * @var array
 	 */
 	public $compare = '=';
@@ -53,6 +57,7 @@ class WP_Date_Query {
 	 * Supported time-related parameter keys.
 	 *
 	 * @since 4.1.0
+	 * @access public
 	 * @var array
 	 */
 	public $time_keys = array( 'after', 'before', 'year', 'month', 'monthnum', 'week', 'w', 'dayofyear', 'day', 'dayofweek', 'dayofweek_iso', 'hour', 'minute', 'second' );
@@ -68,6 +73,7 @@ class WP_Date_Query {
 	 * @since 3.7.0
 	 * @since 4.0.0 The $inclusive logic was updated to include all times within the date range.
 	 * @since 4.1.0 Introduced 'dayofweek_iso' time type parameter.
+	 * @access public
 	 *
 	 * @param array $date_query {
 	 *     Array of date query clauses.
@@ -145,6 +151,7 @@ class WP_Date_Query {
 	 *                              'comment_date', 'comment_date_gmt'.
 	 */
 	public function __construct( $date_query, $default_column = 'post_date' ) {
+
 		if ( isset( $date_query['relation'] ) && 'OR' === strtoupper( $date_query['relation'] ) ) {
 			$this->relation = 'OR';
 		} else {
@@ -185,6 +192,7 @@ class WP_Date_Query {
 	 * `$defaults`.
 	 *
 	 * @since 4.1.0
+	 * @access public
 	 *
 	 * @param array $queries
 	 * @param array $parent_query
@@ -244,8 +252,6 @@ class WP_Date_Query {
 	 * Checks to see if the current clause has any time-related keys.
 	 * If so, it's first-order.
 	 *
-	 * @since 4.1.0
-	 *
 	 * @param  array $query Query clause.
 	 * @return bool True if this is a first-order clause.
 	 */
@@ -258,6 +264,7 @@ class WP_Date_Query {
 	 * Determines and validates what comparison operator to use.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @param array $query A date query or a date subquery.
 	 * @return string The comparison operator.
@@ -277,6 +284,7 @@ class WP_Date_Query {
 	 * This method only generates debug notices for these cases.
 	 *
 	 * @since  4.1.0
+	 * @access public
 	 *
 	 * @param  array $date_query The date_query array.
 	 * @return bool  True if all values in the query are valid, false if one or more fail.
@@ -347,11 +355,10 @@ class WP_Date_Query {
 
 		// Weeks per year.
 		if ( isset( $_year ) ) {
-			/*
-			 * If we have a specific year, use it to calculate number of weeks.
-			 * Note: the number of weeks in a year is the date in which Dec 28 appears.
-			 */
-			$week_count = date( 'W', mktime( 0, 0, 0, 12, 28, $_year ) );
+			// If we have a specific year, use it to calculate number of weeks.
+			$date = new DateTime();
+			$date->setISODate( $_year, 53 );
+			$week_count = $date->format( "W" ) === "53" ? 53 : 52;
 
 		} else {
 			// Otherwise set the week-count to a maximum of 53.
@@ -472,6 +479,7 @@ class WP_Date_Query {
 	 * and are only sanitized to remove illegal characters.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @param string $column The user-supplied column name.
 	 * @return string A validated column name value.
@@ -482,13 +490,13 @@ class WP_Date_Query {
 		$valid_columns = array(
 			'post_date', 'post_date_gmt', 'post_modified',
 			'post_modified_gmt', 'comment_date', 'comment_date_gmt',
-			'user_registered', 'registered', 'last_updated',
+			'user_registered',
 		);
 
 		// Attempt to detect a table prefix.
 		if ( false === strpos( $column, '.' ) ) {
 			/**
-			 * Filters the list of valid date query columns.
+			 * Filter the list of valid date query columns.
 			 *
 			 * @since 3.7.0
 			 * @since 4.1.0 Added 'user_registered' to the default recognized columns.
@@ -516,10 +524,6 @@ class WP_Date_Query {
 				$wpdb->users => array(
 					'user_registered',
 				),
-				$wpdb->blogs => array(
-					'registered',
-					'last_updated',
-				),
 			);
 
 			// If it's a known column name, add the appropriate table prefix.
@@ -540,6 +544,7 @@ class WP_Date_Query {
 	 * Generate WHERE clause to be appended to a main query.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @return string MySQL WHERE clause.
 	 */
@@ -549,7 +554,7 @@ class WP_Date_Query {
 		$where = $sql['where'];
 
 		/**
-		 * Filters the date query WHERE clause.
+		 * Filter the date query WHERE clause.
 		 *
 		 * @since 3.7.0
 		 *
@@ -562,10 +567,11 @@ class WP_Date_Query {
 	/**
 	 * Generate SQL clauses to be appended to a main query.
 	 *
-	 * Called by the public WP_Date_Query::get_sql(), this method is abstracted
-	 * out to maintain parity with the other Query classes.
+	 * Called by the public {@see WP_Date_Query::get_sql()}, this method
+	 * is abstracted out to maintain parity with the other Query classes.
 	 *
 	 * @since 4.1.0
+	 * @access protected
 	 *
 	 * @return array {
 	 *     Array containing JOIN and WHERE SQL clauses to append to the main query.
@@ -591,6 +597,7 @@ class WP_Date_Query {
 	 * produce the properly nested SQL.
 	 *
 	 * @since 4.1.0
+	 * @access protected
 	 *
 	 * @param array $query Query to parse.
 	 * @param int   $depth Optional. Number of tree levels deep we currently are.
@@ -675,6 +682,7 @@ class WP_Date_Query {
 	 * compatibility while retaining the naming convention across Query classes.
 	 *
 	 * @since  3.7.0
+	 * @access protected
 	 *
 	 * @param  array $query Date query arguments.
 	 * @return array {
@@ -692,6 +700,7 @@ class WP_Date_Query {
 	 * Turns a first-order date query into SQL for a WHERE clause.
 	 *
 	 * @since  4.1.0
+	 * @access protected
 	 *
 	 * @param  array $query        Date query clause.
 	 * @param  array $parent_query Parent query of the current date query.
@@ -726,12 +735,12 @@ class WP_Date_Query {
 		}
 
 		// Range queries.
-		if ( ! empty( $query['after'] ) ) {
+		if ( ! empty( $query['after'] ) )
 			$where_parts[] = $wpdb->prepare( "$column $gt %s", $this->build_mysql_datetime( $query['after'], ! $inclusive ) );
-		}
-		if ( ! empty( $query['before'] ) ) {
+
+		if ( ! empty( $query['before'] ) )
 			$where_parts[] = $wpdb->prepare( "$column $lt %s", $this->build_mysql_datetime( $query['before'], $inclusive ) );
-		}
+
 		// Specific value queries.
 
 		if ( isset( $query['year'] ) && $value = $this->build_value( $compare, $query['year'] ) )
@@ -786,6 +795,7 @@ class WP_Date_Query {
 	 * Builds and validates a value string based on the comparison operator.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @param string $compare The compare operator to use
 	 * @param string|array $value The value
@@ -828,7 +838,7 @@ class WP_Date_Query {
 
 				return $value[0] . ' AND ' . $value[1];
 
-			default:
+			default;
 				if ( ! is_numeric( $value ) ) {
 					return false;
 				}
@@ -842,9 +852,10 @@ class WP_Date_Query {
 	 *
 	 * You can pass an array of values (year, month, etc.) with missing parameter values being defaulted to
 	 * either the maximum or minimum values (controlled by the $default_to parameter). Alternatively you can
-	 * pass a string that will be run through strtotime().
+	 * pass a string that that will be run through strtotime().
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @param string|array $datetime       An array of parameters or a strotime() string
 	 * @param bool         $default_to_max Whether to round up incomplete dates. Supported by values
@@ -932,6 +943,7 @@ class WP_Date_Query {
 	 * in order to be able to accurately compare against.
 	 *
 	 * @since 3.7.0
+	 * @access public
 	 *
 	 * @param string $column The column to query against. Needs to be pre-validated!
 	 * @param string $compare The comparison operator. Needs to be pre-validated!
@@ -979,7 +991,7 @@ class WP_Date_Query {
 		$format = $time = '';
 
 		// Hour
-		if ( null !== $hour ) {
+		if ( $hour ) {
 			$format .= '%H.';
 			$time   .= sprintf( '%02d', $hour ) . '.';
 		} else {

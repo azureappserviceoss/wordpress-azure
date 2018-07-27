@@ -1,0 +1,2 @@
+[25-Nov-2017 12:40:17 UTC] PHP Fatal error:  Call to undefined function __() in /home/mahjong/public_html/wp-admin/user/menu.php on line 10
+[25-Nov-2017 12:45:34 UTC] PHP Fatal error:  Call to undefined function __() in /home/mahjong/public_html/wp-admin/user/menu.php on line 10

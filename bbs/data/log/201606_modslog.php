@@ -1,0 +1,16 @@
+<?PHP exit;?>	1465226870	SteveXu	3	67.226.176.253	85	排名	112033	2016/06/01~2016/06/05	DEL	文不对题		
+<?PHP exit;?>	1465228575	SteveXu	3	67.226.176.253	85	排名	112034	2016	DEL			
+<?PHP exit;?>	1465241731	SteveXu	3	67.226.176.253	85	排名	112036	第1周 Jun 01 ~ Jun 05	DEL			
+<?PHP exit;?>	1465241837	SteveXu	3	67.226.176.253	85	排名	112035	June  6	DEL			
+<?PHP exit;?>	1465301437	admin	1	99.225.156.21	85	排名	112037	2016 June	EDT			
+<?PHP exit;?>	1465301463	admin	1	99.225.156.21	85	排名	112037	2016 June	EDT			
+<?PHP exit;?>	1465484779	SteveXu	3	67.226.176.253	85	排名	112039	Jun 09, 2016	DEL			
+<?PHP exit;?>	1465485941	SteveXu	3	67.226.176.253	85	排名	112040	Jun 09, 2016	DEL			
+<?PHP exit;?>	1465570424	SteveXu	3	67.226.176.253	85	排名	112042	2016-06-10	DEL			
+<?PHP exit;?>	1465828626	SteveXu	3	67.226.176.253	85	排名	112044	2016-06-13	DEL			
+<?PHP exit;?>	1467122848	SteveXu	3	67.226.176.253	85	排名	112059	2016-06-28	DEL			
+<?PHP exit;?>	1467209030	SteveXu	3	67.226.176.253	84	战报	112064	6-28	DEL			
+<?PHP exit;?>	1467213110	SteveXu	3	67.226.176.253	2	技术规则讨论	112062	麻將實用技巧	DEL			
+<?PHP exit;?>	1467213176	SteveXu	3	67.226.176.253	2	技术规则讨论	111029	Louis Vuitton iPhone 5s Case ... 99rbWgoRBNHOO	DEL			
+<?PHP exit;?>	1467213194	SteveXu	3	67.226.176.253	2	技术规则讨论	111012	michael kors vesker ... HsOwc3DnwPajM	DEL			
+<?PHP exit;?>	1467213194	SteveXu	3	67.226.176.253	2	技术规则讨论	111020	louis vuitton noe ... me0bGxDuPCHMg	DEL			

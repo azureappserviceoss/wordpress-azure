@@ -1,0 +1,12 @@
+<?PHP exit;?>	1425488086	max1	3	206.177.43.73	login		38	GET={mod=modcp; fid=38; action=login; }; POST={};
+<?PHP exit;?>	1425504296	max1	3	206.177.43.73	login		0	GET={mod=modcp; action=login; }; POST={};
+<?PHP exit;?>	1425703288	和为贵	3	99.229.106.205	login		37	GET={mod=modcp; action=login; fid=37; }; POST={};
+<?PHP exit;?>	1425703295	和为贵	3	99.229.106.205	login		37	GET={mod=modcp; fid=37; action=login; }; POST={};
+<?PHP exit;?>	1425703479	和为贵	3	99.229.106.205	login		37	GET={mod=modcp; action=login; fid=37; }; POST={};
+<?PHP exit;?>	1425766521	max1	3	99.225.156.21	login		0	GET={mod=modcp; action=login; }; POST={};
+<?PHP exit;?>	1425784510	max1	3	99.225.156.21	login		37	GET={mod=modcp; fid=37; action=login; }; POST={};
+<?PHP exit;?>	1425784526	max1	3	99.225.156.21	login			GET={mod=modcp; action=login; }; POST={};
+<?PHP exit;?>	1425949637	max1	3	99.225.156.21	login		45	GET={mod=modcp; fid=45; action=login; }; POST={};
+<?PHP exit;?>	1426077798	ryan	3	209.141.170.207	login	ban		GET={mod=modcp; action=login; op=ban; uid=60059; }; POST={};
+<?PHP exit;?>	1426077803	ryan	3	209.141.170.207	login	ban		GET={mod=modcp; action=login; op=ban; uid=60059; }; POST={};
+<?PHP exit;?>	1426166009	ryan	3	209.141.170.207	login			GET={mod=modcp; action=login; }; POST={};

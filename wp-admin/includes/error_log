@@ -1,0 +1,1 @@
+[22-Aug-2016 01:13:16 America/Toronto] PHP Fatal error:  Class 'WP_Filesystem_Base' not found in /home/mahjong/public_html/wp-admin/includes/class-wp-filesystem-ftpext.php on line 17

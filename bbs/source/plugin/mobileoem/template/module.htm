@@ -1,0 +1,19 @@
+{eval
+
+function tpl_mobileoem_viewthread_useraction($tid) {
+global $_G;
+}
+<!--{block return}-->
+<style>
+	.cross{padding:20px;}
+	.cross h2{font-size:24px;margin-bottom: 20px;}
+	.cross p{font-size:12px;color:#444;}
+	.txt-blue{color:#0071bc;}
+</style>
+<a href="api/mobile?oem=1&module=pushtomobile&tid=$tid&formhash={FORMHASH}" id="k_mobileoempush" onclick="showWindow(this.id, this.href);return false;" title="{lang mobileoem:pushtomobile}"><i><img src="source/plugin/mobileoem/static/image/push.png" alt="{lang mobileoem:pushtomobile}" />{lang mobileoem:pushtitle}</i></a>
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+}

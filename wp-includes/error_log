@@ -1,0 +1,94 @@
+[02-Aug-2015 17:33:47 UTC] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Aug-2015 17:33:47 UTC] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Aug-2015 17:33:48 UTC] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Aug-2015 17:33:48 UTC] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[06-Aug-2015 01:01:15 UTC] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[06-Aug-2015 01:01:15 UTC] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[06-Aug-2015 01:01:16 UTC] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[06-Aug-2015 01:01:16 UTC] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss.php on line 19
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/category-template.php on line 912
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/registration.php on line 7
+[30-Nov-2015 11:00:46 America/Toronto] PHP Warning:  require_once(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/ms-settings.php on line 14
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/ms-settings.php on line 14
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/mahjong/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss2.php on line 8
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Class 'IXR_Server' not found in /home/mahjong/public_html/wp-includes/class-wp-xmlrpc-server.php on line 23
+[30-Nov-2015 11:00:46 America/Toronto] PHP Fatal error:  Class 'IXR_Client' not found in /home/mahjong/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-includes/ms-default-filters.php on line 17
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/registration-functions.php on line 7
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss2-comments.php on line 8
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function add_shortcode() in /home/mahjong/public_html/wp-includes/media.php on line 815
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function is_robots() in /home/mahjong/public_html/wp-includes/template-loader.php on line 28
+[30-Nov-2015 11:00:47 America/Toronto] PHP Fatal error:  Call to undefined function add_filter() in /home/mahjong/public_html/wp-includes/class-wp-embed.php on line 26
+[30-Nov-2015 11:00:48 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-atom-comments.php on line 8
+[30-Nov-2015 11:00:48 America/Toronto] PHP Fatal error:  Call to undefined function is_admin() in /home/mahjong/public_html/wp-includes/vars.php on line 23
+[30-Nov-2015 11:00:48 America/Toronto] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/mahjong/public_html/wp-includes/class.wp-styles.php on line 19
+[30-Nov-2015 11:00:48 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/nav-menu-template.php on line 16
+[30-Nov-2015 11:00:49 America/Toronto] PHP Fatal error:  Call to undefined function add_filter() in /home/mahjong/public_html/wp-includes/default-filters.php on line 17
+[30-Nov-2015 11:00:49 America/Toronto] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/class-simplepie.php on line 5
+[30-Nov-2015 11:00:49 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/class-simplepie.php on line 5
+[30-Nov-2015 11:00:49 America/Toronto] PHP Fatal error:  Call to undefined function is_main_site() in /home/mahjong/public_html/wp-includes/update.php on line 666
+[30-Nov-2015 11:00:49 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/post-template.php on line 1292
+[30-Nov-2015 11:00:50 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-atom.php on line 8
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/class-snoopy.php on line 6
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/mahjong/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/mahjong/public_html/wp-includes/class.wp-scripts.php on line 19
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rdf.php on line 8
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Class 'WP_Widget' not found in /home/mahjong/public_html/wp-includes/default-widgets.php on line 14
+[30-Nov-2015 11:00:51 America/Toronto] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/script-loader.php on line 25
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/script-loader.php on line 25
+[30-Nov-2015 11:00:51 America/Toronto] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/comment-template.php on line 1662
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss.php on line 8
+[30-Nov-2015 11:00:51 America/Toronto] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/class-feed.php on line 4
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/class-feed.php on line 4
+[30-Nov-2015 11:00:51 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-includes/ms-default-constants.php on line 153
+[30-Nov-2015 11:16:04 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss-functions.php on line 8
+[03-Feb-2016 10:28:03 America/Toronto] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/class-feed.php on line 4
+[03-Feb-2016 10:28:03 America/Toronto] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/class-feed.php on line 4
+[03-Feb-2016 10:28:04 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/nav-menu-template.php on line 16
+[03-Feb-2016 10:28:09 America/Toronto] PHP Fatal error:  Call to undefined function add_filter() in /home/mahjong/public_html/wp-includes/class-wp-embed.php on line 26
+[03-Feb-2016 10:28:09 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/class-snoopy.php on line 6
+[03-Feb-2016 10:28:16 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss2-comments.php on line 8
+[03-Feb-2016 10:28:16 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rdf.php on line 8
+[03-Feb-2016 10:28:18 America/Toronto] PHP Fatal error:  Class 'WP_Widget' not found in /home/mahjong/public_html/wp-includes/default-widgets.php on line 14
+[03-Feb-2016 10:28:21 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss.php on line 8
+[03-Feb-2016 10:28:21 America/Toronto] PHP Fatal error:  Call to undefined function is_admin() in /home/mahjong/public_html/wp-includes/vars.php on line 23
+[03-Feb-2016 10:28:21 America/Toronto] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/mahjong/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[03-Feb-2016 10:28:22 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/post-template.php on line 1292
+[03-Feb-2016 10:28:22 America/Toronto] PHP Warning:  require_once(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/ms-settings.php on line 14
+[03-Feb-2016 10:28:22 America/Toronto] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/ms-settings.php on line 14
+[03-Feb-2016 10:28:22 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-includes/ms-default-constants.php on line 153
+[03-Feb-2016 10:28:22 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/comment-template.php on line 1662
+[03-Feb-2016 10:28:24 America/Toronto] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/class-simplepie.php on line 5
+[03-Feb-2016 10:28:24 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/class-simplepie.php on line 5
+[03-Feb-2016 10:28:28 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss-functions.php on line 8
+[03-Feb-2016 10:28:28 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss.php on line 19
+[03-Feb-2016 10:28:28 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/registration.php on line 7
+[03-Feb-2016 10:28:37 America/Toronto] PHP Fatal error:  Class 'Walker' not found in /home/mahjong/public_html/wp-includes/category-template.php on line 912
+[03-Feb-2016 10:28:42 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-includes/ms-default-filters.php on line 17
+[03-Feb-2016 10:28:42 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-atom-comments.php on line 8
+[03-Feb-2016 10:28:43 America/Toronto] PHP Fatal error:  Call to undefined function add_filter() in /home/mahjong/public_html/wp-includes/default-filters.php on line 17
+[03-Feb-2016 10:28:43 America/Toronto] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[03-Feb-2016 10:28:43 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[03-Feb-2016 10:28:43 America/Toronto] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/mahjong/public_html/wp-includes/class.wp-styles.php on line 19
+[03-Feb-2016 10:28:43 America/Toronto] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home/mahjong/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[03-Feb-2016 10:28:44 America/Toronto] PHP Fatal error:  Class 'WP_Dependencies' not found in /home/mahjong/public_html/wp-includes/class.wp-scripts.php on line 19
+[03-Feb-2016 10:28:46 America/Toronto] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/registration-functions.php on line 7
+[03-Feb-2016 10:28:48 America/Toronto] PHP Fatal error:  Call to undefined function is_main_site() in /home/mahjong/public_html/wp-includes/update.php on line 666
+[03-Feb-2016 10:28:51 America/Toronto] PHP Fatal error:  Class 'IXR_Client' not found in /home/mahjong/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[03-Feb-2016 10:28:54 America/Toronto] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/script-loader.php on line 25
+[03-Feb-2016 10:28:54 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/script-loader.php on line 25
+[03-Feb-2016 10:28:54 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-atom.php on line 8
+[03-Feb-2016 10:28:55 America/Toronto] PHP Fatal error:  Class 'IXR_Server' not found in /home/mahjong/public_html/wp-includes/class-wp-xmlrpc-server.php on line 23
+[03-Feb-2016 10:28:56 America/Toronto] PHP Fatal error:  Call to undefined function add_shortcode() in /home/mahjong/public_html/wp-includes/media.php on line 815
+[03-Feb-2016 10:28:56 America/Toronto] PHP Fatal error:  Call to undefined function feed_content_type() in /home/mahjong/public_html/wp-includes/feed-rss2.php on line 8
+[03-Feb-2016 10:36:30 America/Toronto] PHP Fatal error:  Call to undefined function is_robots() in /home/mahjong/public_html/wp-includes/template-loader.php on line 28
+[02-Apr-2016 23:43:17 America/Toronto] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Apr-2016 23:43:17 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Apr-2016 23:43:21 America/Toronto] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[02-Apr-2016 23:43:21 America/Toronto] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/mahjong/public_html/wp-includes/functions.php on line 8
+[27-Dec-2017 01:24:23 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss-functions.php on line 8
+[27-Dec-2017 01:46:00 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/mahjong/public_html/wp-includes/rss-functions.php on line 8

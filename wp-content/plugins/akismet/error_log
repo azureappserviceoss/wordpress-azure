@@ -1,0 +1,1 @@
+[07-Nov-2015 02:53:28 America/Toronto] PHP Fatal error:  Call to undefined function add_action() in /home/mahjong/public_html/wp-content/plugins/akismet/legacy.php on line 356

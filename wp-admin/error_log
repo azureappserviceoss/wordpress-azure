@@ -1,0 +1,8 @@
+[24-Jun-2015 19:17:51 UTC] WordPress数据库查询ALTER TABLE wp_terms DROP INDEX slug, ADD INDEX slug(slug(191))时发生Can't DROP 'slug'; check that column/key exists错误，这是由wp_upgrade, pre_schema_upgrade查询的。
+[24-Jun-2015 19:19:49 UTC] WordPress数据库查询ALTER TABLE wp_signups ADD signup_id BIGINT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST时发生Duplicate column name 'signup_id'错误，这是由wp_upgrade, pre_schema_upgrade查询的。
+[24-Jun-2015 19:19:49 UTC] WordPress数据库查询ALTER TABLE wp_signups DROP INDEX domain时发生Can't DROP 'domain'; check that column/key exists错误，这是由wp_upgrade, pre_schema_upgrade查询的。
+[24-Jun-2015 19:19:49 UTC] WordPress数据库查询ALTER TABLE wp_2_terms DROP INDEX slug, ADD INDEX slug(slug(191))时发生Can't DROP 'slug'; check that column/key exists错误，这是由wp_upgrade, pre_schema_upgrade查询的。
+[20-Jun-2018 18:12:35 UTC] PHP Warning:  Use of undefined constant DB_USER - assumed 'DB_USER' (this will throw an Error in a future version of PHP) in /home/mahjo873/public_html/wp-includes/load.php on line 352
+[20-Jun-2018 18:12:35 UTC] PHP Warning:  Use of undefined constant DB_PASSWORD - assumed 'DB_PASSWORD' (this will throw an Error in a future version of PHP) in /home/mahjo873/public_html/wp-includes/load.php on line 352
+[20-Jun-2018 18:12:35 UTC] PHP Warning:  Use of undefined constant DB_NAME - assumed 'DB_NAME' (this will throw an Error in a future version of PHP) in /home/mahjo873/public_html/wp-includes/load.php on line 352
+[20-Jun-2018 18:12:35 UTC] PHP Warning:  Use of undefined constant DB_HOST - assumed 'DB_HOST' (this will throw an Error in a future version of PHP) in /home/mahjo873/public_html/wp-includes/load.php on line 352

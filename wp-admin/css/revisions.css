@@ -23,6 +23,7 @@
 	top: 0;
 	height: 82px;
 	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -32,6 +33,8 @@
 	height: 0.7em;
 	top: 7px;
 	max-width: 70%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	background-color: #fff;
 }
@@ -40,6 +43,8 @@
 	position: absolute;
 	height: 100%;
 	border-left: 1px solid #a0a5aa;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -72,9 +77,12 @@
 	vertical-align: middle;
 	opacity: 0;
 	width: 100%;
+	width: -webkit-calc( 100% - 30px );
 	width: calc( 100% - 30px );
 	top: 50%;
+	top: -webkit-calc( 50% - 10px );
 	top: calc( 50% - 10px );
+	-webkit-transition: opacity 0.5s;
 	transition: opacity 0.5s;
 	filter: alpha(opacity=0); /* ie8 and earlier */
 }
@@ -95,6 +103,7 @@ body.folded .revisions .loading-indicator {
 }
 
 .revisions .diff {
+	-webkit-transition: opacity 0.5s;
 	transition: opacity 0.5s;
 }
 
@@ -110,10 +119,12 @@ body.folded .revisions .loading-indicator {
 .revisions-meta {
 	margin-top: 20px;
 	background-color: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .revisions.pinned .revisions-meta {
+	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
@@ -130,7 +141,7 @@ body.folded .revisions .loading-indicator {
 }
 
 .revisions-controls .author-card .date {
-	color: #72777c;
+	color: #777;
 }
 
 .revisions-controls .author-card.autosave {
@@ -138,7 +149,7 @@ body.folded .revisions .loading-indicator {
 }
 
 .revisions-controls .author-card .author-name {
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .comparing-two-revisions .diff-meta-to strong {
@@ -172,6 +183,7 @@ body.folded .revisions .loading-indicator {
 .revisions-diff {
 	padding: 15px;
 	background-color: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -356,6 +368,7 @@ table.diff .diff-addedline ins {
 	width: 25px;
 	height: 25px;
 	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
 
@@ -376,7 +389,7 @@ table.diff .diff-addedline ins {
 
 .revisions-tooltip,
 .revisions-tooltip-arrow > span {
-	border: 1px solid #ddd;
+	border: 1px solid #d7d7d7;
 	background-color: #fff;
 }
 
@@ -398,6 +411,7 @@ table.diff .diff-addedline ins {
 .arrow:after {
 	z-index: 9999;
 	background-color: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -418,6 +432,7 @@ table.diff .diff-addedline ins {
 	width: 25px;
 	height: 25px;
 	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
 
@@ -438,62 +453,44 @@ div.revisions-controls > .wp-slider > .ui-slider-handle {
 /* jQuery UI Slider */
 .wp-slider.ui-slider {
 	position: relative;
-	border: 1px solid #ddd;
+	border: 1px solid #d7d7d7;
 	text-align: left;
 	cursor: pointer;
 }
 
 .wp-slider .ui-slider-handle {
+	-webkit-border-radius: 50%;
 	border-radius: 50%;
 	height: 18px;
-	margin-top: -5px;
+	margin-top: -3px;
 	outline: none;
-	padding: 2px;
 	position: absolute;
 	width: 18px;
 	z-index: 2;
+	-ms-touch-action: none;
 	touch-action: none;
 }
 
 .wp-slider .ui-slider-handle,
+.wp-slider .ui-slider-handle.ui-state-hover,
 .wp-slider .ui-slider-handle.focus {
-	background: #f7f7f7;
-	border: 1px solid #ccc;
-	box-shadow: 0 1px 0 #cccccc;
+	background: #00a0d2;
+	border: 1px solid #0073aa;
+	-webkit-box-shadow: inset 0 1px 0 #78c8e6, 0 1px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 1px 0 #78c8e6, 0 1px 0 rgba(0,0,0,.15);
 }
-
-.wp-slider .ui-slider-handle:hover,
-.wp-slider .ui-slider-handle.ui-state-hover {
-	background: #fafafa;
-	border-color: #999;
-}
-
-.wp-slider .ui-slider-handle:active,
-.wp-slider .ui-slider-handle.ui-state-active {
-	background: #eee;
-	border-color: #999;
- 	box-shadow: inset 0 2px 5px -3px rgba( 0, 0, 0, 0.5 );
- 	-webkit-transform: translateY(1px);
- 	transform: translateY(1px);
-}
-
 
 .wp-slider .ui-slider-handle:before {
 	background: none;
 	position: absolute;
-	top: 2px;
-	left: 2px;
-	color: #555;
+	top: 0;
+	left: 0;
+	color: #fff;
 	content: "\f229";
-	font: normal 18px/1 dashicons;
+	font: normal 18px/1 'dashicons';
 	speak: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-.wp-slider .ui-slider-handle:hover:before,
-.wp-slider .ui-slider-handle.ui-state-hover:before {
-	color: #23282d;
 }
 
 .wp-slider .ui-slider-handle.from-handle:before,
@@ -503,19 +500,19 @@ div.revisions-controls > .wp-slider > .ui-slider-handle {
 }
 
 .wp-slider .ui-slider-handle.from-handle:before {
-	content: "\f139";
+	content: '\f139';
 }
 
 .wp-slider .ui-slider-handle.to-handle:before {
-	content: "\f141";
+	content: '\f141';
 }
 
 .rtl .wp-slider .ui-slider-handle.from-handle:before {
-	content: "\f141";
+	content: '\f141';
 }
 
 .rtl .wp-slider .ui-slider-handle.to-handle:before {
-	content: "\f139";
+	content: '\f139';
 	right: -1px;
 }
 
