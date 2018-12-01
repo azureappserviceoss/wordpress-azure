@@ -1,5 +1,23 @@
-php_value upload_max_filesize 256M
-php_value post_max_size 256M
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /tropicalfestas2/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /tropicalfestas2/index.php [L]
+</IfModule>
+
+# END WordPress
+# BEGIN LiteSpeed
+<IfModule Litespeed>
+SetEnv noabort 1
+</IfModule>
+# END LiteSpeed
+
+php_value upload_max_filesize 228M
+php_value post_max_size 300M
 php_value memory_limit 256M
 php_value max_execution_time 300
 php_value max_input_time 300
