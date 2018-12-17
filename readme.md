@@ -2,7 +2,7 @@
 
 This branch will be cloned when starting [appsvcorg/wordpress-alpine-php](https://hub.docker.com/r/appsvcorg/wordpress-alpine-php/) by default.
 
-- Current version: 4.9.8 [(offical zip)](https://wordpress.org/wordpress-4.9.8.zip)
+- Current version: 5.0.1 [(offical zip)](https://wordpress.org/wordpress-5.0.1.zip)
 - Include Redis plugin
 
 [More Details](https://hub.docker.com/r/appsvcorg/wordpress-alpine-php/) of appsvcorg/wordpress-alpine-php.
