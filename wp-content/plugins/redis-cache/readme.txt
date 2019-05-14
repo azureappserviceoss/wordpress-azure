@@ -3,8 +3,9 @@ Contributors: tillkruess
 Donate link: https://www.paypal.me/tillkruss
 Tags: redis, predis, phpredis, hhvm, pecl, caching, cache, object cache, performance, replication, clustering
 Requires at least: 3.3
-Tested up to: 5.0
-Stable tag: 1.4.1
+Tested up to: 5.2
+Requires PHP: 5.4
+Stable tag: 1.4.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -95,6 +96,10 @@ To adjust the configuration, define any of the following constants in your `wp-c
 
     Set to `true` to disable the object cache at runtime.
 
+  * `WP_REDIS_GRACEFUL` (default: _not set_)
+
+    Set to `false` to disable graceful failures and throw exceptions.
+
   * `WP_REDIS_IGBINARY` (default: _not set_)
 
     Set to `true` to enable the [igbinary](https://github.com/igbinary/igbinary) serializer.
@@ -174,6 +179,21 @@ The following commands are supported:
 
 
 == Changelog ==
+
+= 1.4.3 =
+
+  * Require PHP 5.4 or newer
+  * Use pretty print in diagnostics
+  * Throw exception if Redis library is missing
+  * Fixed cache not flushing for some users
+  * Fixed admin issues when `WP_REDIS_DISABLED` is `false`
+
+= 1.4.2 =
+
+  * Added graceful Redis failures and `WP_REDIS_GRACEFUL` constant
+  * Improved cluster support
+  * Added `redis_cache_expiration` filter
+  * Renamed `redis_object_cache_get` filter to `redis_object_cache_get_value`
 
 = 1.4.1 =
 
@@ -322,6 +342,10 @@ The following commands are supported:
 
 
 == Upgrade Notice ==
+
+= 1.4.2 =
+
+This update renames the `redis_object_cache_get` filter to avoid conflicts. Update your code if necessary.
 
 = 1.4.0 =
 
