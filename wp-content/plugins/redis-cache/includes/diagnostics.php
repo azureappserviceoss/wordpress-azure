@@ -1,9 +1,11 @@
 <?php
 
+// TODO: detect constants being defined too late...
+
 global $wp_object_cache;
 
 $info = $plugins = $dropins = array();
-$dropin = $this->validate_object_cache_dropin();
+$dropin = $this->validate_object_cache_dropin() && ( ! defined('WP_REDIS_DISABLED') || ! WP_REDIS_DISABLED );
 
 $info[ 'Status' ] = $this->get_status();
 $info[ 'Client' ] = $this->get_redis_client_name();
@@ -13,7 +15,7 @@ $info[ 'Drop-in' ] = $dropin ? 'Valid' : 'Invalid';
 if ( $dropin ) {
     try {
         $cache = new WP_Object_Cache( false );
-        $info[ 'Ping' ] = $cache->redis_instance()->ping();
+        $info[ 'Ping' ] = defined( 'WP_REDIS_CLUSTER' ) ? 'Not supported' : $cache->redis_instance()->ping();
     } catch ( Exception $exception ) {
         $info[ 'Connection Exception' ] = sprintf( '%s (%s)', $exception->getMessage(), get_class( $exception ) );
     }
@@ -67,8 +69,8 @@ if ( defined( 'WP_REDIS_PASSWORD' ) ) {
 }
 
 if ( $dropin ) {
-    $info[ 'Global Groups' ] = json_encode( $wp_object_cache->global_groups );
-    $info[ 'Ignored Groups' ] = json_encode( $wp_object_cache->ignored_groups );
+    $info[ 'Global Groups' ] = json_encode( $wp_object_cache->global_groups, JSON_PRETTY_PRINT );
+    $info[ 'Ignored Groups' ] = json_encode( $wp_object_cache->ignored_groups, JSON_PRETTY_PRINT );
 }
 
 foreach ( $info as $name => $value ) {
