@@ -224,6 +224,12 @@ TABLE OF CONTENTS:
 .wp-core-ui .button-link-delete:hover,
 .wp-core-ui .button-link-delete:focus {
 	color: #dc3232;
+	background: transparent;
+}
+
+.wp-core-ui .button-link-delete:disabled {
+	/* overrides the default buttons disabled background */
+	background: transparent !important;
 }
 
 .ie8 .wp-core-ui .button-link:focus {
@@ -284,6 +290,13 @@ TABLE OF CONTENTS:
 
 .wp-core-ui .button.button-primary.button-hero {
 	box-shadow: 0 2px 0 #006799;
+}
+
+.wp-core-ui .button.button-primary.button-hero:focus {
+	box-shadow:
+		0 2px 0 #006799,
+		0 1px 0 #0073aa,
+		0 0 2px 1px #33b3db;
 }
 
 .wp-core-ui .button.button-primary.button-hero.active,
