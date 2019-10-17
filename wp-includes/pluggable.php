@@ -1092,7 +1092,7 @@ if ( ! function_exists( 'check_admin_referer' ) ) :
 	 *                   0-12 hours ago, 2 if the nonce is valid and generated between 12-24 hours ago.
 	 */
 	function check_admin_referer( $action = -1, $query_arg = '_wpnonce' ) {
-		if ( -1 == $action ) {
+		if ( -1 === $action ) {
 			_doing_it_wrong( __FUNCTION__, __( 'You should specify a nonce action to be verified by using the first parameter.' ), '3.2.0' );
 		}
 
@@ -1111,7 +1111,7 @@ if ( ! function_exists( 'check_admin_referer' ) ) :
 		 */
 		do_action( 'check_admin_referer', $action, $result );
 
-		if ( ! $result && ! ( -1 == $action && strpos( $referer, $adminurl ) === 0 ) ) {
+		if ( ! $result && ! ( -1 === $action && strpos( $referer, $adminurl ) === 0 ) ) {
 			wp_nonce_ays( $action );
 			die();
 		}
@@ -1394,6 +1394,15 @@ if ( ! function_exists( 'wp_validate_redirect' ) ) :
 		// Allow only http and https schemes. No data:, etc.
 		if ( isset( $lp['scheme'] ) && ! ( 'http' == $lp['scheme'] || 'https' == $lp['scheme'] ) ) {
 			return $default;
+		}
+
+		if ( ! isset( $lp['host'] ) && ! empty( $lp['path'] ) && '/' !== $lp['path'][0] ) {
+			$path = '';
+			if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
+				$path = dirname( parse_url( 'http://placeholder' . $_SERVER['REQUEST_URI'], PHP_URL_PATH ) . '?' );
+				$path = wp_normalize_path( $path );
+			}
+			$location = '/' . ltrim( $path . '/', '/' ) . $location;
 		}
 
 		// Reject if certain components are set but host is not. This catches urls like https:host.com for which parse_url does not set the host field.
