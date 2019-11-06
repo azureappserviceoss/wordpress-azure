@@ -3001,19 +3001,19 @@ function wp_rel_nofollow( $text ) {
  */
 function wp_rel_nofollow_callback( $matches ) {
 	$text = $matches[1];
-	$atts = wp_kses_hair( $matches[1], wp_allowed_protocols() );
+	$atts = shortcode_parse_atts( $matches[1] );
 	$rel  = 'nofollow';
 
 	if ( ! empty( $atts['href'] ) ) {
-		if ( in_array( strtolower( wp_parse_url( $atts['href']['value'], PHP_URL_SCHEME ) ), array( 'http', 'https' ), true ) ) {
-			if ( strtolower( wp_parse_url( $atts['href']['value'], PHP_URL_HOST ) ) === strtolower( wp_parse_url( home_url(), PHP_URL_HOST ) ) ) {
+		if ( in_array( strtolower( wp_parse_url( $atts['href'], PHP_URL_SCHEME ) ), array( 'http', 'https' ), true ) ) {
+			if ( strtolower( wp_parse_url( $atts['href'], PHP_URL_HOST ) ) === strtolower( wp_parse_url( home_url(), PHP_URL_HOST ) ) ) {
 				return "<a $text>";
 			}
 		}
 	}
 
 	if ( ! empty( $atts['rel'] ) ) {
-		$parts = array_map( 'trim', explode( ' ', $atts['rel']['value'] ) );
+		$parts = array_map( 'trim', explode( ' ', $atts['rel'] ) );
 		if ( false === array_search( 'nofollow', $parts ) ) {
 			$parts[] = 'nofollow';
 		}
@@ -3022,11 +3022,7 @@ function wp_rel_nofollow_callback( $matches ) {
 
 		$html = '';
 		foreach ( $atts as $name => $value ) {
-			if ( isset( $value['vless'] ) && 'y' === $value['vless'] ) {
-				$html .= $name . ' ';
-			} else {
-				$html .= "{$name}=\"" . esc_attr( $value['value'] ) . '" ';
-			}
+			$html .= "{$name}=\"" . esc_attr( $value ) . '" ';
 		}
 		$text = trim( $html );
 	}
@@ -3232,7 +3228,7 @@ function convert_smilies( $text ) {
 			$content = $textarr[ $i ];
 
 			// If we're in an ignore block, wait until we find its closing tag
-			if ( '' == $ignore_block_element && preg_match( '/^<(' . $tags_to_ignore . ')[^>]*>/', $content, $matches ) ) {
+			if ( '' == $ignore_block_element && preg_match( '/^<(' . $tags_to_ignore . ')>/', $content, $matches ) ) {
 				$ignore_block_element = $matches[1];
 			}
 

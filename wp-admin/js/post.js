@@ -795,9 +795,7 @@ jQuery(document).ready( function($) {
 			}
 
 			// Update "Status:" to currently selected status.
-			$('#post-status-display').text(
-				wp.sanitize.stripTagsAndEncodeText( $('option:selected', postStatus).text() ) // Remove any potential tags from post status text.
-			);
+			$('#post-status-display').html($('option:selected', postStatus).text());
 
 			// Show or hide the "Save Draft" button.
 			if ( $('option:selected', postStatus).val() == 'private' || $('option:selected', postStatus).val() == 'publish' ) {

@@ -4318,10 +4318,9 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 
 	initialize: function() {
 		_.defaults( this.options, {
-			container:      document.body,
-			title:          '',
-			propagate:      true,
-			hasCloseButton: true
+			container: document.body,
+			title:     '',
+			propagate: true
 		});
 
 		this.focusManager = new wp.media.view.FocusManager({
@@ -4333,8 +4332,7 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 	 */
 	prepare: function() {
 		return {
-			title:          this.options.title,
-			hasCloseButton: this.options.hasCloseButton
+			title: this.options.title
 		};
 	},
 
@@ -4409,9 +4407,6 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 		// Set initial focus on the content instead of this view element, to avoid page scrolling.
 		this.$( '.media-modal' ).focus();
 
-		// Hide the page content from assistive technologies.
-		this.focusManager.setAriaHiddenOnBodyChildren( $el );
-
 		return this.propagate('open');
 	},
 
@@ -4429,12 +4424,6 @@ Modal = wp.media.View.extend(/** @lends wp.media.view.Modal.prototype */{
 
 		// Hide modal and remove restricted media modal tab focus once it's closed
 		this.$el.hide().undelegate( 'keydown' );
-
-		/*
-		 * Make visible again to assistive technologies all body children that
-		 * have been made hidden when the modal opened.
-		 */
-		this.focusManager.removeAriaHiddenFromBodyChildren();
 
 		// Put focus back in useful location once modal is closed.
 		if ( null !== this.clickedOpenerEl ) {
@@ -4527,24 +4516,11 @@ var FocusManager = wp.media.View.extend(/** @lends wp.media.view.FocusManager.pr
 		'keydown': 'constrainTabbing'
 	},
 
-	/**
-	 * Moves focus to the first visible menu item in the modal.
-	 *
-	 * @since 3.5.0
-	 *
-	 * @returns {void}
-	 */
-	focus: function() {
-		this.$( '.media-menu-item' ).filter( ':visible' ).first().focus();
+	focus: function() { // Reset focus on first left menu item
+		this.$('.media-menu-item').first().focus();
 	},
 	/**
-	 * Constrains navigation with the Tab key within the media view element.
-	 *
-	 * @since 4.0.0
-	 *
-	 * @param {Object} event A keydown jQuery event.
-	 *
-	 * @returns {void}
+	 * @param {Object} event
 	 */
 	constrainTabbing: function( event ) {
 		var tabbables;
@@ -4565,107 +4541,8 @@ var FocusManager = wp.media.View.extend(/** @lends wp.media.view.FocusManager.pr
 			tabbables.last().focus();
 			return false;
 		}
-	},
+	}
 
-	/**
-	 * Hides from assistive technologies all the body children except the
-	 * provided element and other elements that should not be hidden.
-	 *
-	 * The reason why we use `aria-hidden` is that `aria-modal="true"` is buggy
-	 * in Safari 11.1 and support is spotty in other browsers. In the future we
-	 * should consider to remove this helper function and only use `aria-modal="true"`.
-	 *
-	 * @since 5.2.3
-	 *
-	 * @param {object} visibleElement The jQuery object representing the element that should not be hidden.
-	 *
-	 * @returns {void}
-	 */
-	setAriaHiddenOnBodyChildren: function( visibleElement ) {
-		var bodyChildren,
-			self = this;
-
-		if ( this.isBodyAriaHidden ) {
-			return;
-		}
-
-		// Get all the body children.
-		bodyChildren = document.body.children;
-
-		// Loop through the body children and hide the ones that should be hidden.
-		_.each( bodyChildren, function( element ) {
-			// Don't hide the modal element.
-			if ( element === visibleElement[0] ) {
-				return;
-			}
-
-			// Determine the body children to hide.
-			if ( self.elementShouldBeHidden( element ) ) {
-				element.setAttribute( 'aria-hidden', 'true' );
-				// Store the hidden elements.
-				self.ariaHiddenElements.push( element );
-			}
-		} );
-
-		this.isBodyAriaHidden = true;
-	},
-
-	/**
-	 * Makes visible again to assistive technologies all body children
-	 * previously hidden and stored in this.ariaHiddenElements.
-	 *
-	 * @since 5.2.3
-	 *
-	 * @returns {void}
-	 */
-	removeAriaHiddenFromBodyChildren: function() {
-		_.each( this.ariaHiddenElements, function( element ) {
-			element.removeAttribute( 'aria-hidden' );
-		} );
-
-		this.ariaHiddenElements = [];
-		this.isBodyAriaHidden   = false;
-	},
-
-	/**
-	 * Determines if the passed element should not be hidden from assistive technologies.
-	 *
-	 * @since 5.2.3
-	 *
-	 * @param {object} element The DOM element that should be checked.
-	 *
-	 * @returns {boolean} Whether the element should not be hidden from assistive technologies.
-	 */
-	elementShouldBeHidden: function( element ) {
-		var role = element.getAttribute( 'role' ),
-			liveRegionsRoles = [ 'alert', 'status', 'log', 'marquee', 'timer' ];
-
-		/*
-		 * Don't hide scripts, elements that already have `aria-hidden`, and
-		 * ARIA live regions.
-		 */
-		return ! (
-			element.tagName === 'SCRIPT' ||
-			element.hasAttribute( 'aria-hidden' ) ||
-			element.hasAttribute( 'aria-live' ) ||
-			liveRegionsRoles.indexOf( role ) !== -1
-		);
-	},
-
-	/**
-	 * Whether the body children are hidden from assistive technologies.
-	 *
-	 * @since 5.2.3
-	 */
-	isBodyAriaHidden: false,
-
-	/**
-	 * Stores an array of DOM elements that should be hidden from assistive
-	 * technologies, for example when the media modal dialog opens.
-	 *
-	 * @since 5.2.3
-	 */
-	ariaHiddenElements: []
 });
 
 module.exports = FocusManager;
@@ -5288,15 +5165,18 @@ UploaderStatus = View.extend(/** @lends wp.media.view.UploaderStatus.prototype *
 		}), { at: 0 });
 	},
 
-	dismiss: function() {
+	/**
+	 * @param {Object} event
+	 */
+	dismiss: function( event ) {
 		var errors = this.views.get('.upload-errors');
+
+		event.preventDefault();
 
 		if ( errors ) {
 			_.invoke( errors, 'remove' );
 		}
 		wp.Uploader.errors.reset();
-		// Keep focus within the modal after the dismiss button gets removed from the DOM.
-		this.controller.modal.focusManager.focus();
 	}
 });
 
@@ -7805,7 +7685,7 @@ AttachmentsBrowser = View.extend(/** @lends wp.media.view.AttachmentsBrowser.pro
 				disabled: true,
 				text: mediaTrash ? l10n.trashSelected : l10n.deletePermanently,
 				controller: this.controller,
-				priority: -80,
+				priority: -60,
 				click: function() {
 					var changed = [], removed = [],
 						selection = this.controller.state().get( 'selection' ),
@@ -7861,7 +7741,7 @@ AttachmentsBrowser = View.extend(/** @lends wp.media.view.AttachmentsBrowser.pro
 			if ( mediaTrash ) {
 				this.toolbar.set( 'deleteSelectedPermanentlyButton', new wp.media.view.DeleteSelectedPermanentlyButton({
 					filters: Filters,
-					style: 'link button-link-delete',
+					style: 'primary',
 					disabled: true,
 					text: l10n.deletePermanently,
 					controller: this.controller,
@@ -8579,11 +8459,12 @@ Details = Attachment.extend(/** @lends wp.media.view.Attachment.Details.prototyp
 	className: 'attachment-details',
 	template:  wp.template('attachment-details'),
 
-	/*
-	 * Reset all the attributes inherited from Attachment including role=checkbox,
-	 * tabindex, etc., as they are inappropriate for this view. See #47458 and [30483] / #30390.
-	 */
-	attributes: {},
+	attributes: function() {
+		return {
+			'tabIndex':     0,
+			'data-id':      this.model.get( 'id' )
+		};
+	},
 
 	events: {
 		'change [data-setting]':          'updateSetting',
