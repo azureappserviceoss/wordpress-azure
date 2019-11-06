@@ -1423,6 +1423,7 @@ function wp_ajax_add_menu_item() {
 		$menu_obj = get_post( $menu_item_id );
 		if ( ! empty( $menu_obj->ID ) ) {
 			$menu_obj        = wp_setup_nav_menu_item( $menu_obj );
+			$menu_obj->title = empty( $menu_obj->title ) ? __( 'Menu Item' ) : $menu_obj->title;
 			$menu_obj->label = $menu_obj->title; // don't show "(pending)" in ajax-added items
 			$menu_items[]    = $menu_obj;
 		}
@@ -2311,7 +2312,7 @@ function wp_ajax_upload_attachment() {
 				'success' => false,
 				'data'    => array(
 					'message'  => __( 'Sorry, you are not allowed to upload files.' ),
-					'filename' => $_FILES['async-upload']['name'],
+					'filename' => esc_html( $_FILES['async-upload']['name'] ),
 				),
 			)
 		);
@@ -2327,7 +2328,7 @@ function wp_ajax_upload_attachment() {
 					'success' => false,
 					'data'    => array(
 						'message'  => __( 'Sorry, you are not allowed to attach files to this post.' ),
-						'filename' => $_FILES['async-upload']['name'],
+						'filename' => esc_html( $_FILES['async-upload']['name'] ),
 					),
 				)
 			);
@@ -2353,7 +2354,7 @@ function wp_ajax_upload_attachment() {
 					'success' => false,
 					'data'    => array(
 						'message'  => __( 'The uploaded file is not a valid image. Please try again.' ),
-						'filename' => $_FILES['async-upload']['name'],
+						'filename' => esc_html( $_FILES['async-upload']['name'] ),
 					),
 				)
 			);
@@ -2370,7 +2371,7 @@ function wp_ajax_upload_attachment() {
 				'success' => false,
 				'data'    => array(
 					'message'  => $attachment_id->get_error_message(),
-					'filename' => $_FILES['async-upload']['name'],
+					'filename' => esc_html( $_FILES['async-upload']['name'] ),
 				),
 			)
 		);
@@ -4869,7 +4870,7 @@ function wp_ajax_wp_privacy_erase_personal_data() {
 function wp_ajax_health_check_dotorg_communication() {
 	check_ajax_referer( 'health-check-site-status' );
 
-	if ( ! current_user_can( 'install_plugins' ) ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) ) {
 		wp_send_json_error();
 	}
 
@@ -4889,7 +4890,7 @@ function wp_ajax_health_check_dotorg_communication() {
 function wp_ajax_health_check_is_in_debug_mode() {
 	wp_verify_nonce( 'health-check-site-status' );
 
-	if ( ! current_user_can( 'install_plugins' ) ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) ) {
 		wp_send_json_error();
 	}
 
@@ -4909,7 +4910,7 @@ function wp_ajax_health_check_is_in_debug_mode() {
 function wp_ajax_health_check_background_updates() {
 	check_ajax_referer( 'health-check-site-status' );
 
-	if ( ! current_user_can( 'install_plugins' ) ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) ) {
 		wp_send_json_error();
 	}
 
@@ -4930,7 +4931,7 @@ function wp_ajax_health_check_background_updates() {
 function wp_ajax_health_check_loopback_requests() {
 	check_ajax_referer( 'health-check-site-status' );
 
-	if ( ! current_user_can( 'install_plugins' ) ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) ) {
 		wp_send_json_error();
 	}
 
@@ -4950,7 +4951,7 @@ function wp_ajax_health_check_loopback_requests() {
 function wp_ajax_health_check_site_status_result() {
 	check_ajax_referer( 'health-check-site-status-result' );
 
-	if ( ! current_user_can( 'install_plugins' ) ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) ) {
 		wp_send_json_error();
 	}
 
@@ -4967,7 +4968,7 @@ function wp_ajax_health_check_site_status_result() {
 function wp_ajax_health_check_get_sizes() {
 	check_ajax_referer( 'health-check-site-status-result' );
 
-	if ( ! current_user_can( 'install_plugins' ) || is_multisite() ) {
+	if ( ! current_user_can( 'view_site_health_checks' ) || is_multisite() ) {
 		wp_send_json_error();
 	}
 
