@@ -1,3 +1,6 @@
+@import url(forms.css);
+@import url(l10n.css);
+
 html,
 body {
 	height: 100%;

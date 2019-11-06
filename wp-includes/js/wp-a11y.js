@@ -27,8 +27,8 @@ window.wp = window.wp || {};
 		// Clear previous messages to allow repeated strings being read out.
 		clear();
 
-		// Remove HTML tags, ensuring only text is sent to screen readers.
-		message = wp.sanitize.stripTagsAndEncodeText( message );
+		// Ensure only text is sent to screen readers.
+		message = $( '<p>' ).html( message ).text();
 
 		/*
 		 * Safari 10+VoiceOver don't announce repeated, identical strings. We use

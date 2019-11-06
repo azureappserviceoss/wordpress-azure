@@ -191,9 +191,9 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 	</p>
 
 	<hr>
-	<table class="form-table tools-privacy-policy-page" role="presentation">
+	<table class="form-table tools-privacy-policy-page">
 		<tr>
-			<th scope="row"><label for="page_for_privacy_policy">
+			<th scope="row">
 				<?php
 				if ( $privacy_policy_page_exists ) {
 					_e( 'Change your Privacy Policy page' );
@@ -201,7 +201,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 					_e( 'Select a Privacy Policy page' );
 				}
 				?>
-			</label></th>
+			</th>
 			<td>
 				<?php
 				$has_pages = (bool) get_posts(
@@ -218,6 +218,9 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				if ( $has_pages ) :
 					?>
 					<form method="post" action="">
+						<label for="page_for_privacy_policy">
+							<?php _e( 'Select an existing page:' ); ?>
+						</label>
 						<input type="hidden" name="action" value="set-privacy-page" />
 						<?php
 						wp_dropdown_pages(
