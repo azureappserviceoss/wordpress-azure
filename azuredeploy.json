@@ -1,95 +1,44 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "2.0.0.0",
   "parameters": {
-    "siteName": {
-      "type": "string"
-    },
-    "hostingPlanName": {
-      "type": "string"
-    },
-    "siteLocation": {
-      "type": "string"
-    },
-    "sku": {
+    "webAppName": {
       "type": "string",
-      "allowedValues": [
-        "F1",
-        "B1",
-        "S1"
-      ],
-      "defaultValue": "F1"
-    },
-    "repoUrl": {
-      "type": "string"
-    },
-    "branch": {
-      "type": "string",
-      "defaultValue": "master"
+      "metadata": {
+        "description": "The name of the web app that you wish to create."
+      },
+      "defaultValue": "fullgaz"
     }
+  },
+  "variables": {
+    "appServicePlanName": "[concat(parameters('webAppName'),'-asp')]"
   },
   "resources": [
     {
-      "apiVersion": "2015-08-01",
-      "name": "[parameters('hostingPlanName')]",
-      "type": "Microsoft.Web/serverFarms",
-      "location": "[parameters('siteLocation')]",
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2019-08-01",
+      "name": "[variables('appServicePlanName')]",
+      "location": "South Africa North",
       "properties": {
-        
+        "name": "[variables('appServicePlanName')]"
       },
       "sku": {
-        "name": "[parameters('sku')]",
-        "capacity": 1
+        "name": "F1",
+        "tier": "Free"
       }
     },
     {
-      "apiVersion": "2015-08-01",
-      "name": "[parameters('siteName')]",
-      "type": "Microsoft.Web/Sites",
-      "location": "[parameters('siteLocation')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2019-08-01",
+      "name": "[parameters('webAppName')]",
+      "location": "South Africa North",
       "dependsOn": [
-        "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName'))]"
+        "[resourceId('Microsoft.Web/serverFarms', variables('appServicePlanName'))]"
       ],
       "properties": {
-        "name": "[parameters('siteName')]",
-        "serverFarmId": "[parameters('hostingPlanName')]",
-        "siteConfig": {
-          "localMySqlEnabled": true,
-           "appSettings": [
-            { "name": "WEBSITE_MYSQL_ENABLED", "value": "1" },
-            { "name": "WEBSITE_MYSQL_GENERAL_LOG", "value": "0" },
-            { "name": "WEBSITE_MYSQL_SLOW_QUERY_LOG", "value": "0" },
-            { "name": "WEBSITE_MYSQL_ARGUMENTS", "value": "--max_allowed_packet=16M" }
-          ]
-        }
-      },
-      "resources": [
-        {
-          "apiVersion": "2015-08-01",
-          "name": "web",
-          "type": "sourcecontrols",
-          "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
-          ],
-          "properties": {
-            "RepoUrl": "[parameters('repoUrl')]",
-            "branch": "[parameters('branch')]",
-            "IsManualIntegration": true
-          }
-        },
-        {
-          "apiVersion": "2014-06-01",
-          "name": "web",
-          "type": "config",
-          "dependsOn": [
-            "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-          ],
-          "properties": {
-           
-            "phpVersion": "7.2"
-          }
-        }
-      ]
+        "name": "[parameters('webAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', variables('appServicePlanName'))]"
+      }
     }
   ]
 }
