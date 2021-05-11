@@ -1,0 +1,32 @@
+.wp-block {
+  max-width: 640px;
+}
+.editor-styles-wrapper .editor-writing-flow {
+	font-size: 14px;
+    font-weight: normal;
+}
+.editor-styles-wrapper .editor-writing-flow, .editor-styles-wrapper .editor-writing-flow p {
+	line-height: 2;
+	margin-bottom: 1.5em;
+    margin-top: 1em;
+	font-size: 14px;
+}
+.wp-block-quote:not(.is-large):not(.is-style-large) {
+	padding: 1.5em 1.5em 1.5em 3.5em;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 120%;
+    margin: 0 0 1.5em;
+    position: relative;
+}
+.wp-block-quote:not(.is-large):not(.is-style-large)::before {
+    content: "\f122";
+    font-family: DashIcons;
+    font-size: 100px;
+    line-height: 1;
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    opacity: 0.1;
+}

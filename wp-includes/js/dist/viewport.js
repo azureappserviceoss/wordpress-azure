@@ -82,26 +82,169 @@ this["wp"] = this["wp"] || {}; this["wp"]["viewport"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 372);
+/******/ 	return __webpack_require__(__webpack_require__.s = 458);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ 0:
 /***/ (function(module, exports) {
 
-(function() { module.exports = this["lodash"]; }());
+(function() { module.exports = window["wp"]["element"]; }());
 
 /***/ }),
 
-/***/ 372:
+/***/ 11:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ _slicedToArray; });
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
+var arrayWithHoles = __webpack_require__(38);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+var unsupportedIterableToArray = __webpack_require__(31);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
+var nonIterableRest = __webpack_require__(39);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js
+
+
+
+
+function _slicedToArray(arr, i) {
+  return Object(arrayWithHoles["a" /* default */])(arr) || _iterableToArrayLimit(arr, i) || Object(unsupportedIterableToArray["a" /* default */])(arr, i) || Object(nonIterableRest["a" /* default */])();
+}
+
+/***/ }),
+
+/***/ 12:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["compose"]; }());
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
+
+/***/ }),
+
+/***/ 24:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayLikeToArray; });
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _unsupportedIterableToArray; });
+/* harmony import */ var _babel_runtime_helpers_esm_arrayLikeToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(24);
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return Object(_babel_runtime_helpers_esm_arrayLikeToArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Object(_babel_runtime_helpers_esm_arrayLikeToArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(o, minLen);
+}
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayWithHoles; });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _nonIterableRest; });
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["data"]; }());
+
+/***/ }),
+
+/***/ 458:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "store", function() { return /* reexport */ store; });
+__webpack_require__.d(__webpack_exports__, "ifViewportMatches", function() { return /* reexport */ if_viewport_matches; });
+__webpack_require__.d(__webpack_exports__, "withViewportMatch", function() { return /* reexport */ with_viewport_match; });
+
+// NAMESPACE OBJECT: ./node_modules/@wordpress/viewport/build-module/store/actions.js
 var actions_namespaceObject = {};
 __webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setIsMatching", function() { return setIsMatching; });
+__webpack_require__.d(actions_namespaceObject, "setIsMatching", function() { return actions_setIsMatching; });
+
+// NAMESPACE OBJECT: ./node_modules/@wordpress/viewport/build-module/store/selectors.js
 var selectors_namespaceObject = {};
 __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, "isViewportMatch", function() { return isViewportMatch; });
@@ -109,8 +252,8 @@ __webpack_require__.d(selectors_namespaceObject, "isViewportMatch", function() {
 // EXTERNAL MODULE: external "lodash"
 var external_lodash_ = __webpack_require__(2);
 
-// EXTERNAL MODULE: external {"this":["wp","data"]}
-var external_this_wp_data_ = __webpack_require__(5);
+// EXTERNAL MODULE: external ["wp","data"]
+var external_wp_data_ = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/viewport/build-module/store/reducer.js
 /**
@@ -146,7 +289,7 @@ function reducer() {
  *
  * @return {Object} Action object.
  */
-function setIsMatching(values) {
+function actions_setIsMatching(values) {
   return {
     type: 'SET_IS_MATCHING',
     values: values
@@ -191,16 +334,23 @@ function isViewportMatch(state, query) {
 
 
 
-/* harmony default export */ var store = (Object(external_this_wp_data_["registerStore"])('core/viewport', {
+var STORE_NAME = 'core/viewport';
+/**
+ * Store definition for the viewport namespace.
+ *
+ * @see https://github.com/WordPress/gutenberg/blob/HEAD/packages/data/README.md#createReduxStore
+ *
+ * @type {Object}
+ */
+
+var store = Object(external_wp_data_["createReduxStore"])(STORE_NAME, {
   reducer: store_reducer,
   actions: actions_namespaceObject,
   selectors: selectors_namespaceObject
-}));
+});
+Object(external_wp_data_["register"])(store);
 
-// EXTERNAL MODULE: external {"this":["wp","compose"]}
-var external_this_wp_compose_ = __webpack_require__(6);
-
-// CONCATENATED MODULE: ./node_modules/@wordpress/viewport/build-module/with-viewport-match.js
+// CONCATENATED MODULE: ./node_modules/@wordpress/viewport/build-module/listener.js
 /**
  * External dependencies
  */
@@ -209,6 +359,77 @@ var external_this_wp_compose_ = __webpack_require__(6);
  * WordPress dependencies
  */
 
+
+/**
+ * Internal dependencies
+ */
+
+
+
+var listener_addDimensionsEventListener = function addDimensionsEventListener(breakpoints, operators) {
+  /**
+   * Callback invoked when media query state should be updated. Is invoked a
+   * maximum of one time per call stack.
+   */
+  var setIsMatching = Object(external_lodash_["debounce"])(function () {
+    var values = Object(external_lodash_["mapValues"])(queries, function (query) {
+      return query.matches;
+    });
+    Object(external_wp_data_["dispatch"])(store).setIsMatching(values);
+  }, {
+    leading: true
+  });
+  /**
+   * Hash of breakpoint names with generated MediaQueryList for corresponding
+   * media query.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
+   *
+   * @type {Object<string,MediaQueryList>}
+   */
+
+  var queries = Object(external_lodash_["reduce"])(breakpoints, function (result, width, name) {
+    Object(external_lodash_["forEach"])(operators, function (condition, operator) {
+      var list = window.matchMedia("(".concat(condition, ": ").concat(width, "px)"));
+      list.addListener(setIsMatching);
+      var key = [operator, name].join(' ');
+      result[key] = list;
+    });
+    return result;
+  }, {});
+  window.addEventListener('orientationchange', setIsMatching); // Set initial values
+
+  setIsMatching();
+  setIsMatching.flush();
+};
+
+/* harmony default export */ var listener = (listener_addDimensionsEventListener);
+
+// EXTERNAL MODULE: external ["wp","compose"]
+var external_wp_compose_ = __webpack_require__(12);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+var esm_extends = __webpack_require__(8);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js + 1 modules
+var slicedToArray = __webpack_require__(11);
+
+// EXTERNAL MODULE: external ["wp","element"]
+var external_wp_element_ = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./node_modules/@wordpress/viewport/build-module/with-viewport-match.js
+
+
+
+
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
 
 
 /**
@@ -236,11 +457,32 @@ var external_this_wp_compose_ = __webpack_require__(6);
  */
 
 var with_viewport_match_withViewportMatch = function withViewportMatch(queries) {
-  return Object(external_this_wp_compose_["createHigherOrderComponent"])(Object(external_this_wp_data_["withSelect"])(function (select) {
+  var useViewPortQueriesResult = function useViewPortQueriesResult() {
     return Object(external_lodash_["mapValues"])(queries, function (query) {
-      return select('core/viewport').isViewportMatch(query);
+      var _query$split = query.split(' '),
+          _query$split2 = Object(slicedToArray["a" /* default */])(_query$split, 2),
+          operator = _query$split2[0],
+          breakpointName = _query$split2[1];
+
+      if (breakpointName === undefined) {
+        breakpointName = operator;
+        operator = '>=';
+      } // Hooks should unconditionally execute in the same order,
+      // we are respecting that as from the static query of the HOC we generate
+      // a hook that calls other hooks always in the same order (because the query never changes).
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+
+
+      return Object(external_wp_compose_["useViewportMatch"])(breakpointName, operator);
     });
-  }), 'withViewportMatch');
+  };
+
+  return Object(external_wp_compose_["createHigherOrderComponent"])(function (WrappedComponent) {
+    return Object(external_wp_compose_["pure"])(function (props) {
+      var queriesResult = useViewPortQueriesResult();
+      return Object(external_wp_element_["createElement"])(WrappedComponent, Object(esm_extends["a" /* default */])({}, props, queriesResult));
+    });
+  }, 'withViewportMatch');
 };
 
 /* harmony default export */ var with_viewport_match = (with_viewport_match_withViewportMatch);
@@ -277,9 +519,9 @@ var with_viewport_match_withViewportMatch = function withViewportMatch(queries) 
  */
 
 var if_viewport_matches_ifViewportMatches = function ifViewportMatches(query) {
-  return Object(external_this_wp_compose_["createHigherOrderComponent"])(Object(external_this_wp_compose_["compose"])([with_viewport_match({
+  return Object(external_wp_compose_["createHigherOrderComponent"])(Object(external_wp_compose_["compose"])([with_viewport_match({
     isViewportMatch: query
-  }), Object(external_this_wp_compose_["ifCondition"])(function (props) {
+  }), Object(external_wp_compose_["ifCondition"])(function (props) {
     return props.isViewportMatch;
   })]), 'ifViewportMatches');
 };
@@ -287,17 +529,6 @@ var if_viewport_matches_ifViewportMatches = function ifViewportMatches(query) {
 /* harmony default export */ var if_viewport_matches = (if_viewport_matches_ifViewportMatches);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/viewport/build-module/index.js
-/* concated harmony reexport ifViewportMatches */__webpack_require__.d(__webpack_exports__, "ifViewportMatches", function() { return if_viewport_matches; });
-/* concated harmony reexport withViewportMatch */__webpack_require__.d(__webpack_exports__, "withViewportMatch", function() { return with_viewport_match; });
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
 /**
  * Internal dependencies
  */
@@ -331,57 +562,33 @@ var OPERATORS = {
   '<': 'max-width',
   '>=': 'min-width'
 };
-/**
- * Callback invoked when media query state should be updated. Is invoked a
- * maximum of one time per call stack.
- */
-
-var build_module_setIsMatching = Object(external_lodash_["debounce"])(function () {
-  var values = Object(external_lodash_["mapValues"])(build_module_queries, function (query) {
-    return query.matches;
-  });
-  Object(external_this_wp_data_["dispatch"])('core/viewport').setIsMatching(values);
-}, {
-  leading: true
-});
-/**
- * Hash of breakpoint names with generated MediaQueryList for corresponding
- * media query.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
- * @see https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
- *
- * @type {Object<string,MediaQueryList>}
- */
-
-var build_module_queries = Object(external_lodash_["reduce"])(BREAKPOINTS, function (result, width, name) {
-  Object(external_lodash_["forEach"])(OPERATORS, function (condition, operator) {
-    var list = window.matchMedia("(".concat(condition, ": ").concat(width, "px)"));
-    list.addListener(build_module_setIsMatching);
-    var key = [operator, name].join(' ');
-    result[key] = list;
-  });
-  return result;
-}, {});
-window.addEventListener('orientationchange', build_module_setIsMatching); // Set initial values
-
-build_module_setIsMatching();
-build_module_setIsMatching.flush();
+listener(BREAKPOINTS, OPERATORS);
 
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
+/***/ 8:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-(function() { module.exports = this["wp"]["data"]; }());
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _extends; });
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
 
-/***/ }),
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
 
-/***/ 6:
-/***/ (function(module, exports) {
+    return target;
+  };
 
-(function() { module.exports = this["wp"]["compose"]; }());
+  return _extends.apply(this, arguments);
+}
 
 /***/ })
 

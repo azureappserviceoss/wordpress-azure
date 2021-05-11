@@ -7,27 +7,41 @@
  */
 
 /**
- * Map meta capabilities to primitive capabilities.
+ * Maps a capability to the primitive capabilities required of the given user to
+ * satisfy the capability being checked.
  *
- * This does not actually compare whether the user ID has the actual capability,
- * just what the capability or capabilities are. Meta capability list value can
- * be 'delete_user', 'edit_user', 'remove_user', 'promote_user', 'delete_post',
- * 'delete_page', 'edit_post', 'edit_page', 'read_post', or 'read_page'.
+ * This function also accepts an ID of an object to map against if the capability is a meta capability. Meta
+ * capabilities such as `edit_post` and `edit_user` are capabilities used by this function to map to primitive
+ * capabilities that a user or role requires, such as `edit_posts` and `edit_others_posts`.
+ *
+ * Example usage:
+ *
+ *     map_meta_cap( 'edit_posts', $user->ID );
+ *     map_meta_cap( 'edit_post', $user->ID, $post->ID );
+ *     map_meta_cap( 'edit_post_meta', $user->ID, $post->ID, $meta_key );
+ *
+ * This function does not check whether the user has the required capabilities,
+ * it just returns what the required capabilities are.
  *
  * @since 2.0.0
+ * @since 4.9.6 Added the `export_others_personal_data`, `erase_others_personal_data`,
+ *              and `manage_privacy_options` capabilities.
+ * @since 5.1.0 Added the `update_php` capability.
+ * @since 5.2.0 Added the `resume_plugin` and `resume_theme` capabilities.
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
+ * @since 5.7.0 Added the `create_app_password`, `list_app_passwords`, `read_app_password`,
+ *              `edit_app_password`, `delete_app_passwords`, `delete_app_password`,
+ *              and `update_https` capabilities.
  *
  * @global array $post_type_meta_caps Used to get post type meta capabilities.
  *
- * @param string $cap       Capability name.
- * @param int    $user_id   User ID.
- * @param int    $object_id Optional. ID of the specific object to check against if `$cap` is a "meta" cap.
- *                          "Meta" capabilities, e.g. 'edit_post', 'edit_user', etc., are capabilities used
- *                          by map_meta_cap() to map to other "primitive" capabilities, e.g. 'edit_posts',
- *                          'edit_others_posts', etc. The parameter is accessed via func_get_args().
- * @return array Actual capabilities for meta capability.
+ * @param string $cap     Capability being checked.
+ * @param int    $user_id User ID.
+ * @param mixed  ...$args Optional further parameters, typically starting with an object ID.
+ * @return string[] Primitive capabilities required of the user.
  */
-function map_meta_cap( $cap, $user_id ) {
-	$args = array_slice( func_get_args(), 2 );
+function map_meta_cap( $cap, $user_id, ...$args ) {
 	$caps = array();
 
 	switch ( $cap ) {
@@ -45,8 +59,8 @@ function map_meta_cap( $cap, $user_id ) {
 			break;
 		case 'edit_user':
 		case 'edit_users':
-			// Allow user to edit itself
-			if ( 'edit_user' == $cap && isset( $args[0] ) && $user_id == $args[0] ) {
+			// Allow user to edit themselves.
+			if ( 'edit_user' === $cap && isset( $args[0] ) && $user_id == $args[0] ) {
 				break;
 			}
 
@@ -65,12 +79,9 @@ function map_meta_cap( $cap, $user_id ) {
 				break;
 			}
 
-			if ( 'revision' == $post->post_type ) {
-				$post = get_post( $post->post_parent );
-				if ( ! $post ) {
-					$caps[] = 'do_not_allow';
-					break;
-				}
+			if ( 'revision' === $post->post_type ) {
+				$caps[] = 'do_not_allow';
+				break;
 			}
 
 			if ( ( get_option( 'page_for_posts' ) == $post->ID ) || ( get_option( 'page_on_front' ) == $post->ID ) ) {
@@ -80,7 +91,7 @@ function map_meta_cap( $cap, $user_id ) {
 
 			$post_type = get_post_type_object( $post->post_type );
 			if ( ! $post_type ) {
-				/* translators: 1: post type, 2: capability name */
+				/* translators: 1: Post type, 2: Capability name. */
 				_doing_it_wrong( __FUNCTION__, sprintf( __( 'The post type %1$s is not registered, so it may not be reliable to check the capability "%2$s" against a post of that type.' ), $post->post_type, $cap ), '4.4.0' );
 				$caps[] = 'edit_others_posts';
 				break;
@@ -89,7 +100,7 @@ function map_meta_cap( $cap, $user_id ) {
 			if ( ! $post_type->map_meta_cap ) {
 				$caps[] = $post_type->cap->$cap;
 				// Prior to 3.1 we would re-call map_meta_cap here.
-				if ( 'delete_post' == $cap ) {
+				if ( 'delete_post' === $cap ) {
 					$cap = $post_type->cap->$cap;
 				}
 				break;
@@ -100,7 +111,7 @@ function map_meta_cap( $cap, $user_id ) {
 				// If the post is published or scheduled...
 				if ( in_array( $post->post_status, array( 'publish', 'future' ), true ) ) {
 					$caps[] = $post_type->cap->delete_published_posts;
-				} elseif ( 'trash' == $post->post_status ) {
+				} elseif ( 'trash' === $post->post_status ) {
 					$status = get_post_meta( $post->ID, '_wp_trash_meta_status', true );
 					if ( in_array( $status, array( 'publish', 'future' ), true ) ) {
 						$caps[] = $post_type->cap->delete_published_posts;
@@ -117,7 +128,7 @@ function map_meta_cap( $cap, $user_id ) {
 				// The post is published or scheduled, extra cap required.
 				if ( in_array( $post->post_status, array( 'publish', 'future' ), true ) ) {
 					$caps[] = $post_type->cap->delete_published_posts;
-				} elseif ( 'private' == $post->post_status ) {
+				} elseif ( 'private' === $post->post_status ) {
 					$caps[] = $post_type->cap->delete_private_posts;
 				}
 			}
@@ -132,7 +143,7 @@ function map_meta_cap( $cap, $user_id ) {
 
 			break;
 		// edit_post breaks down to edit_posts, edit_published_posts, or
-		// edit_others_posts
+		// edit_others_posts.
 		case 'edit_post':
 		case 'edit_page':
 			$post = get_post( $args[0] );
@@ -141,7 +152,7 @@ function map_meta_cap( $cap, $user_id ) {
 				break;
 			}
 
-			if ( 'revision' == $post->post_type ) {
+			if ( 'revision' === $post->post_type ) {
 				$post = get_post( $post->post_parent );
 				if ( ! $post ) {
 					$caps[] = 'do_not_allow';
@@ -151,7 +162,7 @@ function map_meta_cap( $cap, $user_id ) {
 
 			$post_type = get_post_type_object( $post->post_type );
 			if ( ! $post_type ) {
-				/* translators: 1: post type, 2: capability name */
+				/* translators: 1: Post type, 2: Capability name. */
 				_doing_it_wrong( __FUNCTION__, sprintf( __( 'The post type %1$s is not registered, so it may not be reliable to check the capability "%2$s" against a post of that type.' ), $post->post_type, $cap ), '4.4.0' );
 				$caps[] = 'edit_others_posts';
 				break;
@@ -160,7 +171,7 @@ function map_meta_cap( $cap, $user_id ) {
 			if ( ! $post_type->map_meta_cap ) {
 				$caps[] = $post_type->cap->$cap;
 				// Prior to 3.1 we would re-call map_meta_cap here.
-				if ( 'edit_post' == $cap ) {
+				if ( 'edit_post' === $cap ) {
 					$cap = $post_type->cap->$cap;
 				}
 				break;
@@ -171,7 +182,7 @@ function map_meta_cap( $cap, $user_id ) {
 				// If the post is published or scheduled...
 				if ( in_array( $post->post_status, array( 'publish', 'future' ), true ) ) {
 					$caps[] = $post_type->cap->edit_published_posts;
-				} elseif ( 'trash' == $post->post_status ) {
+				} elseif ( 'trash' === $post->post_status ) {
 					$status = get_post_meta( $post->ID, '_wp_trash_meta_status', true );
 					if ( in_array( $status, array( 'publish', 'future' ), true ) ) {
 						$caps[] = $post_type->cap->edit_published_posts;
@@ -188,7 +199,7 @@ function map_meta_cap( $cap, $user_id ) {
 				// The post is published or scheduled, extra cap required.
 				if ( in_array( $post->post_status, array( 'publish', 'future' ), true ) ) {
 					$caps[] = $post_type->cap->edit_published_posts;
-				} elseif ( 'private' == $post->post_status ) {
+				} elseif ( 'private' === $post->post_status ) {
 					$caps[] = $post_type->cap->edit_private_posts;
 				}
 			}
@@ -210,7 +221,7 @@ function map_meta_cap( $cap, $user_id ) {
 				break;
 			}
 
-			if ( 'revision' == $post->post_type ) {
+			if ( 'revision' === $post->post_type ) {
 				$post = get_post( $post->post_parent );
 				if ( ! $post ) {
 					$caps[] = 'do_not_allow';
@@ -220,7 +231,7 @@ function map_meta_cap( $cap, $user_id ) {
 
 			$post_type = get_post_type_object( $post->post_type );
 			if ( ! $post_type ) {
-				/* translators: 1: post type, 2: capability name */
+				/* translators: 1: Post type, 2: Capability name. */
 				_doing_it_wrong( __FUNCTION__, sprintf( __( 'The post type %1$s is not registered, so it may not be reliable to check the capability "%2$s" against a post of that type.' ), $post->post_type, $cap ), '4.4.0' );
 				$caps[] = 'edit_others_posts';
 				break;
@@ -229,13 +240,20 @@ function map_meta_cap( $cap, $user_id ) {
 			if ( ! $post_type->map_meta_cap ) {
 				$caps[] = $post_type->cap->$cap;
 				// Prior to 3.1 we would re-call map_meta_cap here.
-				if ( 'read_post' == $cap ) {
+				if ( 'read_post' === $cap ) {
 					$cap = $post_type->cap->$cap;
 				}
 				break;
 			}
 
-			$status_obj = get_post_status_object( $post->post_status );
+			$status_obj = get_post_status_object( get_post_status( $post ) );
+			if ( ! $status_obj ) {
+				/* translators: 1: Post status, 2: Capability name. */
+				_doing_it_wrong( __FUNCTION__, sprintf( __( 'The post status %1$s is not registered, so it may not be reliable to check the capability "%2$s" against a post with that status.' ), get_post_status( $post ), $cap ), '5.4.0' );
+				$caps[] = 'edit_others_posts';
+				break;
+			}
+
 			if ( $status_obj->public ) {
 				$caps[] = $post_type->cap->read;
 				break;
@@ -258,7 +276,7 @@ function map_meta_cap( $cap, $user_id ) {
 
 			$post_type = get_post_type_object( $post->post_type );
 			if ( ! $post_type ) {
-				/* translators: 1: post type, 2: capability name */
+				/* translators: 1: Post type, 2: Capability name. */
 				_doing_it_wrong( __FUNCTION__, sprintf( __( 'The post type %1$s is not registered, so it may not be reliable to check the capability "%2$s" against a post of that type.' ), $post->post_type, $cap ), '4.4.0' );
 				$caps[] = 'edit_others_posts';
 				break;
@@ -278,8 +296,8 @@ function map_meta_cap( $cap, $user_id ) {
 		case 'edit_user_meta':
 		case 'delete_user_meta':
 		case 'add_user_meta':
-			list( $_, $object_type, $_ ) = explode( '_', $cap );
-			$object_id                   = (int) $args[0];
+			$object_type = explode( '_', $cap )[1];
+			$object_id   = (int) $args[0];
 
 			$object_subtype = get_object_subtype( $object_type, $object_id );
 
@@ -349,8 +367,9 @@ function map_meta_cap( $cap, $user_id ) {
 					 * The dynamic portion of the hook name, `$meta_key`, refers to the meta key passed to map_meta_cap().
 					 *
 					 * @since 4.6.0 As `auth_post_{$post_type}_meta_{$meta_key}`.
-					 * @since 4.7.0
-					 * @deprecated 4.9.8 Use `auth_{$object_type}_meta_{$meta_key}_for_{$object_subtype}`
+					 * @since 4.7.0 Renamed from `auth_post_{$post_type}_meta_{$meta_key}` to
+					 *              `auth_{$object_type}_{$object_subtype}_meta_{$meta_key}`.
+					 * @deprecated 4.9.8 Use {@see 'auth_{$object_type}_meta_{$meta_key}_for_{$object_subtype}'} instead.
 					 *
 					 * @param bool     $allowed   Whether the user can add the object meta. Default false.
 					 * @param string   $meta_key  The meta key.
@@ -359,7 +378,12 @@ function map_meta_cap( $cap, $user_id ) {
 					 * @param string   $cap       Capability name.
 					 * @param string[] $caps      Array of the user's capabilities.
 					 */
-					$allowed = apply_filters_deprecated( "auth_{$object_type}_{$object_subtype}_meta_{$meta_key}", array( $allowed, $meta_key, $object_id, $user_id, $cap, $caps ), '4.9.8', "auth_{$object_type}_meta_{$meta_key}_for_{$object_subtype}" );
+					$allowed = apply_filters_deprecated(
+						"auth_{$object_type}_{$object_subtype}_meta_{$meta_key}",
+						array( $allowed, $meta_key, $object_id, $user_id, $cap, $caps ),
+						'4.9.8',
+						"auth_{$object_type}_meta_{$meta_key}_for_{$object_subtype}"
+					);
 				}
 
 				if ( ! $allowed ) {
@@ -521,7 +545,10 @@ function map_meta_cap( $cap, $user_id ) {
 				break;
 			}
 
-			if ( 'delete_term' === $cap && ( $term->term_id == get_option( 'default_' . $term->taxonomy ) ) ) {
+			if ( 'delete_term' === $cap
+				&& ( get_option( 'default_' . $term->taxonomy ) == $term->term_id
+					|| get_option( 'default_term_' . $term->taxonomy ) == $term->term_id )
+			) {
 				$caps[] = 'do_not_allow';
 				break;
 			}
@@ -567,17 +594,32 @@ function map_meta_cap( $cap, $user_id ) {
 				$caps[] = 'update_core';
 			}
 			break;
+		case 'update_https':
+			if ( is_multisite() && ! is_super_admin( $user_id ) ) {
+				$caps[] = 'do_not_allow';
+			} else {
+				$caps[] = 'manage_options';
+				$caps[] = 'update_core';
+			}
+			break;
 		case 'export_others_personal_data':
 		case 'erase_others_personal_data':
 		case 'manage_privacy_options':
 			$caps[] = is_multisite() ? 'manage_network' : 'manage_options';
 			break;
+		case 'create_app_password':
+		case 'list_app_passwords':
+		case 'read_app_password':
+		case 'edit_app_password':
+		case 'delete_app_passwords':
+		case 'delete_app_password':
+			$caps = map_meta_cap( 'edit_user', $user_id, $args[0] );
+			break;
 		default:
 			// Handle meta capabilities for custom post types.
 			global $post_type_meta_caps;
 			if ( isset( $post_type_meta_caps[ $cap ] ) ) {
-				$args = array_merge( array( $post_type_meta_caps[ $cap ], $user_id ), $args );
-				return call_user_func_array( 'map_meta_cap', $args );
+				return map_meta_cap( $post_type_meta_caps[ $cap ], $user_id, ...$args );
 			}
 
 			// Block capabilities map to their post equivalent.
@@ -602,20 +644,32 @@ function map_meta_cap( $cap, $user_id ) {
 	}
 
 	/**
-	 * Filters a user's capabilities depending on specific context and/or privilege.
+	 * Filters the primitive capabilities required of the given user to satisfy the
+	 * capability being checked.
 	 *
 	 * @since 2.8.0
 	 *
-	 * @param string[] $caps    Array of the user's capabilities.
-	 * @param string   $cap     Capability name.
+	 * @param string[] $caps    Primitive capabilities required of the user.
+	 * @param string   $cap     Capability being checked.
 	 * @param int      $user_id The user ID.
-	 * @param array    $args    Adds the context to the cap. Typically the object ID.
+	 * @param array    $args    Adds context to the capability check, typically
+	 *                          starting with an object ID.
 	 */
 	return apply_filters( 'map_meta_cap', $caps, $cap, $user_id, $args );
 }
 
 /**
- * Whether the current user has a specific capability.
+ * Returns whether the current user has the specified capability.
+ *
+ * This function also accepts an ID of an object to check against if the capability is a meta capability. Meta
+ * capabilities such as `edit_post` and `edit_user` are capabilities used by the `map_meta_cap()` function to
+ * map to primitive capabilities that a user or role has, such as `edit_posts` and `edit_others_posts`.
+ *
+ * Example usage:
+ *
+ *     current_user_can( 'edit_posts' );
+ *     current_user_can( 'edit_post', $post->ID );
+ *     current_user_can( 'edit_post_meta', $post->ID, $meta_key );
  *
  * While checking against particular roles in place of a capability is supported
  * in part, this practice is discouraged as it may produce unreliable results.
@@ -623,42 +677,50 @@ function map_meta_cap( $cap, $user_id ) {
  * Note: Will always return true if the current user is a super admin, unless specifically denied.
  *
  * @since 2.0.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @see WP_User::has_cap()
  * @see map_meta_cap()
  *
  * @param string $capability Capability name.
- * @param int    $object_id  Optional. ID of the specific object to check against if `$capability` is a "meta" cap.
- *                           "Meta" capabilities, e.g. 'edit_post', 'edit_user', etc., are capabilities used
- *                           by map_meta_cap() to map to other "primitive" capabilities, e.g. 'edit_posts',
- *                           'edit_others_posts', etc. Accessed via func_get_args() and passed to WP_User::has_cap(),
- *                           then map_meta_cap().
+ * @param mixed  ...$args    Optional further parameters, typically starting with an object ID.
  * @return bool Whether the current user has the given capability. If `$capability` is a meta cap and `$object_id` is
  *              passed, whether the current user has the given meta capability for the given object.
  */
-function current_user_can( $capability ) {
+function current_user_can( $capability, ...$args ) {
 	$current_user = wp_get_current_user();
 
 	if ( empty( $current_user ) ) {
 		return false;
 	}
 
-	$args = array_slice( func_get_args(), 1 );
-	$args = array_merge( array( $capability ), $args );
-
-	return call_user_func_array( array( $current_user, 'has_cap' ), $args );
+	return $current_user->has_cap( $capability, ...$args );
 }
 
 /**
- * Whether the current user has a specific capability for a given site.
+ * Returns whether the current user has the specified capability for a given site.
+ *
+ * This function also accepts an ID of an object to check against if the capability is a meta capability. Meta
+ * capabilities such as `edit_post` and `edit_user` are capabilities used by the `map_meta_cap()` function to
+ * map to primitive capabilities that a user or role has, such as `edit_posts` and `edit_others_posts`.
+ *
+ * Example usage:
+ *
+ *     current_user_can_for_blog( $blog_id, 'edit_posts' );
+ *     current_user_can_for_blog( $blog_id, 'edit_post', $post->ID );
+ *     current_user_can_for_blog( $blog_id, 'edit_post_meta', $post->ID, $meta_key );
  *
  * @since 3.0.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @param int    $blog_id    Site ID.
  * @param string $capability Capability name.
+ * @param mixed  ...$args    Optional further parameters, typically starting with an object ID.
  * @return bool Whether the user has the given capability.
  */
-function current_user_can_for_blog( $blog_id, $capability ) {
+function current_user_can_for_blog( $blog_id, $capability, ...$args ) {
 	$switched = is_multisite() ? switch_to_blog( $blog_id ) : false;
 
 	$current_user = wp_get_current_user();
@@ -670,10 +732,7 @@ function current_user_can_for_blog( $blog_id, $capability ) {
 		return false;
 	}
 
-	$args = array_slice( func_get_args(), 2 );
-	$args = array_merge( array( $capability ), $args );
-
-	$can = call_user_func_array( array( $current_user, 'has_cap' ), $args );
+	$can = $current_user->has_cap( $capability, ...$args );
 
 	if ( $switched ) {
 		restore_current_blog();
@@ -683,16 +742,30 @@ function current_user_can_for_blog( $blog_id, $capability ) {
 }
 
 /**
- * Whether the author of the supplied post has a specific capability.
+ * Returns whether the author of the supplied post has the specified capability.
+ *
+ * This function also accepts an ID of an object to check against if the capability is a meta capability. Meta
+ * capabilities such as `edit_post` and `edit_user` are capabilities used by the `map_meta_cap()` function to
+ * map to primitive capabilities that a user or role has, such as `edit_posts` and `edit_others_posts`.
+ *
+ * Example usage:
+ *
+ *     author_can( $post, 'edit_posts' );
+ *     author_can( $post, 'edit_post', $post->ID );
+ *     author_can( $post, 'edit_post_meta', $post->ID, $meta_key );
  *
  * @since 2.9.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @param int|WP_Post $post       Post ID or post object.
  * @param string      $capability Capability name.
+ * @param mixed       ...$args    Optional further parameters, typically starting with an object ID.
  * @return bool Whether the post author has the given capability.
  */
-function author_can( $post, $capability ) {
-	if ( ! $post = get_post( $post ) ) {
+function author_can( $post, $capability, ...$args ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
 		return false;
 	}
 
@@ -702,22 +775,32 @@ function author_can( $post, $capability ) {
 		return false;
 	}
 
-	$args = array_slice( func_get_args(), 2 );
-	$args = array_merge( array( $capability ), $args );
-
-	return call_user_func_array( array( $author, 'has_cap' ), $args );
+	return $author->has_cap( $capability, ...$args );
 }
 
 /**
- * Whether a particular user has a specific capability.
+ * Returns whether a particular user has the specified capability.
+ *
+ * This function also accepts an ID of an object to check against if the capability is a meta capability. Meta
+ * capabilities such as `edit_post` and `edit_user` are capabilities used by the `map_meta_cap()` function to
+ * map to primitive capabilities that a user or role has, such as `edit_posts` and `edit_others_posts`.
+ *
+ * Example usage:
+ *
+ *     user_can( $user->ID, 'edit_posts' );
+ *     user_can( $user->ID, 'edit_post', $post->ID );
+ *     user_can( $user->ID, 'edit_post_meta', $post->ID, $meta_key );
  *
  * @since 3.1.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @param int|WP_User $user       User ID or object.
  * @param string      $capability Capability name.
+ * @param mixed       ...$args    Optional further parameters, typically starting with an object ID.
  * @return bool Whether the user has the given capability.
  */
-function user_can( $user, $capability ) {
+function user_can( $user, $capability, ...$args ) {
 	if ( ! is_object( $user ) ) {
 		$user = get_userdata( $user );
 	}
@@ -726,10 +809,7 @@ function user_can( $user, $capability ) {
 		return false;
 	}
 
-	$args = array_slice( func_get_args(), 2 );
-	$args = array_merge( array( $capability ), $args );
-
-	return call_user_func_array( array( $user, 'has_cap' ), $args );
+	return $user->has_cap( $capability, ...$args );
 }
 
 /**
@@ -737,7 +817,7 @@ function user_can( $user, $capability ) {
  *
  * @since 4.3.0
  *
- * @global WP_Roles $wp_roles WP_Roles global instance.
+ * @global WP_Roles $wp_roles WordPress role management object.
  *
  * @return WP_Roles WP_Roles global instance if not already instantiated.
  */
@@ -767,9 +847,10 @@ function get_role( $role ) {
  *
  * @since 2.0.0
  *
- * @param string $role Role name.
+ * @param string $role         Role name.
  * @param string $display_name Display name for role.
- * @param array $capabilities List of capabilities, e.g. array( 'edit_posts' => true, 'delete_posts' => false );
+ * @param bool[] $capabilities List of capabilities keyed by the capability name,
+ *                             e.g. array( 'edit_posts' => true, 'delete_posts' => false ).
  * @return WP_Role|null WP_Role object if role is added, null if already exists.
  */
 function add_role( $role, $display_name, $capabilities = array() ) {
@@ -797,7 +878,7 @@ function remove_role( $role ) {
  *
  * @global array $super_admins
  *
- * @return array List of super admin logins
+ * @return string[] List of super admin logins.
  */
 function get_super_admins() {
 	global $super_admins;
@@ -814,11 +895,11 @@ function get_super_admins() {
  *
  * @since 3.0.0
  *
- * @param int $user_id (Optional) The ID of a user. Defaults to the current user.
- * @return bool True if the user is a site admin.
+ * @param int|false $user_id Optional. The ID of a user. Defaults to false, to check the current user.
+ * @return bool Whether the user is a site admin.
  */
 function is_super_admin( $user_id = false ) {
-	if ( ! $user_id || $user_id == get_current_user_id() ) {
+	if ( ! $user_id || get_current_user_id() == $user_id ) {
 		$user = wp_get_current_user();
 	} else {
 		$user = get_userdata( $user_id );
@@ -830,7 +911,7 @@ function is_super_admin( $user_id = false ) {
 
 	if ( is_multisite() ) {
 		$super_admins = get_super_admins();
-		if ( is_array( $super_admins ) && in_array( $user->user_login, $super_admins ) ) {
+		if ( is_array( $super_admins ) && in_array( $user->user_login, $super_admins, true ) ) {
 			return true;
 		}
 	} else {
@@ -868,11 +949,11 @@ function grant_super_admin( $user_id ) {
 	 */
 	do_action( 'grant_super_admin', $user_id );
 
-	// Directly fetch site_admins instead of using get_super_admins()
+	// Directly fetch site_admins instead of using get_super_admins().
 	$super_admins = get_site_option( 'site_admins', array( 'admin' ) );
 
 	$user = get_userdata( $user_id );
-	if ( $user && ! in_array( $user->user_login, $super_admins ) ) {
+	if ( $user && ! in_array( $user->user_login, $super_admins, true ) ) {
 		$super_admins[] = $user->user_login;
 		update_site_option( 'site_admins', $super_admins );
 
@@ -915,12 +996,13 @@ function revoke_super_admin( $user_id ) {
 	 */
 	do_action( 'revoke_super_admin', $user_id );
 
-	// Directly fetch site_admins instead of using get_super_admins()
+	// Directly fetch site_admins instead of using get_super_admins().
 	$super_admins = get_site_option( 'site_admins', array( 'admin' ) );
 
 	$user = get_userdata( $user_id );
 	if ( $user && 0 !== strcasecmp( $user->user_email, get_site_option( 'admin_email' ) ) ) {
-		if ( false !== ( $key = array_search( $user->user_login, $super_admins ) ) ) {
+		$key = array_search( $user->user_login, $super_admins, true );
+		if ( false !== $key ) {
 			unset( $super_admins[ $key ] );
 			update_site_option( 'site_admins', $super_admins );
 
@@ -1007,13 +1089,13 @@ function wp_maybe_grant_site_health_caps( $allcaps, $caps, $args, $user ) {
 return;
 
 // Dummy gettext calls to get strings in the catalog.
-/* translators: user role for administrators  */
+/* translators: User role for administrators. */
 _x( 'Administrator', 'User role' );
-/* translators: user role for editors */
+/* translators: User role for editors. */
 _x( 'Editor', 'User role' );
-/* translators: user role for authors */
+/* translators: User role for authors. */
 _x( 'Author', 'User role' );
-/* translators: user role for contributors */
+/* translators: User role for contributors. */
 _x( 'Contributor', 'User role' );
-/* translators: user role for subscriber */
+/* translators: User role for subscribers. */
 _x( 'Subscriber', 'User role' );

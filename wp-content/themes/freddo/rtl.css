@@ -1,0 +1,353 @@
+/*
+Theme Name: freddo
+
+Adding support for languages written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+https://codex.wordpress.org/Right-to-Left_Language_Support
+
+*/
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+.spaceLeft {
+	margin-left: 0;
+	margin-right: 0.5em;
+}
+.spaceRight {
+	margin-right: 0;
+	margin-left: 0.5em;
+}
+.hamburger-menu,
+.search-button,
+.freddoHeader {
+	float: left;
+}
+header.site-header .mainLogo,
+.site-branding {
+	float: right;
+	text-align: right;
+}
+.hamburger-menu,
+.search-button {
+	margin-left: inherit;
+	margin-right: 1.5em;
+}
+.search-button .search-line {
+	right: -5px;
+}
+#tertiary.widget-area {
+	right: inherit;
+	left: -390px;
+	-wekbit-transition-property: left;
+    -moz-transition-property: left;
+    -o-transition-property: left;
+    transition-property: left;
+}
+#tertiary.widget-area.yesOpen {
+    right: inherit;
+	left: 0;
+}
+.close-hamburger {
+	left: 1.5em;
+	right: inherit;
+}
+#page.site {
+	left: inherit;
+	right: 0;
+	-wekbit-transition-property: right;
+    -moz-transition-property: right;
+    -o-transition-property: right;
+    transition-property: right;
+}
+header.site-header {
+	-o-transition: background .5s, right .3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    -moz-transition: background .5s, right .3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    -webkit-transition: background .5s, right .3s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: background .5s, right .3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+header.site-header.menuMinor {
+	left: inherit;
+	right: 0;
+}
+#page.site.yesOpen, #page.site.yesOpen header.site-header.menuMinor {
+    left: inherit;
+	right: -195px;
+}
+.nano > .nano-content {
+	right: 0 !important;
+}
+.nano > .nano-pane {
+    left: 0;
+    right: inherit;
+}
+.main-navigation ul ul {
+	padding-right: 0;
+	float: right;
+}
+.main-navigation ul ul a {
+	text-align: right;
+}
+.main-navigation ul ul li a:not(:last-child):after {
+    content: "\f104";
+    margin: 0 7px 0 0;
+    float: left;
+}
+.main-navigation ul ul ul {
+	left: inherit;
+	right: 100%;
+}
+.main-navigation > div > ul > li > a::before {
+	-webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+}
+.scrollDown {
+    direction: ltr;
+}
+.one.aboutus_columns_three, .services_columns_single .serviceContent, .freddoContactField {
+	text-align: left;
+}
+.skillTop .skillName, .cta_columns .ctaText, .serviceIcon, .site-copy-down .site-info {
+	float: right;
+}
+.skillTop .skillNameUnder {
+	left: inherit;
+	right: 0px;
+}
+.skillTop .skillValue, .cta_columns .ctaButton, .site-copy-down .site-social {
+	float: left;
+}
+.skillBottom .skillRealBarCyrcle {
+	left: -6px;
+	right: inherit;
+}
+.serviceText {
+    padding-left: inherit;
+	padding-right: 2em;
+}
+input ~ .focus-bg, textarea ~ .focus-bg {
+	left: inherit;
+	right: 0;
+}
+.widget.widget_search input[type="search"],
+.widget.woocommerce.widget_product_search input[type="search"],
+.woocommerce #content form.cart .quantity input[type="number"] {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+	border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+	float: right;
+	border-right-width: 1px;
+	border-left-width: 0;
+}
+.widget.widget_search input[type="submit"],
+.widget.woocommerce.widget_product_search button,
+.woocommerce #content form.cart .button {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+	border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+	float: left;
+}
+.widget.widget_search .inc-input .focus-bg, .widget.woocommerce.widget_product_search .inc-input .focus-bg {
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.widget.widget_search .inc-input, .widget.woocommerce.widget_product_search .inc-input {
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+	border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.widget_archive li, .widget_categories li {
+    text-align: left;
+}
+.widget_archive li a, .widget_categories li a {
+    float: right;
+}
+.widget.widget_categories li:before {
+	padding-right: inherit;
+	padding-left: 0.5em;
+	float: right;
+}
+.widget.widget_archive li:before {
+	content: "\f0d9";
+	padding-right: inherit;
+	padding-left: 0.5em;
+	float: right;
+}
+aside ul.menu .indicatorBar,
+aside ul.product-categories .indicatorBar {
+	right: inherit;
+	left: 0;
+	border-left-width: 0px;
+    border-left-style: dashed;
+	border-right-width: 1px;
+    border-right-style: dashed;
+}
+aside ul.menu ul.sub-menu,
+aside ul.product-categories ul.children {
+    padding-left: inherit;
+	padding-right: 2em;
+}
+.widget .widget-title h3 {
+	padding: 0 0 0.5em 1em;
+}
+.navigation.pagination .nav-links .prev {
+	float: right;
+}
+.navigation.pagination .nav-links .prev i:before {
+	content: "\f101";
+}
+.navigation.pagination .nav-links .next {
+	float: left;
+}
+.navigation.pagination .nav-links .next i:before {
+	content: "\f100";
+}
+.woocommerce ul.products > li {
+	float: right;
+}
+.woocommerce #reviews #comments ol.commentlist li .comment-text {
+    margin-right: 85px;
+	margin-left: 0;
+}
+.woocommerce #reviews .commentlist li .avatar {
+    top: 0;
+    right: 0;
+    left: inherit;
+}
+.woocommerce div.product form.cart .variations td.label {
+    float: right;
+}
+.woocommerce .woocommerce-error:before, .woocommerce .woocommerce-info:before, .woocommerce .woocommerce-message:before {
+    left: inherit;
+	right: 1em;
+}
+.woocommerce-error li a, .woocommerce-message a {
+    float: left;
+}
+.woocommerce-message, .woocommerce-info, .woocommerce-error {
+    padding: 1.5em 2.5em 1.5em 1.5em;
+}
+.product_list_widget li img {
+    margin-right: inherit;
+    margin-left: 1em;
+    float: right;
+}
+.widget_shopping_cart .product_list_widget li a.remove {
+    right: inherit;
+    left: 0;
+}
+.woocommerce .content-area .images {
+	float: right;
+}
+.woocommerce .content-area .summary {
+	float: left;
+}
+.content-area .onsale {
+	left: inherit;
+	right: -40px;
+	-ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.read-more i:before {
+	content: "\f0d9";
+}
+.sticky .entry-title {
+	padding-left: inherit;
+	padding-right: 40px;
+}
+.sticky .entry-header .entry-title:before {
+	left: inherit;
+	right: 0;
+}
+blockquote {
+    padding: 1.5em 3.5em 1.5em 1.5em;
+	border-left-width: 0;
+    border-right-width: 4px;
+	border-right-style: solid;
+}
+blockquote::before {
+	left: inherit;
+	right: 10px;
+	content: "\f10e";
+}
+#comments article footer img {
+    float: right;
+    margin-left: 1em;
+	margin-right: inherit;
+}
+#comments .reply {
+	right: inherit;
+	left: 1.5em;
+}
+#comments ol ol {
+    padding-left: inherit;
+	padding-right: 10%;
+}
+.page-links {
+    text-align: left;
+}
+.second-navigation li::after {
+	margin-left: inherit;
+	margin-right: 0.5em;
+}
+.main-navigation li.invert ul {
+	left: 100%;
+	right: inherit;
+}
+.main-navigation > div > ul > li.invert > ul {
+	left: 0;
+	right: inherit;
+}
+@media all and (max-width: 1024px) {
+	.main-navigation.toggled .nav-menu {
+		padding: 0;
+	}
+	.main-navigation ul ul, .main-navigation ul ul ul {
+		float: none;
+		padding-left: 0;
+		padding-right: 3%;
+	}
+	.main-navigation ul li .indicator {
+		left: 0;
+		right: inherit;
+		border-left-width: 0px;
+		border-right-width: 1px;
+		border-right-style: solid;
+	}
+	.main-navigation > div > ul > li > a {
+		text-align: right;
+	}
+}
+@media all and (max-width: 850px) {
+	.site-copy-down .site-info,
+	.site-copy-down .site-social,
+	.cta_columns .ctaText,
+	.cta_columns .ctaButton {
+		float: none;
+	}
+	.aboutus_columns_three.one, .services_columns_single .serviceContent {
+		text-align: center;
+	}
+}
+@media all and (max-width: 559px) {
+	.serviceIcon {
+		float: none;
+	}
+	.freddoBigText header.entry-header .entry-meta > span, .hentry header.entry-header .entry-meta > span {
+		margin-left: 0.5em;
+		margin-right: 0;
+	}
+	.hentry header.entry-header .entry-meta > span i {
+		margin-left: inherit;
+		margin-right: 0;
+	}
+}

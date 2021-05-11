@@ -150,7 +150,7 @@ wp.media.mixin = {
 			return;
 		}
 
-		// invoke features cleanup
+		// Invoke features cleanup.
 		for ( featureIndex in t.options.features ) {
 			feature = t.options.features[featureIndex];
 			if ( t['clean' + feature] ) {
@@ -246,7 +246,7 @@ wp.media.audio = {
 	 * @since 4.2.0
 	 *
 	 * @param {string} data The text to apply the shortcode on.
-	 * @returns {wp.media} The media object.
+	 * @return {wp.media} The media object.
 	 */
 	edit : function( data ) {
 		var frame, shortcode = wp.shortcode.next( 'audio', data ).shortcode;
@@ -266,7 +266,7 @@ wp.media.audio = {
 	 * @since 4.2.0
 	 *
 	 * @param {Array} model Array with attributes for the shortcode.
-	 * @returns {wp.shortcode} The audio shortcode object.
+	 * @return {wp.shortcode} The audio shortcode object.
 	 */
 	shortcode : function( model ) {
 		var content;
@@ -321,7 +321,7 @@ wp.media.video = {
 	 * @since 4.2.0
 	 *
 	 * @param {string} data The text to apply the shortcode on.
-	 * @returns {wp.media} The media object.
+	 * @return {wp.media} The media object.
 	 */
 	edit : function( data ) {
 		var frame,
@@ -346,7 +346,7 @@ wp.media.video = {
 	 * @since 4.2.0
 	 *
 	 * @param {Array} model Array with attributes for the shortcode.
-	 * @returns {wp.shortcode} The video shortcode object.
+	 * @return {wp.shortcode} The video shortcode object.
 	 */
 	shortcode : function( model ) {
 		var content;
@@ -891,7 +891,7 @@ MediaDetails = AttachmentDisplay.extend(/** @lends wp.media.view.MediaDetails.pr
 	initialize: function() {
 		_.bindAll(this, 'success');
 		this.players = [];
-		this.listenTo( this.controller, 'close', wp.media.mixin.unsetPlayers );
+		this.listenTo( this.controller.states, 'close', wp.media.mixin.unsetPlayers );
 		this.on( 'ready', this.setPlayer );
 		this.on( 'media:setting:remove', wp.media.mixin.unsetPlayers, this );
 		this.on( 'media:setting:remove', this.render );
@@ -995,13 +995,13 @@ MediaDetails = AttachmentDisplay.extend(/** @lends wp.media.view.MediaDetails.pr
 	},
 
 	/**
-	 * @returns {media.view.MediaDetails} Returns itself to allow chaining
+	 * @return {media.view.MediaDetails} Returns itself to allow chaining.
 	 */
 	render: function() {
 		AttachmentDisplay.prototype.render.apply( this, arguments );
 
 		setTimeout( _.bind( function() {
-			this.resetFocus();
+			this.scrollToTop();
 		}, this ), 10 );
 
 		this.settings = _.defaults( {
@@ -1011,7 +1011,7 @@ MediaDetails = AttachmentDisplay.extend(/** @lends wp.media.view.MediaDetails.pr
 		return this.setMedia();
 	},
 
-	resetFocus: function() {
+	scrollToTop: function() {
 		this.$( '.embed-media-settings' ).scrollTop( 0 );
 	}
 },/** @lends wp.media.view.MediaDetails */{
@@ -1020,7 +1020,7 @@ MediaDetails = AttachmentDisplay.extend(/** @lends wp.media.view.MediaDetails.pr
 	 * When multiple players in the DOM contain the same src, things get weird.
 	 *
 	 * @param {HTMLElement} elem
-	 * @returns {HTMLElement}
+	 * @return {HTMLElement}
 	 */
 	prepareSrc : function( elem ) {
 		var i = MediaDetails.instances++;
