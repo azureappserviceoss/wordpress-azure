@@ -31,6 +31,7 @@
       "name": "[parameters('appServicePlanName')]",
       "type": "Microsoft.Web/serverFarms",
       "location": "[resourceGroup().location]",
+      "kind": "linux",
       "tags": "[resourceGroup().tags]",
       "properties": {
         
@@ -85,7 +86,7 @@
           ],
           "properties": {
            
-            "phpVersion": "7.4"
+            "phpVersion": "7.2"
           }
         }
       ]
