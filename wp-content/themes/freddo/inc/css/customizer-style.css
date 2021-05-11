@@ -1,0 +1,109 @@
+li#accordion-section-cresta_freddo_buy_pro h3:before {
+	font-family: dashicons;
+    content: "\f488";
+    padding-right: 0.5em;
+    float: left;
+}
+li[id*="_onepage_head_"] h3,
+#customize-control-freddo_theme_options-_onepage_settings_sectionmaphead h3,
+#customize-control-freddo_theme_options-_onepage_headbutton_aboutus h3,
+#customize-control-freddo_theme_options-_onepage_headtext_services h3,
+#customize-control-freddo_theme_options-_onepage_headimage_services h3,
+#customize-control-freddo_theme_options-_heading_header h3,
+#customize-control-freddo_theme_options-_heading_content h3,
+#customize-control-freddo_theme_options-_heading_sidebar h3,
+#customize-control-freddo_theme_options-_heading_footer h3 {
+	border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    padding: 10px 10px 11px 14px;
+    line-height: 25px;
+    background: #ddd;
+	margin: 20px -12px 0;
+    text-align: center;
+}
+#customize-control-freddo_theme_options-_onepage_info_slider {
+	background: #dddddd;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+	margin-top: 20px;
+}
+
+/*FontAwesome Icon Styles*/
+.freddo-type-icon{
+  overflow: hidden;
+}
+
+.freddo-selected-icon{
+  background: #F6F6F6;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  border: 1px solid #EEE;
+  position: relative;
+  margin-right: 45px;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.freddo-selected-icon span{
+  position: absolute;
+  background: #F6F6F6;
+  right: -45px;
+  top: -1px;
+  height: 45px;
+  width: 45px;
+  border: 1px solid #EEE;
+  font-size: 20px;
+}
+
+.freddo-icon-list{
+  height: 215px;
+  overflow-y: scroll;
+  font-size: 18px;
+  background: #F6F6F6;
+  border: 1px solid #EEE;
+  border-right: 0;
+  border-top: 0;
+  padding-bottom: 4%;
+  display: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.freddo-icon-list li{
+  float: left;
+  margin: 4% 3% 0;
+  height: 40px;
+  width: 16%;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #EEE;
+}
+
+.freddo-icon-list li:hover{
+  background: #333;
+  border: 1px solid #333;
+  color: #FFF;
+}
+
+.freddo-icon-list li.icon-active{
+  background: #0073aa;
+  border: 1px solid #0073aa;
+  color: #FFF;
+}
+
+.freddo-hidden-name {
+	display: none;
+}
+.freddo-icon-list-search {
+	padding-top: 10px;
+	max-width: 98%;
+    margin: 0 auto;
+}
+.freddo-icon-list-search input {
+	outline: none;
+	border-radius: 0px;
+}
