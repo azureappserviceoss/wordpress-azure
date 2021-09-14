@@ -69,6 +69,22 @@
 		switch ( type ) {
 			case 'flag':
 				/*
+				 * Test for Transgender flag compatibility. This flag is shortlisted for the Emoji 13 spec,
+				 * but has landed in Twemoji early, so we can add support for it, too.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (white flag emoji + transgender symbol).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0x1F3F3, 0xFE0F, 0x200D, 0x26A7, 0xFE0F ],
+					[ 0x1F3F3, 0xFE0F, 0x200B, 0x26A7, 0xFE0F ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
 				 * Test for UN flag compatibility. This is the least supported of the letter locale flags,
 				 * so gives us an easy test for full support.
 				 *
@@ -99,17 +115,23 @@
 				return ! isIdentical;
 			case 'emoji':
 				/*
-				 * Love is love.
+				 * Burning Love: Just a hunk, a hunk of burnin' love.
 				 *
-				 * To test for Emoji 12 support, try to render a new emoji: men holding hands, with different skin
-				 * tone modifiers.
+				 *  To test for Emoji 13.1 support, try to render a new emoji: Heart on Fire!
+				 *
+				 * The Heart on Fire emoji is a ZWJ sequence combining ❤️ Red Heart, a Zero Width Joiner and 🔥 Fire.
+				 *
+				 * 0x2764, 0xfe0f == Red Heart emoji.
+				 * 0x200D == Zero-Width Joiner (ZWJ) that links the two code points for the new emoji or
+				 * 0x200B == Zero-Width Space (ZWS) that is rendered for clients not supporting the new emoji.
+				 * 0xD83D, 0xDD25 == Fire.
 				 *
 				 * When updating this test for future Emoji releases, ensure that individual emoji that make up the
 				 * sequence come from older emoji standards.
 				 */
 				isIdentical = emojiSetsRenderIdentically(
-					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200D, 0xD83E, 0xDD1D, 0x200D, 0xD83D, 0xDC68, 0xD83C, 0xDFFC],
-					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200B, 0xD83E, 0xDD1D, 0x200B, 0xD83D, 0xDC68, 0xD83C, 0xDFFC]
+					[0x2764, 0xfe0f, 0x200D, 0xD83D, 0xDD25],
+					[0x2764, 0xfe0f, 0x200B, 0xD83D, 0xDD25]
 				);
 
 				return ! isIdentical;
