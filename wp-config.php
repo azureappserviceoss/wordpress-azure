@@ -57,7 +57,8 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 
-console.log('ZBXXX : WordPress Host is ", $connectstr_dbhost);
+print 'ZBXXXXX: Checking DB Host Config : '.$connectstr_dbhost;
+
 
 /** Enabling support for connecting MYSQL over SSL*/
 $mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
