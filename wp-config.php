@@ -30,6 +30,7 @@ foreach ($_SERVER as $key => $value) {
         continue;
     }
     
+    print 'ZBXXXXX: Checking Cofig - Key='.$key.' value='.$value;
     $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
     $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
     $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
@@ -57,7 +58,11 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 
-print 'ZBXXXXX: Checking DB Host Config : '.$connectstr_dbhost;
+print 'ZBXXXXX: Checking DB Host:'.$connectstr_dbhost;
+print 'ZBXXXXX: Checking DB Name:'.$connectstr_dbname;
+print 'ZBXXXXX: Checking DB User:'.$connectstr_dbusername;
+print 'ZBXXXXX: Checking DB Pass:'.$connectstr_dbpassword;
+
 
 
 /** Enabling support for connecting MYSQL over SSL*/
