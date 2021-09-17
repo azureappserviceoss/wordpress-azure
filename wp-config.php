@@ -30,7 +30,6 @@ foreach ($_SERVER as $key => $value) {
         continue;
     }
     
-    print 'ZBXXXXX: Checking Cofig - Key='.$key.' value='.$value;
     $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
     $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
     $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
@@ -58,16 +57,10 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 
-print 'ZBXXXXX: Checking DB Host:'.$connectstr_dbhost;
-print 'ZBXXXXX: Checking DB Name:'.$connectstr_dbname;
-print 'ZBXXXXX: Checking DB User:'.$connectstr_dbusername;
-print 'ZBXXXXX: Checking DB Pass:'.$connectstr_dbpassword;
 
-
-
-/** Enabling support for connecting MYSQL over SSL*/
+/** Enabling support for connecting external MYSQL over SSL*/
 $mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
-if (strtolower($mysql_sslconnect) != 'false' && strtolower($connectstr_dbhost) != '' && strtolower($connectstr_dbhost) != 'localhost' && $connectstr_dbhost != '127.0.0.1') {
+if (strtolower($mysql_sslconnect) != 'false' && !is_numeric(strpos($connectstr_dbhost, "127.0.0.1")) && !is_numeric(strpos(strtolower($connectstr_dbhost), "localhost"))) {
 	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
 }
 
