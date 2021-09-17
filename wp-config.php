@@ -56,8 +56,8 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
-/** Enabling MYSQL connection over SSL by default */
-$mysql_sslconnect = (getenv('MYSQL_SSL_CONNECTION')) ? getenv('MYSQL_SSL_CONNECTION') : 'true';
+/** Enabling support for connecting MYSQL over SSL*/
+$mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
 if (strtolower($mysql_sslconnect) != 'false') {
 	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
 }
