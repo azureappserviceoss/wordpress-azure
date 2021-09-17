@@ -56,9 +56,12 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
+
+console.log('ZBXXX : WordPress Host is ", $connectstr_dbhost);
+
 /** Enabling support for connecting MYSQL over SSL*/
 $mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
-if (strtolower($mysql_sslconnect) != 'false' && strtolower($connectstr_dbhost) != 'localhost' && $connectstr_dbhost != '127.0.0.1') {
+if (strtolower($mysql_sslconnect) != 'false' && strtolower($connectstr_dbhost) != '' && strtolower($connectstr_dbhost) != 'localhost' && $connectstr_dbhost != '127.0.0.1') {
 	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
 }
 
