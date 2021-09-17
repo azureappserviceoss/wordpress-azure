@@ -57,8 +57,8 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 /** Enabling support for connecting MYSQL over SSL*/
-$mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'false';
-if (strtolower($mysql_sslconnect) == 'true') {
+$mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
+if (strtolower($mysql_sslconnect) != 'false' && strtolower($connectstr_dbhost) != 'localhost' && $connectstr_dbhost != '127.0.0.1') {
 	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
 }
 
