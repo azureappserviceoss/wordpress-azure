@@ -27,6 +27,8 @@ final class WP_Site {
 	/**
 	 * Site ID.
 	 *
+	 * Named "blog" vs. "site" for legacy reasons.
+	 *
 	 * A numeric string, for compatibility reasons.
 	 *
 	 * @since 4.5.0
@@ -64,7 +66,7 @@ final class WP_Site {
 	public $site_id = '0';
 
 	/**
-	 * The date on which the site was created or registered.
+	 * The date and time on which the site was created or registered.
 	 *
 	 * @since 4.5.0
 	 * @var string Date in MySQL's datetime format.
@@ -162,14 +164,18 @@ final class WP_Site {
 
 		$_site = wp_cache_get( $site_id, 'sites' );
 
-		if ( ! $_site ) {
+		if ( false === $_site ) {
 			$_site = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->blogs} WHERE blog_id = %d LIMIT 1", $site_id ) );
 
 			if ( empty( $_site ) || is_wp_error( $_site ) ) {
-				return false;
+				$_site = -1;
 			}
 
 			wp_cache_add( $site_id, $_site, 'sites' );
+		}
+
+		if ( is_numeric( $_site ) ) {
+			return false;
 		}
 
 		return new WP_Site( $_site );

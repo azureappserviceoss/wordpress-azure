@@ -1,0 +1,1061 @@
+/* Freddo OnePage style */
+/*--------------------------------------------------------------
+## Freddo OnePage
+--------------------------------------------------------------*/
+body.page-template-template-onepage #content.site-content {
+	padding-top: 0;
+}
+.flexslider,
+.flexslider .slides > li .flexText .inside,
+.flexslider .slides li .flexImage {
+	height: calc(100vh / 1.5);
+}
+section.freddo_aboutus,
+section.freddo_features,
+section.freddo_skills,
+section.freddo_cta,
+section.freddo_services,
+section.freddo_blog,
+section.freddo_team,
+section.freddo_contact {
+    position: relative;
+    padding: 6em 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.freddo_aboutus_color,
+.freddo_features_color,
+.freddo_cta_color,
+.freddo_skills_color,
+.freddo_services_color,
+.freddo_blog_color,
+.freddo_team_color,
+.freddo_contact_color {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+}
+.freddo_action_aboutus,
+.freddo_action_features,
+.freddo_action_skills,
+.freddo_action_cta,
+.freddo_action_services,
+.freddo_action_blog,
+.freddo_action_team,
+.freddo_action_contact {
+    padding: 0 5em;
+    margin: 0 auto;
+    position: relative;
+}
+.freddo_action_services {
+	padding: 0;
+}
+.aboutus_columns,
+.services_columns {
+    width: 100%;
+    margin-top: 5em;
+    display: flex;
+}
+.features_columns,
+.skills_columns,
+.blog_columns,
+.team_columns,
+.contact_columns {
+    margin: 0 auto;
+    max-width: 1190px;
+    margin-top: 5em;
+}
+.cta_columns {
+	margin: 0 auto;
+    max-width: 920px;
+    margin-top: 5em;
+}
+.freddo_aboutus_color {
+    background-color: #f5f5f5;
+}
+.freddo_features_color {
+    background-color: #121212;
+}
+.freddo_skills_color {
+    background-color: #f5f5f5;
+}
+.freddo_cta_color {
+    background-color: #121212;
+}
+.freddo_services_color {
+    background-color: #f5f5f5;
+}
+.freddo_blog_color {
+    background-color: #f5f5f5;
+}
+.freddo_team_color {
+    background-color: #f5f5f5;
+}
+.freddo_contact_color {
+    background-color: #f5f5f5;
+}
+.freddoButton.aboutus,
+.freddoButton.aboutus:hover,
+.freddoButton.aboutus:focus,
+.freddoButton.aboutus:active {
+	background-color: transparent;
+	margin-top: 1.5em;
+}
+.freddoButton.aboutus a {
+	background-color: #ff1654;
+    border-radius: 25px;
+    padding: 0.8em 1.8em;
+	margin: 0;
+	-o-transition: background-color .3s ease-in-out;
+    -moz-transition: background-color .3s ease-in-out;
+    -webkit-transition: background-color .3s ease-in-out;
+    transition: background-color .3s ease-in-out;
+}
+.freddoButton.aboutus a:hover,
+.freddoButton.aboutus a:focus,
+.freddoButton.aboutus a:active {
+	background-color: #121212;
+}
+.freddo_main_text {
+	text-align: center;
+    font-size: 3em;
+    font-weight: 400;
+    letter-spacing: -1px;
+	line-height: 1;
+	position: relative;
+	margin: 0;
+    margin-bottom: 0.5em;
+}
+.freddo_main_text:after {
+	content: "";
+    width: 20px;
+    height: 1px;
+    background-color: #ff1654;
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    bottom: -10px;
+}
+.freddo_subtitle {
+	text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.aboutus_columns_three {
+	float: left;
+	width: 50%;
+	-webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    position: relative;
+}
+.one.aboutus_columns_three {
+	padding: 0 5%;
+	text-align: right;
+}
+.two.aboutus_columns_three img {
+    display: block;
+    margin: 0 auto;
+}
+.aboutus_columns_three .aboutInner,
+.aboutus_columns_three .aboutInnerImage {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+}
+
+.aboutus_columns_three.one h3 {
+    font-size: 2.5em;
+	font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.4;
+    margin: 0;
+	margin-bottom: 0.5em;
+}
+
+section.freddo_aboutus.noImage .aboutus_columns_three {
+	width: 100%;
+	text-align: center;
+}
+.features_columns_single {
+	float: left;
+	text-align: center;
+}
+.features_columns_single.one {
+	width: 100%;
+	padding: 1.5em;
+}
+.features_columns_single.two {
+	width: 50%;
+	padding: 3em;
+}
+.features_columns_single.three {
+	width: 33.3333%;
+	padding: 2em;
+}
+.features_columns_single.four {
+	width: 25%;
+	padding: 1.5em;
+}
+
+.features_columns_single .featuresIcon i {
+	font-size: 35px;
+    background-color: #f5f5f5;
+    color: #121212;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+	-o-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -moz-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+.features_columns_single:hover .featuresIcon i,
+.features_columns_single:focus .featuresIcon i,
+.features_columns_single:active .featuresIcon i {
+	background-color: #121212;
+    color: #f5f5f5;
+}
+
+.features_columns_single h3 {
+	letter-spacing: 1px;
+    font-weight: 400;
+    font-size: 1.6em;
+}
+
+.freddoSkill {
+	float: left;
+	width: 50%;
+	padding: 1.5em 2em;
+	margin: 0.5em 0;
+	position: relative;
+	overflow: hidden;
+}
+.freddoSkill:nth-child(2n+1) {
+    clear: both;
+}
+.skillTop .skillName {
+	float: left;
+	font-size: 16px;
+    letter-spacing: 2px;
+}
+.skillTop .skillNameUnder {
+	position: absolute;
+    opacity: 0.1;
+    font-size: 3em;
+    top: 15px;
+    left: 0px;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.skillTop .skillValue {
+	float: right;
+    line-height: 1;
+	position: relative;
+	opacity: 0;
+    bottom: 15px;
+	-o-transition: opacity .3s ease-in-out, bottom .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out, bottom .3s ease-in-out;
+    -webkit-transition: opacity .3s ease-in-out, bottom .3s ease-in-out;
+    transition: opacity .3s ease-in-out, bottom .3s ease-in-out;
+}
+.skillTop .skillValue span {
+	font-size: 20px;
+	margin: 0 5px;
+}
+.skillTop .skillValue i {
+	font-style: normal;
+}
+.skillBottom {
+    width: 100%;
+	position: relative;
+	margin-top: 0.5em;
+}
+.skillBottom .skillBar {
+	position: relative;
+    width: 100%;
+    height: 1px;
+    background: #121212;
+    opacity: 0.1;
+}
+.skillBottom .skillRealBar {
+	height: 1px;
+    background: #121212;
+    position: relative;
+    top: -1px;
+	width: 0%;
+	-o-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -webkit-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+.skillBottom .skillRealBarCyrcle {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: #121212;
+    right: -6px;
+    top: -6px;
+	border-radius: 100px;
+	-o-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    -webkit-transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+}
+.cta_columns .ctaIcon i {
+	font-size: 35px;
+	text-align: center;
+    background-color: #f5f5f5;
+    color: #121212;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    -o-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -moz-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+section.freddo_cta:hover .cta_columns .ctaIcon i,
+section.freddo_cta:focus .cta_columns .ctaIcon i,
+section.freddo_cta:active .cta_columns .ctaIcon i {
+	background-color: #121212;
+    color: #f5f5f5;
+}
+.cta_columns {
+    margin-top: 0;
+    padding: 3em 0;
+}
+.cta_columns .ctaText {
+    float: left;
+}
+.cta_columns .ctaButton {
+    float: right;
+    padding: 0 2em;
+}
+.cta_columns .ctaIcon,
+.cta_columns .ctaPhrase,
+.cta_columns .ctaButton {
+    display: inline-block;
+}
+.ctaPhrase h3 {
+	font-weight: 400;
+    font-size: 20px;
+}
+.ctaPhrase h3, .ctaPhrase p {
+	margin: 0;
+}
+.cta_columns .ctaIcon {
+	margin: 0 2em;
+}
+section.freddo_cta.noDesc .ctaIcon {
+	vertical-align: middle;
+}
+section.freddo_cta.withDesc .ctaIcon {
+	vertical-align: bottom;
+}
+.services_columns_single {
+	float: left;
+	width: 50%;
+    position: relative;
+}
+.services_columns_single.two {
+	background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+	position: relative;
+}
+.services_columns_single.two .serviceColumnSingleColor {
+	position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #121212;
+    opacity: 0.6;
+}
+.singleService {
+	width: 100%;
+    padding: 0 5% 4em;
+}
+.singleService:last-child {
+	padding: 0 5% 0;
+}
+.serviceIcon {
+	float: left;
+}
+.serviceIcon i {
+	font-size: 35px;
+    text-align: center;
+    background-color: #121212;
+    color: #f5f5f5;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    -o-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -moz-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+}
+.services_columns .singleService:hover .serviceIcon i,
+.services_columns .singleService:focus .serviceIcon i,
+.services_columns .singleService:active .serviceIcon i {
+	background-color: #f5f5f5;
+    color: #121212;
+}
+.serviceText {
+	float: left;
+	position: relative;
+    width: calc(100% - 70px);
+    padding-left: 2em;
+}
+.serviceText:after {
+	content: "";
+    position: absolute;
+    background-color: #ff1654;
+    width: 10%;
+    height: 1px;
+    bottom: -2em;
+}
+.singleService:last-child .serviceText:after {
+	display: none;
+}
+.services_columns_single .serviceContent {
+	position: relative;
+	color: #f5f5f5;
+	padding: 0 10%;
+    text-align: right;
+    width: 100%;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+.services_columns_single .singleServiceContent {
+    width: 100%;
+}
+.services_columns_single .serviceContent h3 {
+	font-size: 3em;
+    letter-spacing: -1px;
+    line-height: 1.4;
+    margin: 0;
+	font-weight: 400;
+}
+.services_columns_single .serviceContent p {
+	margin: 2em 0 0;
+    font-size: 16px;
+}
+.serviceText h3 {
+	margin: 0;
+    margin-bottom: 0.6em;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+.serviceText p {
+	margin: 0;
+}
+.freddoBlogSingle {
+    float: left;
+    width: 33.3333%;
+    padding: 1em;
+}
+.freddoBlogSingle:nth-child(3n+1) {
+    clear: both;
+}
+.freddoBlogSingle h2 {
+	font-weight: 400;
+	margin: 0.8em 0 0;
+}
+.freddoBlogSingle h2 a,
+.freddoBlogSingle h2 a:hover,
+.freddoBlogSingle h2 a:focus,
+.freddoBlogSingle h2 a:active {
+	color: #121212;
+}
+.blog_columns .goToBlog {
+    clear: both;
+    text-align: center;
+    margin-top: 3em;
+    display: table;
+    margin: 3em auto 0;
+}
+.freddoBlogSingle .entry-meta > span {
+	margin-right: 0.5em;
+}
+.team_columns {
+	text-align: center;
+}
+.team_columns .freddoTeamSingle {
+	float: left;
+	text-align: center;
+    padding: 1em;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(2),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(2) ~ .freddoTeamSingle {
+	max-width: 350px;
+    position: relative;
+    margin: 0 auto;
+    float: none;
+    display: inline-table;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(3),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(3) ~ .freddoTeamSingle {
+	width: 33.3333%;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(4),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(4) ~ .freddoTeamSingle {
+	width: 25%;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(5),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle {
+	width: 33.3333%;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(6),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle {
+	width: 33.3333%;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(7),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(8),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(9),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(10),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(11),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(12),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(13),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(14),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle,
+.team_columns .freddoTeamSingle:first-child:nth-last-child(15),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle {
+	width: 33.3333%;
+}
+.team_columns .freddoTeamSingle:first-child:nth-last-child(5):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(6):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(7):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(8):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(9):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(10):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(11):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(12):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(13):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(14):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle:nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(15):nth-child(3n+1),
+.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle:nth-child(3n+1) {
+	clear: both;
+}
+.team_columns .freddoTeamSingle img {
+	width: 100%;
+	display: block;
+}
+.team_columns .freddoTeamSingle .freddoTeamName {
+	font-size: 1.4em;
+    font-weight: 400;
+    margin: 0.5em 0;
+	letter-spacing: -1px;
+}
+.team_columns .freddoTeamSingle {
+	position: relative;
+	top: 0;
+	-o-transition: top .2s ease-in-out;
+    -moz-transition: top .2s ease-in-out;
+    -webkit-transition: top .2s ease-in-out;
+    transition: top .2s ease-in-out;
+}
+.team_columns .freddoTeamSingle:hover,
+.team_columns .freddoTeamSingle:focus,
+.team_columns .freddoTeamSingle:active {
+	top: -20px;
+}
+.team_columns .freddoTeamSingle .freddoTeamDesc {
+	position: relative;
+	padding-top: 0.5em;
+}
+.team_columns .freddoTeamSingle .freddoTeamDesc:before {
+	content: "";
+    position: absolute;
+    width: 10%;
+    border-top: 1px solid;
+    height: 1px;
+    top: 0;
+    left: 0;
+    right: 0;
+	margin: 0 auto;
+}
+.freddoCompanyAddress1,
+.freddoCompanyAddress2,
+.freddoCompanyAddress3,
+.freddoCompanyPhone,
+.freddoCompanyFax,
+.freddoCompanyEmail {
+	position: relative;
+	text-align: left;
+	margin-left: 40px;
+}
+.freddoCompanyAddress1Icon,
+.freddoCompanyPhoneIcon,
+.freddoCompanyFaxIcon,
+.freddoCompanyEmailIcon {
+	width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+	position: absolute;
+    left: -40px;
+}
+.freddoCompanyAddress1 p,
+.freddoCompanyAddress2 p,
+.freddoCompanyAddress3 p,
+.freddoCompanyPhone p,
+.freddoCompanyFax p,
+.freddoCompanyEmail p {
+	margin: 0 0 0.8em 0;
+}
+.freddoCompanyPhone a,
+.freddoCompanyPhone a:hover,
+.freddoCompanyPhone a:focus,
+.freddoCompanyPhone a:active,
+.freddoCompanyEmail a,
+.freddoCompanyEmail a:hover,
+.freddoCompanyEmail a:focus,
+.freddoCompanyEmail a:active {
+	text-decoration: underline;
+	color: inherit !important;
+}
+.freddoCompanyName h3 {
+	font-weight: 400;
+    font-size: 2em;
+}
+.freddo_contact.withForm .freddoContactField,
+.freddo_contact.withForm .freddoContactForm {
+	width: 50%;
+	float: left;
+	padding: 0 2em;
+}
+.freddo_contact.withForm .freddoContactForm {
+	text-align: right;
+}
+.contact_columns {
+    position: relative;
+}
+.freddoContactIcon {
+	position: absolute;
+	bottom: 25px;
+	right: -150px;
+	font-size: 20em;
+    opacity: 0;
+    line-height: 1;
+    -o-transition: opacity .3s ease-in-out, right .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out, right .3s ease-in-out;
+    -webkit-transition: opacity .3s ease-in-out, right .3s ease-in-out;
+    transition: opacity .3s ease-in-out, right .3s ease-in-out;
+}
+section.freddo_aboutus .hentry {
+	margin: 0;
+	padding: 0;
+    border-bottom-width: 0px;
+}
+/* Freddo Section Map */
+ul.freddo_sectionmap {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: 999;
+    transform: translate(0%, -50%);
+}
+ul.freddo_sectionmap li {
+    padding: 0;
+    position: relative;
+}
+ul.freddo_sectionmap li a {
+    display: block;
+    outline: none;
+    width: 35px;
+    height: 31px;
+    line-height: 34px;
+    text-align: center;
+    position: relative;
+}
+ul.freddo_sectionmap li a span.box {
+    width: 12px;
+    height: 12px;
+    background-color: #ff1654;
+    position: relative;
+    display: inline-block;
+    border-radius: 100px;
+    z-index: 9;
+	-webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -o-transition: transform .2s ease-in-out;
+    -moz-transition: transform .2s ease-in-out;
+    -webkit-transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+}
+ul.freddo_sectionmap li:hover a span.box,
+ul.freddo_sectionmap li:focus a span.box,
+ul.freddo_sectionmap li:active a span.box,
+ul.freddo_sectionmap li.current-section a span.box {
+	-webkit-transform: scale3d(1.5, 1.5, 1.5);
+    transform: scale3d(1.5, 1.5, 1.5);
+}
+ul.freddo_sectionmap li span.text {
+	position: absolute;
+    right: 35px;
+    top: 5px;
+    height: 22px;
+    line-height: 22px;
+    width: auto;
+    white-space: nowrap;
+	z-index: -1;
+	font-size: 12px;
+	background-color: #ff1654;
+    color: #f5f5f5;
+    border-radius: 25px;
+    padding: 0 1.5em;
+	visibility: hidden;
+    opacity: 0;
+	-webkit-transform: translate3d(-10px,0,0);
+    transform: translate3d(-10px,0,0);
+    transition: visibility 0s linear 0.2s,opacity 0.2s linear, transform 0.2s linear;
+}
+ul.freddo_sectionmap li:hover span.text,
+ul.freddo_sectionmap li:focus span.text,
+ul.freddo_sectionmap li:active span.text {
+	visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+@media all and (max-width: 1366px) {
+	.cta_columns {
+		padding: 2em 0;
+	}
+}
+@media all and (max-width: 1025px) {
+	.flexslider .slides > li .flexText .inside h2 {
+		font-size: 3.5em;
+	}
+}
+@media all and (max-width: 850px) {
+	body.page-template-template-onepage #primary.content-area {
+		padding: 0;
+	}
+	.aboutus_columns_three.one {
+		padding: 0 0 3em;
+		text-align: center;
+	}
+	.aboutus_columns_three {
+		float: none;
+		width: 100%;
+	}
+	.aboutus_columns, .services_columns, .cta_columns .ctaIcon, .cta_columns .ctaPhrase, .cta_columns .ctaButton {
+		display: block;
+	}
+	.features_columns_single.four {
+		width: 50%;
+	}
+	.cta_columns .ctaText {
+		float: none;
+		text-align: center;
+	}
+	.cta_columns .ctaButton {
+		float: none;
+		padding: 0 2em;
+		text-align: center;
+		margin-top: 2em;
+	}
+	.cta_columns .ctaPhrase {
+		margin-top: 1.5em;
+	}
+	.services_columns_single {
+		float: none;
+		width: 100%;
+	}
+	.services_columns_single .serviceContent {
+		height: auto !important;
+		padding: 5em 10%;
+		text-align: center;
+	}
+	.services_columns_single.two {
+		margin-top: 3em;
+	}
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle {
+		width: 50%;
+	}
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle:nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15):nth-child(2n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle:nth-child(2n+1) {
+		clear: both;
+	}
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle:nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15):nth-child(3n+1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle:nth-child(3n+1) {
+		clear: none;
+	}
+	.flexslider .slides > li .flexText .inside h2 {
+		font-size: 3em;
+	}
+}
+@media all and (max-width: 768px) {
+	ul.freddo_sectionmap {
+		display: none;
+	}
+	.features_columns_single.one,
+	.features_columns_single.two,
+	.features_columns_single.three,
+	.features_columns_single.four {
+		width: 100%;
+		padding: 3em 0;
+	}
+	.freddoSkill, .freddoBlogSingle {
+		float: none;
+		width: 100%;
+	}
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(3),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(3) ~ .freddoTeamSingle {
+		width: 100%;
+	}
+	.freddo_contact.withForm .freddoContactForm {
+		text-align: center;
+	}
+	.freddo_contact.withForm .freddoContactField,
+	.freddo_contact.withForm .freddoContactForm {
+		width: 100%;
+		float: none;
+	}
+	.freddo_action_aboutus, .freddo_action_features,
+	.freddo_action_skills, .freddo_action_cta,
+	.freddo_action_services, .freddo_action_blog,
+	.freddo_action_team, .freddo_action_contact {
+		padding: 0 3em;
+	}
+}
+@media all and (max-width: 767px) {
+	.flexslider .slides > li .flexText .inside h2 {
+		font-size: 2.5em;
+	}
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(1),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(2),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(2) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(4) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(5) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(6) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(7) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(8) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(9) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(10) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(11) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(12) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(13) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(14) ~ .freddoTeamSingle,
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15),
+	.team_columns .freddoTeamSingle:first-child:nth-last-child(15) ~ .freddoTeamSingle {
+		width: 100%;
+	}
+	.freddo_action_aboutus, .freddo_action_features,
+	.freddo_action_skills, .freddoo_action_cta,
+	.freddo_action_services, .freddo_action_blog,
+	.freddo_action_team, .freddo_action_contact {
+		padding: 0 2em;
+	}
+	.features_columns,
+	.skills_columns,
+	.blog_columns,
+	.team_columns,
+	.contact_columns,
+	.aboutus_columns,
+	.services_columns {
+		margin-top: 4em;
+	}
+}
+@media all and (max-width: 559px) {
+	.flexslider .slides > li .flexText .inside h21 {
+		font-size: 2em;
+	}
+	.freddo_action_aboutus, .freddo_action_features,
+	.freddo_action_skills, .freddo_action_cta,
+	.freddo_action_services, .freddo_action_blog,
+	.freddo_action_team, .freddo_action_contact {
+		padding: 0 1em;
+	}
+	.freddo_contact.withForm .freddoContactField,
+	.freddo_contact.withForm .freddoContactForm {
+		padding: 0em;
+	}
+	.serviceIcon {
+		float: none;
+		text-align: center;
+		margin-bottom: 1.5em;
+	}
+	.serviceText {
+		float: none;
+		position: relative;
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+	}
+	.serviceText:after {
+		display: none;
+	}
+	.services_columns_single .serviceContent {
+		padding: 5em 5%;
+	}
+	.features_columns,
+	.skills_columns,
+	.blog_columns,
+	.team_columns,
+	.contact_columns,
+	.aboutus_columns,
+	.services_columns {
+		margin-top: 2em;
+	}
+	.freddo_main_text {
+		font-size: 2.5em;
+	}
+	.aboutus_columns_three.one h3 {
+		font-size: 1.5em;
+	}
+	.contact_columns .freddoContactForm input:not([type="submit"]),
+	.contact_columns .freddoContactForm textarea {
+		max-width: 100%;
+	}
+}
+@media all and (max-width: 450px) {
+	.freddo_action_aboutus, .freddo_action_features,
+	.freddo_action_skills, .freddo_action_cta,
+	.freddo_action_services, .freddo_action_blog,
+	.freddo_action_team, .freddo_action_contact {
+		padding: 0 0.5em;
+	}
+	.freddoContactIcon {
+		display: none;
+	}
+	.flexslider .slides > li .flexText .inside h2 {
+		font-size: 1.5em;
+	}
+}

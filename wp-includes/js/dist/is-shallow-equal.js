@@ -82,137 +82,125 @@ this["wp"] = this["wp"] || {}; this["wp"]["isShallowEqual"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 343);
+/******/ 	return __webpack_require__(__webpack_require__.s = 469);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 343:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 469:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "isShallowEqualObjects", function() { return /* reexport */ isShallowEqualObjects; });
+__webpack_require__.d(__webpack_exports__, "isShallowEqualArrays", function() { return /* reexport */ isShallowEqualArrays; });
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ isShallowEqual; });
+
+// CONCATENATED MODULE: ./node_modules/@wordpress/is-shallow-equal/build-module/objects.js
+/**
+ * Returns true if the two objects are shallow equal, or false otherwise.
+ *
+ * @param {import('.').ComparableObject} a First object to compare.
+ * @param {import('.').ComparableObject} b Second object to compare.
+ *
+ * @return {boolean} Whether the two objects are shallow equal.
+ */
+function isShallowEqualObjects(a, b) {
+  if (a === b) {
+    return true;
+  }
+
+  var aKeys = Object.keys(a);
+  var bKeys = Object.keys(b);
+
+  if (aKeys.length !== bKeys.length) {
+    return false;
+  }
+
+  var i = 0;
+
+  while (i < aKeys.length) {
+    var key = aKeys[i];
+    var aValue = a[key];
+
+    if ( // In iterating only the keys of the first object after verifying
+    // equal lengths, account for the case that an explicit `undefined`
+    // value in the first is implicitly undefined in the second.
+    //
+    // Example: isShallowEqualObjects( { a: undefined }, { b: 5 } )
+    aValue === undefined && !b.hasOwnProperty(key) || aValue !== b[key]) {
+      return false;
+    }
+
+    i++;
+  }
+
+  return true;
+}
+
+// CONCATENATED MODULE: ./node_modules/@wordpress/is-shallow-equal/build-module/arrays.js
+/**
+ * Returns true if the two arrays are shallow equal, or false otherwise.
+ *
+ * @param {any[]} a First array to compare.
+ * @param {any[]} b Second array to compare.
+ *
+ * @return {boolean} Whether the two arrays are shallow equal.
+ */
+function isShallowEqualArrays(a, b) {
+  if (a === b) {
+    return true;
+  }
+
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  for (var i = 0, len = a.length; i < len; i++) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// CONCATENATED MODULE: ./node_modules/@wordpress/is-shallow-equal/build-module/index.js
+/**
+ * Internal dependencies
+ */
+
+
 
 
 /**
- * Internal dependencies;
+ * @typedef {Record<string, any>} ComparableObject
  */
-var isShallowEqualObjects = __webpack_require__( 344 );
-var isShallowEqualArrays = __webpack_require__( 345 );
-
-var isArray = Array.isArray;
 
 /**
  * Returns true if the two arrays or objects are shallow equal, or false
  * otherwise.
  *
- * @param {(Array|Object)} a First object or array to compare.
- * @param {(Array|Object)} b Second object or array to compare.
+ * @param {any[]|ComparableObject} a First object or array to compare.
+ * @param {any[]|ComparableObject} b Second object or array to compare.
  *
  * @return {boolean} Whether the two values are shallow equal.
  */
-function isShallowEqual( a, b ) {
-	if ( a && b ) {
-		if ( a.constructor === Object && b.constructor === Object ) {
-			return isShallowEqualObjects( a, b );
-		} else if ( isArray( a ) && isArray( b ) ) {
-			return isShallowEqualArrays( a, b );
-		}
-	}
 
-	return a === b;
+function isShallowEqual(a, b) {
+  if (a && b) {
+    if (a.constructor === Object && b.constructor === Object) {
+      return isShallowEqualObjects(a, b);
+    } else if (Array.isArray(a) && Array.isArray(b)) {
+      return isShallowEqualArrays(a, b);
+    }
+  }
+
+  return a === b;
 }
-
-module.exports = isShallowEqual;
-module.exports.isShallowEqualObjects = isShallowEqualObjects;
-module.exports.isShallowEqualArrays = isShallowEqualArrays;
-
-
-/***/ }),
-
-/***/ 344:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var keys = Object.keys;
-
-/**
- * Returns true if the two objects are shallow equal, or false otherwise.
- *
- * @param {Object} a First object to compare.
- * @param {Object} b Second object to compare.
- *
- * @return {boolean} Whether the two objects are shallow equal.
- */
-function isShallowEqualObjects( a, b ) {
-	var aKeys, bKeys, i, key;
-
-	if ( a === b ) {
-		return true;
-	}
-
-	aKeys = keys( a );
-	bKeys = keys( b );
-
-	if ( aKeys.length !== bKeys.length ) {
-		return false;
-	}
-
-	i = 0;
-
-	while ( i < aKeys.length ) {
-		key = aKeys[ i ];
-		if ( a[ key ] !== b[ key ] ) {
-			return false;
-		}
-
-		i++;
-	}
-
-	return true;
-}
-
-module.exports = isShallowEqualObjects;
-
-
-/***/ }),
-
-/***/ 345:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Returns true if the two arrays are shallow equal, or false otherwise.
- *
- * @param {Array} a First array to compare.
- * @param {Array} b Second array to compare.
- *
- * @return {boolean} Whether the two arrays are shallow equal.
- */
-function isShallowEqualArrays( a, b ) {
-	var i;
-
-	if ( a === b ) {
-		return true;
-	}
-
-	if ( a.length !== b.length ) {
-		return false;
-	}
-
-	for ( i = 0; i < a.length; i++ ) {
-		if ( a[ i ] !== b[ i ] ) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-module.exports = isShallowEqualArrays;
 
 
 /***/ })

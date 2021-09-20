@@ -265,7 +265,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 				}
 			}, 1000 );
 
-		// Update the URL when entering search string (at most once per second)
+		// Update the URL when entering search string (at most once per second).
 		search.on( 'input', _.bind( input, this ) );
 
 		this.gridRouter
@@ -346,7 +346,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 		$browser = this.$('.attachments-browser');
 		$toolbar = $browser.find('.media-toolbar');
 
-		// Offset doesn't appear to take top margin into account, hence +16
+		// Offset doesn't appear to take top margin into account, hence +16.
 		if ( ( $browser.offset().top + 16 ) < this.$window.scrollTop() + this.$adminBar.height() ) {
 			$browser.addClass( 'fixed' );
 			$toolbar.css('width', $browser.width() + 'px');
@@ -434,7 +434,7 @@ Manage = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.Manage.prototype 
 	},
 
 	startHistory: function() {
-		// Verify pushState support and activate
+		// Verify pushState support and activate.
 		if ( window.history && window.history.pushState ) {
 			if ( Backbone.History.started ) {
 				Backbone.history.stop();
@@ -491,17 +491,8 @@ TwoColumn = Details.extend(/** @lends wp.media.view.Attachment.Details.TowColumn
 	/**
 	 * Noop this from parent class, doesn't apply here.
 	 */
-	toggleSelectionHandler: function() {},
+	toggleSelectionHandler: function() {}
 
-	render: function() {
-		Details.prototype.render.apply( this, arguments );
-
-		wp.media.mixin.removeAllPlayers();
-		this.$( 'audio, video' ).each( function (i, elem) {
-			var el = wp.media.view.MediaDetails.prepareSrc( elem );
-			new window.MediaElementPlayer( el, wp.media.mixin.mejsSettings );
-		} );
-	}
 });
 
 module.exports = TwoColumn;
@@ -529,7 +520,7 @@ var Router = Backbone.Router.extend(/** @lends wp.media.view.MediaFrame.Manage.R
 		'upload.php':                      'reset'
 	},
 
-	// Map routes against the page URL
+	// Map routes against the page URL.
 	baseUrl: function( url ) {
 		return 'upload.php' + url;
 	},
@@ -542,23 +533,23 @@ var Router = Backbone.Router.extend(/** @lends wp.media.view.MediaFrame.Manage.R
 		}
 	},
 
-	// Respond to the search route by filling the search field and trigggering the input event
+	// Respond to the search route by filling the search field and triggering the input event.
 	search: function( query ) {
 		jQuery( '#media-search-input' ).val( query ).trigger( 'input' );
 	},
 
-	// Show the modal with a specific item
+	// Show the modal with a specific item.
 	showItem: function( query ) {
 		var media = wp.media,
 			frame = media.frames.browse,
 			library = frame.state().get('library'),
 			item;
 
-		// Trigger the media frame to open the correct item
+		// Trigger the media frame to open the correct item.
 		item = library.findWhere( { id: parseInt( query, 10 ) } );
-		item.set( 'skipHistory', true );
 
 		if ( item ) {
+			item.set( 'skipHistory', true );
 			frame.trigger( 'edit:attachment', item );
 		} else {
 			item = media.attachment( query );
@@ -707,8 +698,9 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 		// Initialize modal container view.
 		if ( this.options.modal ) {
 			this.modal = new wp.media.view.Modal({
-				controller: this,
-				title:      this.options.title
+				controller:     this,
+				title:          this.options.title,
+				hasCloseButton: false
 			});
 
 			this.modal.on( 'open', _.bind( function () {
@@ -717,9 +709,10 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 
 			// Completely destroy the modal DOM element when closing it.
 			this.modal.on( 'close', _.bind( function() {
-				$( 'body' ).off( 'keydown.media-modal' ); /* remove the keydown event */
-				// Restore the original focus item if possible
-				$( 'li.attachment[data-id="' + this.model.get( 'id' ) +'"]' ).focus();
+				// Remove the keydown event.
+				$( 'body' ).off( 'keydown.media-modal' );
+				// Move focus back to the original item in the grid if possible.
+				$( 'li.attachment[data-id="' + this.model.get( 'id' ) +'"]' ).trigger( 'focus' );
 				this.resetRoute();
 			}, this ) );
 
@@ -799,8 +792,8 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 	},
 
 	toggleNav: function() {
-		this.$('.left').toggleClass( 'disabled', ! this.hasPrevious() );
-		this.$('.right').toggleClass( 'disabled', ! this.hasNext() );
+		this.$( '.left' ).prop( 'disabled', ! this.hasPrevious() );
+		this.$( '.right' ).prop( 'disabled', ! this.hasNext() );
 	},
 
 	/**
@@ -830,8 +823,10 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 		if ( ! this.hasPrevious() ) {
 			return;
 		}
+
 		this.trigger( 'refresh', this.library.at( this.getCurrentIndex() - 1 ) );
-		this.$( '.left' ).focus();
+		// Move focus to the Previous button. When there are no more items, to the Next button.
+		this.focusNavButton( this.hasPrevious() ? '.left' : '.right' );
 	},
 
 	/**
@@ -841,8 +836,21 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 		if ( ! this.hasNext() ) {
 			return;
 		}
+
 		this.trigger( 'refresh', this.library.at( this.getCurrentIndex() + 1 ) );
-		this.$( '.right' ).focus();
+		// Move focus to the Next button. When there are no more items, to the Previous button.
+		this.focusNavButton( this.hasNext() ? '.right' : '.left' );
+	},
+
+	/**
+	 * Set focus to the navigation buttons depending on the browsing direction.
+	 *
+	 * @since 5.3.0
+	 *
+	 * @param {string} which A CSS selector to target the button to focus.
+	 */
+	focusNavButton: function( which ) {
+		$( which ).trigger( 'focus' );
 	},
 
 	getCurrentIndex: function() {
@@ -865,11 +873,11 @@ EditAttachments = MediaFrame.extend(/** @lends wp.media.view.MediaFrame.EditAtta
 			return;
 		}
 
-		// The right arrow key
+		// The right arrow key.
 		if ( 39 === event.keyCode ) {
 			this.nextMediaItem();
 		}
-		// The left arrow key
+		// The left arrow key.
 		if ( 37 === event.keyCode ) {
 			this.previousMediaItem();
 		}
@@ -940,7 +948,7 @@ SelectModeToggle = Button.extend(/** @lends wp.media.view.SelectModeToggle.proto
 
 		children = toolbar.$( '.media-toolbar-secondary > *, .media-toolbar-primary > *' );
 
-		// TODO: the Frame should be doing all of this.
+		// @todo The Frame should be doing all of this.
 		if ( this.controller.isModeActive( 'select' ) ) {
 			this.model.set( {
 				size: 'large',
@@ -948,6 +956,7 @@ SelectModeToggle = Button.extend(/** @lends wp.media.view.SelectModeToggle.proto
 			} );
 			children.not( '.spinner, .media-button' ).hide();
 			this.$el.show();
+			toolbar.$el.addClass( 'media-toolbar-mode-select' );
 			toolbar.$( '.delete-selected-button' ).removeClass( 'hidden' );
 		} else {
 			this.model.set( {
@@ -956,6 +965,7 @@ SelectModeToggle = Button.extend(/** @lends wp.media.view.SelectModeToggle.proto
 			} );
 			this.controller.content.get().$el.removeClass( 'fixed' );
 			toolbar.$el.css( 'width', '' );
+			toolbar.$el.removeClass( 'media-toolbar-mode-select' );
 			toolbar.$( '.delete-selected-button' ).addClass( 'hidden' );
 			children.not( '.media-button' ).show();
 			this.controller.state().get( 'selection' ).reset();
@@ -994,6 +1004,7 @@ DeleteSelected = Button.extend(/** @lends wp.media.view.DeleteSelectedButton.pro
 			this.options.filters.model.on( 'change', this.filterChange, this );
 		}
 		this.controller.on( 'selection:toggle', this.toggleDisabled, this );
+		this.controller.on( 'select:activate', this.toggleDisabled, this );
 	},
 
 	filterChange: function( model ) {
