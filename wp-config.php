@@ -80,7 +80,7 @@ potentially crash the site. Disabling these also provides an additional layer of
 well-privileged user account.
 Note : If your plugin or theme you use with your app requires editing of the files , comment the line below for 'DISALLOW_FILE_EDIT'
 */
-define('DISALLOW_FILE_EDIT', true);
+define('DISALLOW_FILE_EDIT', false);
 
 
 /**#@-*/
