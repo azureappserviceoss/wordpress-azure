@@ -82,16 +82,26 @@ this["wp"] = this["wp"] || {}; this["wp"]["escapeHtml"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 381);
+/******/ 	return __webpack_require__(__webpack_require__.s = "IsfW");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 381:
+/***/ "IsfW":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "escapeAmpersand", function() { return /* binding */ escapeAmpersand; });
+__webpack_require__.d(__webpack_exports__, "escapeQuotationMark", function() { return /* binding */ escapeQuotationMark; });
+__webpack_require__.d(__webpack_exports__, "escapeLessThan", function() { return /* binding */ escapeLessThan; });
+__webpack_require__.d(__webpack_exports__, "escapeAttribute", function() { return /* binding */ escapeAttribute; });
+__webpack_require__.d(__webpack_exports__, "escapeHTML", function() { return /* binding */ escapeHTML; });
+__webpack_require__.d(__webpack_exports__, "escapeEditableHTML", function() { return /* binding */ escapeEditableHTML; });
+__webpack_require__.d(__webpack_exports__, "isValidAttributeName", function() { return /* binding */ isValidAttributeName; });
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/escape-html/build-module/escape-greater.js
 /**
@@ -111,12 +121,6 @@ function __unstableEscapeGreaterThan(value) {
 }
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/escape-html/build-module/index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeAmpersand", function() { return escapeAmpersand; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeQuotationMark", function() { return escapeQuotationMark; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeLessThan", function() { return escapeLessThan; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeAttribute", function() { return escapeAttribute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "escapeHTML", function() { return escapeHTML; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isValidAttributeName", function() { return isValidAttributeName; });
 /**
  * Internal dependencies
  */
@@ -128,21 +132,21 @@ function __unstableEscapeGreaterThan(value) {
  * U+0020 SPACE, U+0022 ("), U+0027 ('), U+003E (>), U+002F (/), U+003D (=),
  * and noncharacters."
  *
- * @link https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
+ * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
  *
  * @type {RegExp}
  */
 
-var REGEXP_INVALID_ATTRIBUTE_NAME = /[\u007F-\u009F "'>/="\uFDD0-\uFDEF]/;
+const REGEXP_INVALID_ATTRIBUTE_NAME = /[\u007F-\u009F "'>/="\uFDD0-\uFDEF]/;
 /**
  * Returns a string with ampersands escaped. Note that this is an imperfect
  * implementation, where only ampersands which do not appear as a pattern of
  * named, decimal, or hexadecimal character references are escaped. Invalid
  * named references (i.e. ambiguous ampersand) are are still permitted.
  *
- * @link https://w3c.github.io/html/syntax.html#character-references
- * @link https://w3c.github.io/html/syntax.html#ambiguous-ampersand
- * @link https://w3c.github.io/html/syntax.html#named-character-references
+ * @see https://w3c.github.io/html/syntax.html#character-references
+ * @see https://w3c.github.io/html/syntax.html#ambiguous-ampersand
+ * @see https://w3c.github.io/html/syntax.html#named-character-references
  *
  * @param {string} value Original string.
  *
@@ -177,7 +181,7 @@ function escapeLessThan(value) {
 /**
  * Returns an escaped attribute value.
  *
- * @link https://w3c.github.io/html/syntax.html#elements-attributes
+ * @see https://w3c.github.io/html/syntax.html#elements-attributes
  *
  * "[...] the text cannot contain an ambiguous ampersand [...] must not contain
  * any literal U+0022 QUOTATION MARK characters (")"
@@ -201,7 +205,7 @@ function escapeAttribute(value) {
 /**
  * Returns an escaped HTML element value.
  *
- * @link https://w3c.github.io/html/syntax.html#writing-html-documents-elements
+ * @see https://w3c.github.io/html/syntax.html#writing-html-documents-elements
  *
  * "the text must not contain the character U+003C LESS-THAN SIGN (<) or an
  * ambiguous ampersand."
@@ -213,6 +217,19 @@ function escapeAttribute(value) {
 
 function escapeHTML(value) {
   return escapeLessThan(escapeAmpersand(value));
+}
+/**
+ * Returns an escaped Editable HTML element value. This is different from
+ * `escapeHTML`, because for editable HTML, ALL ampersands must be escaped in
+ * order to render the content correctly on the page.
+ *
+ * @param {string} value Element value.
+ *
+ * @return {string} Escaped HTML element value.
+ */
+
+function escapeEditableHTML(value) {
+  return escapeLessThan(value.replace(/&/g, '&amp;'));
 }
 /**
  * Returns true if the given attribute name is valid, or false otherwise.

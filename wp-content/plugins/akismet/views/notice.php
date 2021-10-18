@@ -1,3 +1,9 @@
+<?php
+
+//phpcs:disable VariableAnalysis
+// There are "undefined" variables here because they're defined in the code that includes this file as a template.
+
+?>
 <?php if ( $type == 'plugin' ) :?>
 <div class="updated" id="akismet_setup_prompt">
 	<form name="akismet_activate" action="<?php echo esc_url( Akismet_Admin::get_page_url() ); ?>" method="POST">
@@ -107,7 +113,8 @@
 </div>
 <?php elseif ( $type == 'existing-key-invalid' ) :?>
 <div class="akismet-alert akismet-critical">
-	<h3 class="akismet-key-status"><?php esc_html_e( 'Your API key is no longer valid. Please enter a new key or contact support@akismet.com.' , 'akismet'); ?></h3>
+	<h3 class="akismet-key-status"><?php echo esc_html( __( 'Your API key is no longer valid.' , 'akismet' ) ); ?></h3>
+	<p class="akismet-description"><?php printf( __( 'Please enter a new key or <a href="%s" target="_blank">contact Akismet support</a>.' , 'akismet' ), 'https://akismet.com/contact/' ); ?></p>
 </div>
 <?php elseif ( $type == 'new-key-failed' ) :?>
 <div class="akismet-alert akismet-critical">
@@ -117,14 +124,14 @@
 <?php elseif ( $type == 'limit-reached' && in_array( $level, array( 'yellow', 'red' ) ) ) :?>
 <div class="akismet-alert akismet-critical">
 	<?php if ( $level == 'yellow' ): ?>
-	<h3 class="akismet-key-status failed"><?php esc_html_e( 'You&#8217;re using your Akismet key on more sites than your Pro subscription allows.', 'akismet' ); ?></h3>
+	<h3 class="akismet-key-status failed"><?php esc_html_e( 'You&#8217;re using your Akismet key on more sites than your Plus subscription allows.', 'akismet' ); ?></h3>
 	<p class="akismet-description">
-		<?php printf( __( 'Your Pro subscription allows the use of Akismet on only one site. Please <a href="%s" target="_blank">purchase additional Pro subscriptions</a> or upgrade to an Enterprise subscription that allows the use of Akismet on unlimited sites.', 'akismet' ), 'https://docs.akismet.com/billing/add-more-sites/' ); ?>
+		<?php printf( __( 'Your Plus subscription allows the use of Akismet on only one site. Please <a href="%s" target="_blank">purchase additional Plus subscriptions</a> or upgrade to an Enterprise subscription that allows the use of Akismet on unlimited sites.', 'akismet' ), 'https://docs.akismet.com/billing/add-more-sites/' ); ?>
 		<br /><br />
 		<?php printf( __( 'Please <a href="%s" target="_blank">contact our support team</a> with any questions.', 'akismet' ), 'https://akismet.com/contact/'); ?>
 	</p>
 	<?php elseif ( $level == 'red' ): ?>
-	<h3 class="akismet-key-status failed"><?php esc_html_e( 'You&#8217;re using Akismet on far too many sites for your Pro subscription.', 'akismet' ); ?></h3>
+	<h3 class="akismet-key-status failed"><?php esc_html_e( 'You&#8217;re using Akismet on far too many sites for your Plus subscription.', 'akismet' ); ?></h3>
 	<p class="akismet-description">
 		<?php printf( __( 'To continue your service, <a href="%s" target="_blank">upgrade to an Enterprise subscription</a>, which covers an unlimited number of sites.', 'akismet'), 'https://akismet.com/account/upgrade/' ); ?>
 		<br /><br />
@@ -132,10 +139,59 @@
 	</p>
 	<?php endif; ?>
 </div>
-<?php elseif ( $type == 'privacy' ) :?>
-<div class="notice notice-warning is-dismissible" id="akismet-privacy-notice-admin-notice">
-	<p><strong><?php esc_html_e( 'Akismet & Privacy.', 'akismet' );?></strong></p>
-	<p><?php esc_html_e( 'To help your site with transparency under privacy laws like the GDPR, Akismet can display a notice to your users under your comment forms. This feature is disabled by default, however, you can turn it on below.', 'akismet' ); ?></p>
-	<p><?php printf( __(' Please <a href="%s">enable</a> or <a href="%s">disable</a> this feature. <a href="%s" id="akismet-privacy-notice-control-notice-info-link" target="_blank">More information</a>.', 'akismet' ), admin_url( apply_filters( 'akismet_comment_form_privacy_notice_url_display', 'options-general.php?page=akismet-key-config&akismet_comment_form_privacy_notice=display' ) ), admin_url( apply_filters( 'akismet_comment_form_privacy_notice_url_hide', 'options-general.php?page=akismet-key-config&akismet_comment_form_privacy_notice=hide' ) ), 'https://akismet.com/privacy/' ); ?></p>
+<?php elseif ( $type == 'usage-limit' && isset( Akismet::$LIMIT_NOTICES[ $code ] ) ) :?>
+<div class="error akismet-usage-limit-alert">
+	<div class="akismet-usage-limit-logo">
+		<img src="<?php echo esc_url( plugins_url( '../_inc/img/logo-a-2x.png', __FILE__ ) ); ?>" alt="Akismet" />
+	</div>
+	<div class="akismet-usage-limit-text">
+		<h3>
+		<?php
+		switch ( Akismet::$LIMIT_NOTICES[ $code ] ) {
+			case 'FIRST_MONTH_OVER_LIMIT':
+			case 'SECOND_MONTH_OVER_LIMIT':
+				esc_html_e( 'Your Akismet account usage is over your plan\'s limit', 'akismet' );
+				break;
+			case 'THIRD_MONTH_APPROACHING_LIMIT':
+				esc_html_e( 'Your Akismet account usage is approaching your plan\'s limit', 'akismet' );
+				break;
+			case 'THIRD_MONTH_OVER_LIMIT':
+			case 'FOUR_PLUS_MONTHS_OVER_LIMIT':
+				esc_html_e( 'Your account has been restricted', 'akismet' );
+				break;
+			default:
+		}
+		?>
+		</h3>
+		<p>
+		<?php
+		switch ( Akismet::$LIMIT_NOTICES[ $code ] ) {
+			case 'FIRST_MONTH_OVER_LIMIT':
+				printf(
+					__( 'Since %s, your account made %s API calls, compared to your plan\'s limit of %s. <a href="%s" target="_blank">Learn more</a> about usage limits.', 'akismet' ),
+					esc_html( gmdate( 'F' ) . ' 1' ),
+					number_format( $api_calls ),
+					number_format( $usage_limit ),
+					'https://docs.akismet.com/akismet-api-usage-limits/'
+				);
+				break;
+			case 'SECOND_MONTH_OVER_LIMIT':
+				esc_html_e( 'Your Akismet usage has been over your plan\'s limit for two consecutive months. Next month, we will restrict your account after you reach the limit. Please consider upgrading your plan.', 'akismet' );
+				break;
+			case 'THIRD_MONTH_APPROACHING_LIMIT':
+				esc_html_e( 'Your Akismet usage is nearing your plan\'s limit for the third consecutive month. We will restrict your account after you reach the limit. Upgrade your plan so Akismet can continue blocking spam.', 'akismet' );
+				break;
+			case 'THIRD_MONTH_OVER_LIMIT':
+			case 'FOUR_PLUS_MONTHS_OVER_LIMIT':
+				esc_html_e( 'Your Akismet usage has been over your plan\'s limit for three consecutive months. We have restricted your account for the rest of the month. Upgrade your plan so Akismet can continue blocking spam.', 'akismet' );
+				break;
+			default:
+		}
+		?>
+		</p>
+	</div>
+	<div class="akismet-usage-limit-cta">
+		<?php printf( __( '<a href="%1$s" class="button" target="_blank">Upgrade to %2$s</a>', 'akismet' ), esc_attr( $upgrade_url ), esc_html( $upgrade_plan ) ); ?>
+	</div>
 </div>
 <?php endif;?>

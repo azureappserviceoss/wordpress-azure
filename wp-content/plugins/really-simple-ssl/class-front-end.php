@@ -6,12 +6,11 @@ if ( ! class_exists( 'rsssl_front_end' ) ) {
     class rsssl_front_end
     {
         private static $_this;
-        public $javascript_redirect = TRUE;
+        public $javascript_redirect = FALSE;
         public $wp_redirect = TRUE;
         public $autoreplace_insecure_links = TRUE;
+        public $ssl_enabled;
         public $switch_mixed_content_fixer_hook = FALSE;
-
-        //public $ssl_enabled_networkwide         = FALSE;
 
         function __construct()
         {
@@ -19,33 +18,14 @@ if ( ! class_exists( 'rsssl_front_end' ) ) {
                 wp_die(sprintf(__('%s is a singleton class and you cannot create a second instance.', 'really-simple-ssl'), get_class($this)));
 
             self::$_this = $this;
-
             $this->get_options();
-
             add_action('rest_api_init', array($this, 'wp_rest_api_force_ssl'), ~PHP_INT_MAX);
-
         }
 
         static function this()
         {
             return self::$_this;
         }
-
-        /**
-         * Sets the SSL variable to on for WordPress, so the native function is_ssl() will return true
-         * It should run as first plugin in WP, otherwise issues might result.
-         *
-         * @since  3.0
-         *
-         * @access public
-         *
-         */
-
-        // public function set_ssl_var(){
-        //   if (($this->ssl_enabled) || $this->ssl_enabled_networkwide) {
-        //     $_SERVER["HTTPS"] = "on";
-        //   }
-        // }
 
         /**
          * Javascript redirect, when ssl is true.
@@ -59,7 +39,6 @@ if ( ! class_exists( 'rsssl_front_end' ) ) {
         public function force_ssl()
         {
             if ($this->ssl_enabled) {
-                if ($this->javascript_redirect) add_action('wp_print_scripts', array($this, 'force_ssl_with_javascript'));
                 if ($this->wp_redirect) add_action('wp', array($this, 'wp_redirect_to_ssl'), 40, 3);
             }
         }
@@ -126,7 +105,7 @@ if ( ! class_exists( 'rsssl_front_end' ) ) {
             if (isset($options)) {
                 $this->autoreplace_insecure_links = isset($options['autoreplace_insecure_links']) ? $options['autoreplace_insecure_links'] : TRUE;
                 $this->ssl_enabled = isset($options['ssl_enabled']) ? $options['ssl_enabled'] : false;
-                $this->javascript_redirect = isset($options['javascript_redirect']) ? $options['javascript_redirect'] : TRUE;
+                $this->javascript_redirect = isset($options['javascript_redirect']) ? $options['javascript_redirect'] : FALSE;
                 $this->wp_redirect = isset($options['wp_redirect']) ? $options['wp_redirect'] : FALSE;
                 $this->switch_mixed_content_fixer_hook = isset($options['switch_mixed_content_fixer_hook']) ? $options['switch_mixed_content_fixer_hook'] : FALSE;
 
@@ -144,27 +123,6 @@ if ( ! class_exists( 'rsssl_front_end' ) ) {
 
                 }
             }
-        }
-
-
-        /**
-         * Adds some javascript to redirect to https.
-         *
-         * @since  1.0
-         *
-         * @access public
-         *
-         */
-
-        public function force_ssl_with_javascript()
-        {
-            $script = '<script>';
-            $script .= 'if (document.location.protocol != "https:") {';
-            $script .= 'document.location = document.URL.replace(/^http:/i, "https:");';
-            $script .= '}';
-            $script .= '</script>';
-
-            echo apply_filters('rsssl_javascript_redirect', $script);
         }
 
     }
