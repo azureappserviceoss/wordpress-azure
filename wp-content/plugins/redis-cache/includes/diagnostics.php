@@ -1,45 +1,73 @@
 <?php
+/**
+ * Diagnostics template file
+ *
+ * @package Rhubarb\RedisCache
+ */
 
-// TODO: detect constants being defined too late...
+defined( '\\ABSPATH' ) || exit;
 
 global $wp_object_cache;
 
-$info = $plugins = $dropins = array();
-$dropin = $this->validate_object_cache_dropin() && ( ! defined('WP_REDIS_DISABLED') || ! WP_REDIS_DISABLED );
+$info = [];
+$filesystem = $roc->test_filesystem_writing();
+$dropin = $roc->validate_object_cache_dropin();
+$disabled = defined( 'WP_REDIS_DISABLED' ) && WP_REDIS_DISABLED;
 
-$info[ 'Status' ] = $this->get_status();
-$info[ 'Client' ] = $this->get_redis_client_name();
+$info['Status'] = $roc->get_status();
+$info['Client'] = $roc->get_redis_client_name();
 
-$info[ 'Drop-in' ] = $dropin ? 'Valid' : 'Invalid';
+$info['Drop-in'] = $roc->object_cache_dropin_exists()
+    ? ( $dropin ? 'Valid' : 'Invalid' )
+    : 'Not installed';
 
-if ( $dropin ) {
+$info['Disabled'] = $disabled ? 'Yes' : 'No';
+
+if ( $dropin && ! $disabled ) {
+    $info[ 'Ping' ] = isset( $wp_object_cache->diagnostics[ 'ping' ] )
+        ? $wp_object_cache->diagnostics[ 'ping' ]
+        : false;
+
     try {
         $cache = new WP_Object_Cache( false );
-        $info[ 'Ping' ] = defined( 'WP_REDIS_CLUSTER' ) ? 'Not supported' : $cache->redis_instance()->ping();
     } catch ( Exception $exception ) {
         $info[ 'Connection Exception' ] = sprintf( '%s (%s)', $exception->getMessage(), get_class( $exception ) );
     }
+
+    $info[ 'Errors' ] = wp_json_encode(
+        array_values( $wp_object_cache->errors ),
+        JSON_PRETTY_PRINT
+    );
 }
 
-$info[ 'Redis Extension' ] = class_exists( 'Redis' ) ? phpversion( 'redis' ) : 'Not Found';
-$info[ 'Predis Client' ] = class_exists( 'Predis\Client' ) ? Predis\Client::VERSION : 'Not Found';
+$info['PhpRedis'] = class_exists( 'Redis' ) ? phpversion( 'redis' ) : 'Not loaded';
+$info['Predis'] = class_exists( 'Predis\Client' ) ? Predis\Client::VERSION : 'Not loaded';
+$info['Credis'] = class_exists( 'Credis_Client' ) ? Credis_Client::VERSION : 'Not loaded';
 
 if ( defined( 'PHP_VERSION' ) ) {
-    $info[ 'PHP Version' ] = PHP_VERSION;
+    $info['PHP Version'] = PHP_VERSION;
 }
 
 if ( defined( 'HHVM_VERSION' ) ) {
-    $info[ 'HHVM Version' ] = HHVM_VERSION;
+    $info['HHVM Version'] = HHVM_VERSION;
 }
 
-$info[ 'Multisite' ] = is_multisite() ? 'Yes' : 'No';
+$info['Plugin Version'] = WP_REDIS_VERSION;
+$info['Redis Version'] = $roc->get_redis_version() ?: 'Unknown';
+
+$info['Multisite'] = is_multisite() ? 'Yes' : 'No';
+
+$info['Metrics'] = \Rhubarb\RedisCache\Metrics::is_active() ? 'Enabled' : 'Disabled';
+$info['Metrics recorded'] = wp_json_encode( \Rhubarb\RedisCache\Metrics::count() );
+
+$info['Filesystem'] = is_wp_error( $filesystem ) ? $filesystem->get_error_message() : 'Working';
 
 if ( $dropin ) {
-    $info[ 'Global Prefix' ] = json_encode( $wp_object_cache->global_prefix );
-    $info[ 'Blog Prefix' ] = json_encode( $wp_object_cache->blog_prefix );
+    $info['Global Prefix'] = wp_json_encode( $wp_object_cache->global_prefix );
+    $info['Blog Prefix'] = wp_json_encode( $wp_object_cache->blog_prefix );
 }
 
-$constants = array(
+$constants = [
     'WP_REDIS_DISABLED',
     'WP_REDIS_CLIENT',
     'WP_REDIS_SCHEME',
@@ -47,60 +75,79 @@ $constants = array(
     'WP_REDIS_HOST',
     'WP_REDIS_PORT',
     'WP_REDIS_DATABASE',
+    'WP_REDIS_TIMEOUT',
+    'WP_REDIS_READ_TIMEOUT',
+    'WP_REDIS_RETRY_INTERVAL',
     'WP_REDIS_SERVERS',
     'WP_REDIS_CLUSTER',
     'WP_REDIS_SHARDS',
     'WP_REDIS_SENTINEL',
     'WP_REDIS_IGBINARY',
+    'WP_REDIS_SERIALIZER',
     'WP_REDIS_MAXTTL',
+    'WP_REDIS_PREFIX',
     'WP_CACHE_KEY_SALT',
     'WP_REDIS_GLOBAL_GROUPS',
     'WP_REDIS_IGNORED_GROUPS',
-);
+    'WP_REDIS_UNFLUSHABLE_GROUPS',
+    'WP_REDIS_METRICS_MAX_TIME',
+];
 
 foreach ( $constants as $constant ) {
     if ( defined( $constant ) ) {
-        $info[ $constant ] = json_encode( constant( $constant ) );
+        $info[ $constant ] = wp_json_encode(
+            constant( $constant ),
+            JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+        );
     }
 }
 
 if ( defined( 'WP_REDIS_PASSWORD' ) ) {
-    $info[ 'WP_REDIS_PASSWORD' ] = json_encode( empty( WP_REDIS_PASSWORD ) ? null : str_repeat( '*', strlen( WP_REDIS_PASSWORD ) ) );
+    $password = WP_REDIS_PASSWORD;
+
+    if ( is_array( $password ) ) {
+        if ( isset( $password[1] ) && ! is_null( $password[1] ) && '' !== $password[1] ) {
+            $password[1] = str_repeat( '•', 8 );
+        }
+
+        $info['WP_REDIS_PASSWORD'] = wp_json_encode( $password, JSON_UNESCAPED_UNICODE );
+    } elseif ( ! is_null( $password ) && '' !== $password ) {
+        $info['WP_REDIS_PASSWORD'] = str_repeat( '•', 8 );
+    }
 }
 
 if ( $dropin ) {
-    $info[ 'Global Groups' ] = json_encode( $wp_object_cache->global_groups, JSON_PRETTY_PRINT );
-    $info[ 'Ignored Groups' ] = json_encode( $wp_object_cache->ignored_groups, JSON_PRETTY_PRINT );
+    $info['Global Groups'] = wp_json_encode(
+        array_values( $wp_object_cache->global_groups ),
+        JSON_PRETTY_PRINT
+    );
+
+    $info['Ignored Groups'] = wp_json_encode(
+        array_values( $wp_object_cache->ignored_groups ),
+        JSON_PRETTY_PRINT
+    );
+
+    $info['Unflushable Groups'] = wp_json_encode(
+        array_values( $wp_object_cache->unflushable_groups ),
+        JSON_PRETTY_PRINT
+    );
 }
 
-foreach ( $info as $name => $value ) {
-    echo "{$name}: {$value}\r\n";
-}
+$dropins = [];
 
 foreach ( get_dropins() as $file => $details ) {
-    $dropins[ $file ] = sprintf(
-        ' - %s v%s by %s',
-        $details[ 'Name' ],
-        $details[ 'Version' ],
-        $details[ 'Author' ]
-    );
+    $dropins[ $file ] = sprintf( '%s v%s by %s', $details['Name'], $details['Version'], $details['Author'] );
 }
 
-if ( ! empty( $dropins ) ) {
-    echo "Dropins: \r\n", implode( "\r\n", $dropins ), "\r\n";
-}
+$info['Drop-ins'] = wp_json_encode(
+    array_values( $dropins ),
+    JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+);
 
-foreach ( get_plugins() as $file => $details ) {
-    $plugins[] = sprintf(
-        ' - %s v%s by %s (%s%s)',
-        $details[ 'Name' ],
-        $details[ 'Version' ],
-        $details[ 'Author' ],
-        is_plugin_active( $file ) ? 'Active' : 'Inactive',
-        is_multisite() ? ( is_plugin_active_for_network( $file ) ? ' network-wide' : '' ) : ''
-    );
-}
-
-if ( ! empty( $plugins ) ) {
-    echo "Plugins: \r\n", implode( "\r\n", $plugins ), "\r\n";
+foreach ( $info as $name => $value ) {
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
+        WP_CLI::line( "{$name}: $value" );
+    } else {
+        echo esc_textarea( "{$name}: {$value}\r\n" );
+    }
 }

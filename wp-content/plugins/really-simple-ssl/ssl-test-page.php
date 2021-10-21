@@ -35,7 +35,7 @@ if (!empty($_SERVER['HTTP_CLOUDFRONT_FORWARDED_PROTO']) && ($_SERVER['HTTP_CLOUD
     $ssl = TRUE;
 }
 
-if (!empty($_SERVER['HTTP_CF_VISITOR']) && ($_SERVER['HTTP_CF_VISITOR'] == 'https')) {
+if (!empty($_SERVER['HTTP_CF_VISITOR']) && (strpos($_SERVER["HTTP_CF_VISITOR"], "https") !== false)) {
     echo "#CLOUDFLARE#<br>";
     $ssl = TRUE;
 }
@@ -61,7 +61,7 @@ if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'
 }
 
 if ($ssl) {
-    echo "<br>#SUCCESFULLY DETECTED SSL#";
+    echo "<br>#SUCCESSFULLY DETECTED SSL#";
 } else {
     echo "<br>#NO KNOWN SSL CONFIGURATION DETECTED#";
 }

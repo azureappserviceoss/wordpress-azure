@@ -82,19 +82,12 @@ this["wp"] = this["wp"] || {}; this["wp"]["shortcode"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 352);
+/******/ 	return __webpack_require__(__webpack_require__.s = "/2FX");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["lodash"]; }());
-
-/***/ }),
-
-/***/ 352:
+/***/ "/2FX":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105,9 +98,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regexp", function() { return regexp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "attrs", function() { return attrs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromMatch", function() { return fromMatch; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("YLtl");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(41);
+/* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("4eJC");
 /* harmony import */ var memize__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(memize__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * External dependencies
@@ -153,11 +146,10 @@ __webpack_require__.r(__webpack_exports__);
  * @return {?WPShortcodeMatch} Matched information.
  */
 
-function next(tag, text) {
-  var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var re = regexp(tag);
+function next(tag, text, index = 0) {
+  const re = regexp(tag);
   re.lastIndex = index;
-  var match = re.exec(text);
+  const match = re.exec(text);
 
   if (!match) {
     return;
@@ -168,7 +160,7 @@ function next(tag, text) {
     return next(tag, text, re.lastIndex);
   }
 
-  var result = {
+  const result = {
     index: match.index,
     content: match[0],
     shortcode: fromMatch(match)
@@ -199,7 +191,6 @@ function next(tag, text) {
  */
 
 function replace(tag, text, callback) {
-  var _arguments = arguments;
   return text.replace(regexp(tag), function (match, left, $3, attrs, slash, content, closing, right) {
     // If both extra brackets exist, the shortcode has been properly
     // escaped.
@@ -208,10 +199,10 @@ function replace(tag, text, callback) {
     } // Create the match object and pass it through the callback.
 
 
-    var result = callback(fromMatch(_arguments)); // Make sure to return any of the extra brackets if they weren't used to
+    const result = callback(fromMatch(arguments)); // Make sure to return any of the extra brackets if they weren't used to
     // escape the shortcode.
 
-    return result ? left + result + right : match;
+    return result || result === '' ? left + result + right : match;
   });
 }
 /**
@@ -273,9 +264,9 @@ function regexp(tag) {
  * @return {WPShortcodeAttrs} Parsed shortcode attributes.
  */
 
-var attrs = memize__WEBPACK_IMPORTED_MODULE_1___default()(function (text) {
-  var named = {};
-  var numeric = []; // This regular expression is reused from `shortcode_parse_atts()` in
+const attrs = memize__WEBPACK_IMPORTED_MODULE_1___default()(text => {
+  const named = {};
+  const numeric = []; // This regular expression is reused from `shortcode_parse_atts()` in
   // `wp-includes/shortcodes.php`.
   //
   // Capture groups:
@@ -290,10 +281,10 @@ var attrs = memize__WEBPACK_IMPORTED_MODULE_1___default()(function (text) {
   // 8. A numeric attribute in single quotes.
   // 9. An unquoted numeric attribute.
 
-  var pattern = /([\w-]+)\s*=\s*"([^"]*)"(?:\s|$)|([\w-]+)\s*=\s*'([^']*)'(?:\s|$)|([\w-]+)\s*=\s*([^\s'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|'([^']*)'(?:\s|$)|(\S+)(?:\s|$)/g; // Map zero-width spaces to actual spaces.
+  const pattern = /([\w-]+)\s*=\s*"([^"]*)"(?:\s|$)|([\w-]+)\s*=\s*'([^']*)'(?:\s|$)|([\w-]+)\s*=\s*([^\s'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|'([^']*)'(?:\s|$)|(\S+)(?:\s|$)/g; // Map zero-width spaces to actual spaces.
 
   text = text.replace(/[\u00a0\u200b]/g, ' ');
-  var match; // Match and normalize attributes.
+  let match; // Match and normalize attributes.
 
   while (match = pattern.exec(text)) {
     if (match[1]) {
@@ -312,8 +303,8 @@ var attrs = memize__WEBPACK_IMPORTED_MODULE_1___default()(function (text) {
   }
 
   return {
-    named: named,
-    numeric: numeric
+    named,
+    numeric
   };
 });
 /**
@@ -329,7 +320,7 @@ var attrs = memize__WEBPACK_IMPORTED_MODULE_1___default()(function (text) {
  */
 
 function fromMatch(match) {
-  var type;
+  let type;
 
   if (match[4]) {
     type = 'self-closing';
@@ -342,7 +333,7 @@ function fromMatch(match) {
   return new shortcode({
     tag: match[2],
     attrs: match[3],
-    type: type,
+    type,
     content: match[5]
   });
 }
@@ -359,11 +350,9 @@ function fromMatch(match) {
  * @return {WPShortcode} Shortcode instance.
  */
 
-var shortcode = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(function (options) {
-  var _this = this;
-
+const shortcode = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(function (options) {
   Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(this, Object(lodash__WEBPACK_IMPORTED_MODULE_0__["pick"])(options || {}, 'tag', 'attrs', 'type', 'content'));
-  var attributes = this.attrs; // Ensure we have a correctly formatted `attrs` object.
+  const attributes = this.attrs; // Ensure we have a correctly formatted `attrs` object.
 
   this.attrs = {
     named: {},
@@ -380,17 +369,17 @@ var shortcode = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(function (
   } else if (Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isEqual"])(Object.keys(attributes), ['named', 'numeric'])) {
     this.attrs = attributes; // Handle a flat object of attributes.
   } else {
-    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(attributes, function (value, key) {
-      _this.set(key, value);
+    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(attributes, (value, key) => {
+      this.set(key, value);
     });
   }
 }, {
-  next: next,
-  replace: replace,
-  string: string,
-  regexp: regexp,
-  attrs: attrs,
-  fromMatch: fromMatch
+  next,
+  replace,
+  string,
+  regexp,
+  attrs,
+  fromMatch
 });
 Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(shortcode.prototype, {
   /**
@@ -403,7 +392,7 @@ Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(shortcode.prototype, {
    *
    * @return {string} Attribute value.
    */
-  get: function get(attr) {
+  get(attr) {
     return this.attrs[Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isNumber"])(attr) ? 'numeric' : 'named'][attr];
   },
 
@@ -418,7 +407,7 @@ Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(shortcode.prototype, {
    *
    * @return {WPShortcode} Shortcode instance.
    */
-  set: function set(attr, value) {
+  set(attr, value) {
     this.attrs[Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isNumber"])(attr) ? 'numeric' : 'named'][attr] = value;
     return this;
   },
@@ -428,16 +417,16 @@ Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(shortcode.prototype, {
    *
    * @return {string} String representation of the shortcode.
    */
-  string: function string() {
-    var text = '[' + this.tag;
-    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(this.attrs.numeric, function (value) {
+  string() {
+    let text = '[' + this.tag;
+    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(this.attrs.numeric, value => {
       if (/\s/.test(value)) {
         text += ' "' + value + '"';
       } else {
         text += ' ' + value;
       }
     });
-    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(this.attrs.named, function (value, name) {
+    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(this.attrs.named, (value, name) => {
       text += ' ' + name + '="' + value + '"';
     }); // If the tag is marked as `single` or `self-closing`, close the tag and
     // ignore any additional content.
@@ -458,22 +447,65 @@ Object(lodash__WEBPACK_IMPORTED_MODULE_0__["extend"])(shortcode.prototype, {
 
     return text + '[/' + this.tag + ']';
   }
+
 });
 /* harmony default export */ __webpack_exports__["default"] = (shortcode);
 
 
 /***/ }),
 
-/***/ 41:
+/***/ "4eJC":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function memize( fn, options ) {
-	var size = 0,
-		maxSize, head, tail;
+/**
+ * Memize options object.
+ *
+ * @typedef MemizeOptions
+ *
+ * @property {number} [maxSize] Maximum size of the cache.
+ */
 
-	if ( options && options.maxSize ) {
-		maxSize = options.maxSize;
-	}
+/**
+ * Internal cache entry.
+ *
+ * @typedef MemizeCacheNode
+ *
+ * @property {?MemizeCacheNode|undefined} [prev] Previous node.
+ * @property {?MemizeCacheNode|undefined} [next] Next node.
+ * @property {Array<*>}                   args   Function arguments for cache
+ *                                               entry.
+ * @property {*}                          val    Function result.
+ */
+
+/**
+ * Properties of the enhanced function for controlling cache.
+ *
+ * @typedef MemizeMemoizedFunction
+ *
+ * @property {()=>void} clear Clear the cache.
+ */
+
+/**
+ * Accepts a function to be memoized, and returns a new memoized function, with
+ * optional options.
+ *
+ * @template {Function} F
+ *
+ * @param {F}             fn        Function to memoize.
+ * @param {MemizeOptions} [options] Options object.
+ *
+ * @return {F & MemizeMemoizedFunction} Memoized function.
+ */
+function memize( fn, options ) {
+	var size = 0;
+
+	/** @type {?MemizeCacheNode|undefined} */
+	var head;
+
+	/** @type {?MemizeCacheNode|undefined} */
+	var tail;
+
+	options = options || {};
 
 	function memoized( /* ...args */ ) {
 		var node = head,
@@ -513,14 +545,14 @@ module.exports = function memize( fn, options ) {
 
 				// Adjust siblings to point to each other. If node was tail,
 				// this also handles new tail's empty `next` assignment.
-				node.prev.next = node.next;
+				/** @type {MemizeCacheNode} */ ( node.prev ).next = node.next;
 				if ( node.next ) {
 					node.next.prev = node.prev;
 				}
 
 				node.next = head;
 				node.prev = null;
-				head.prev = node;
+				/** @type {MemizeCacheNode} */ ( head ).prev = node;
 				head = node;
 			}
 
@@ -540,7 +572,7 @@ module.exports = function memize( fn, options ) {
 			args: args,
 
 			// Generate the result from original function
-			val: fn.apply( null, args )
+			val: fn.apply( null, args ),
 		};
 
 		// Don't need to check whether node is already head, since it would
@@ -556,9 +588,9 @@ module.exports = function memize( fn, options ) {
 		}
 
 		// Trim tail if we're reached max size and are pending cache insertion
-		if ( size === maxSize ) {
-			tail = tail.prev;
-			tail.next = null;
+		if ( size === /** @type {MemizeOptions} */ ( options ).maxSize ) {
+			tail = /** @type {MemizeCacheNode} */ ( tail ).prev;
+			/** @type {MemizeCacheNode} */ ( tail ).next = null;
 		} else {
 			size++;
 		}
@@ -576,9 +608,24 @@ module.exports = function memize( fn, options ) {
 
 	if ( false ) {}
 
-	return memoized;
-};
+	// Ignore reason: There's not a clear solution to create an intersection of
+	// the function with additional properties, where the goal is to retain the
+	// function signature of the incoming argument and add control properties
+	// on the return value.
 
+	// @ts-ignore
+	return memoized;
+}
+
+module.exports = memize;
+
+
+/***/ }),
+
+/***/ "YLtl":
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
 
 /***/ })
 

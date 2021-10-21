@@ -1,0 +1,169 @@
+#rediscache .content-column {
+    margin-bottom: 3em;
+}
+
+#rediscache .sidebar-column h6 {
+    margin: 5px 0;
+    padding: 10px 0;
+    font-size: 13px;
+    line-height: 19px;
+    border-bottom: 1px solid #ccc;
+}
+
+#rediscache .tab-pane {
+    display: none;
+}
+
+#rediscache .tab-pane.active {
+    display: block;
+}
+
+#rediscache .form-table th,
+#rediscache .form-table td {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#rediscache .form-table td ul {
+    margin: 0;
+}
+
+#rediscache .form-table .description.is-notice {
+    max-width: 25rem;
+    color: #d54e21;
+}
+
+#rediscache .form-table .description.is-notice a {
+    color: #d54e21;
+}
+
+#rediscache .card ul {
+    list-style: circle;
+    padding-left: 25px;
+}
+
+#rediscache .tab-pane-metrics .card {
+    min-width: auto;
+    max-width: 100%;
+    padding: 0;
+}
+
+#rediscache .nav-tab-wrapper .nav-tab-disabled {
+    cursor: not-allowed;
+    background-color: #e5e5e5 !important;
+}
+
+#rediscache #redis-stats-chart {
+    height: 300px;
+}
+
+#rediscache .tab-pane-diagnostics p {
+    margin-top: 20px;
+}
+
+#rediscache .tab-pane-diagnostics textarea {
+    width: 100%;
+}
+
+#rediscache .compatiblity {
+    display: flex;
+    max-width: 520px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+#rediscache .compatiblity + ul {
+    margin-top: 0;
+    padding-left: 50px;
+    list-style: circle;
+    max-width: 470px;
+    color: #666;
+}
+
+#rediscache .compatiblity .dashicons {
+    margin-right: 5px;
+}
+
+@media screen and (min-width: 1200px) {
+    #rediscache .columns {
+        display: flex;
+    }
+
+    #rediscache .content-column {
+        flex-grow: 1;
+    }
+
+    #rediscache .sidebar-column {
+        max-width: 400px;
+        margin-left: 20px;
+    }
+}
+
+#dashboard_rediscache .inside {
+    margin: 0;
+    padding: 0;
+}
+
+#widget-redis-stats ul {
+    margin: 11px 11px 0;
+    text-align: center;
+}
+
+#widget-redis-stats ul li {
+    display: inline;
+}
+
+#widget-redis-stats ul a {
+    padding: 0 5px;
+    color: #72777c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#widget-redis-stats ul a:hover,
+#widget-redis-stats ul a.active {
+    color: #0073aa;
+}
+
+#redis-stats-chart .apexcharts-annotations {
+    display: none;
+    opacity: 0.75;
+}
+
+#redis-stats-chart .apexcharts-tooltip,
+#redis-stats-chart .apexcharts-tooltip-title {
+    font-size: 13px;
+}
+
+#redis-stats-chart .apexcharts-tooltip {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    background: #fff;
+}
+
+#redis-stats-chart .apexcharts-tooltip-title {
+    margin-bottom: 0;
+    padding: 0 15px;
+    border-bottom: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+}
+
+#redis-stats-chart .apexcharts-tooltip-series-group {
+    display: flex;
+    padding-bottom: 0;
+    padding: 0 15px;
+}
+
+#redis-stats-chart .apexcharts-tooltip-y-group {
+    padding: 0;
+}
+
+#redis-stats-chart .apexcharts-tooltip-text-value {
+    margin-left: 0;
+    font-variant-numeric: tabular-nums;
+}

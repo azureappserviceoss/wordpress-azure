@@ -79,15 +79,6 @@ table.comments td.comment p a:after {
 .checkforspam {
     display: inline-block !important;
 }
-.checkforspam-progress {
-	display: none;
-}
-.checkforspam.checking .checkforspam-progress {
-	padding-left: 1ex;
-}
-.checkforspam.button-disabled .checkforspam-progress {
-	display: inline;
-}
 
 .checkforspam-spinner {
     display: inline-block;
@@ -109,12 +100,9 @@ table.comments td.comment p a:after {
 	margin-top: .5rem;
 }
 .akismet-alert {
-	border: 1px solid #e5e5e5;
 	padding: 0.4em 1em 1.4em 1em;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-width: 1px;
-    border-style: solid;
+	box-sizing: border-box;
+	box-shadow: 0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
 }
 
 .akismet-alert h3.akismet-key-status {
@@ -546,6 +534,44 @@ table.comments td.comment p a:after {
 	margin-top: 1.5rem;
 }
 
+.akismet-box-header {
+	max-width: 700px;
+	margin: 0 auto 40px auto;
+	line-height: 1.5;
+}
+
+.akismet-box-header h2 {
+	margin: 1.5rem 10% 0;
+	font-size: 1.375rem;
+	font-weight: 700;
+	color: #000;
+}
+
+.akismet-box .centered {
+	text-align: center;
+}
+
+.akismet-enter-api-key-box {
+	margin: 1.5rem 0;
+}
+
+.akismet-box .enter-api-key {
+	display: none;
+	margin-top: 1.5rem;
+}
+
+.akismet-box .akismet-toggles {
+	margin: 3rem 0;
+}
+
+.akismet-box .akismet-ak-connect, .akismet-box .toggle-jp-connect {
+	display: none;
+}
+
+.akismet-box .enter-api-key p {
+	padding: 0 1.5rem;
+}
+
 .akismet-button, .akismet-button:hover, .akismet-button:visited {
 	background: white;
 	border-color: #c8d7e1;
@@ -622,4 +648,71 @@ table.comments td.comment p a:after {
 
 .akismet-section-header__actions {
 	line-height: 1.75rem;
+}
+
+.akismet-setup-instructions {
+	text-align: center;
+}
+
+.akismet-setup-instructions form {
+	padding-bottom: 1.5rem;
+}
+
+div.error.akismet-usage-limit-alert {
+	padding: 25px 45px 25px 15px;
+	display: flex;
+	align-items: center;
+}
+
+#akismet-plugin-container .akismet-usage-limit-alert {
+	margin: 0 auto 0.625rem auto;
+	box-sizing: border-box;
+	box-shadow: 0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
+	border: none;
+	border-left: 4px solid #d63638;
+}
+
+.akismet-usage-limit-alert .akismet-usage-limit-logo {
+	width: 38px;
+	min-width: 38px;
+	height: 38px;
+	border-radius: 20px;
+	margin-right: 18px;
+	background: black;
+	position: relative;
+}
+
+.akismet-usage-limit-alert .akismet-usage-limit-logo img {
+	position: absolute;
+	width: 22px;
+	left: 8px;
+	top: 10px;
+}
+
+.akismet-usage-limit-alert .akismet-usage-limit-text {
+	flex-grow: 1;
+	margin-right: 18px;
+}
+
+.akismet-usage-limit-alert h3 {
+	margin: 0;
+}
+
+.akismet-usage-limit-alert .akismet-usage-limit-cta {
+	text-align: right;
+}
+
+@media (max-width: 550px) {
+	div.error.akismet-usage-limit-alert {
+		display: block;
+	}
+
+	.akismet-usage-limit-alert .akismet-usage-limit-logo,
+	.akismet-usage-limit-alert .akismet-usage-limit-text {
+		margin-bottom: 15px;
+	}
+
+	.akismet-usage-limit-alert .akismet-usage-limit-cta {
+		text-align: left;
+	}
 }

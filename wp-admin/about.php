@@ -7,245 +7,272 @@
  */
 
 /** WordPress Administration Bootstrap */
-require_once( dirname( __FILE__ ) . '/admin.php' );
+require_once __DIR__ . '/admin.php';
 
 /* translators: Page title of the About WordPress page in the admin. */
 $title = _x( 'About', 'page title' );
 
 list( $display_version ) = explode( '-', get_bloginfo( 'version' ) );
 
-include( ABSPATH . 'wp-admin/admin-header.php' );
+require_once ABSPATH . 'wp-admin/admin-header.php';
 ?>
-	<div class="wrap about-wrap full-width-layout">
-		<h1>
-			<?php
-			/* translators: %s: The current WordPress version number */
-			printf( __( 'Welcome to WordPress&nbsp;%s' ), $display_version );
-			?>
-		</h1>
+	<div class="wrap about__container">
 
-		<p class="about-text">
-			<?php
-			printf(
-				/* translators: %s: The current WordPress version number */
-				__( 'Congratulations on updating to WordPress %s! This update makes it easier than ever to fix your site if something goes wrong.' ),
-				$display_version
-			);
-			?>
-		</p>
-
-		<div class="wp-badge">
-			<?php
-			/* translators: %s: The current WordPress version number */
-			printf( __( 'Version %s' ), $display_version );
-			?>
-		</div>
-
-		<nav class="nav-tab-wrapper wp-clearfix" aria-label="<?php esc_attr_e( 'Secondary menu' ); ?>">
-			<a href="about.php" class="nav-tab nav-tab-active" aria-current="page"><?php _e( 'What&#8217;s New' ); ?></a>
-			<a href="credits.php" class="nav-tab"><?php _e( 'Credits' ); ?></a>
-			<a href="freedoms.php" class="nav-tab"><?php _e( 'Freedoms' ); ?></a>
-			<a href="freedoms.php?privacy-notice" class="nav-tab"><?php _e( 'Privacy' ); ?></a>
-		</nav>
-
-		<div class="changelog point-releases">
-			<h3><?php _e( 'Maintenance and Security Releases' ); ?></h3>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>Version %s</strong> addressed some security issues.' ),
-					'5.2.4'
-				);
-				?>
-				<?php
-				printf(
-				/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-					/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '5.2.4' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-				/* translators: 1: WordPress version number, 2: plural number of bugs. More than one security issue. */
-					_n(
-						'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
-						'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
-						29
-					),
-					'5.2.3',
-					number_format_i18n( 29 )
-				);
-				?>
-				<?php
-				printf(
-				/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-					/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '5.2.3' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>Version %1$s</strong> addressed %2$s bug.',
-						'<strong>Version %1$s</strong> addressed %2$s bugs.',
-						13
-					),
-					'5.2.2',
-					number_format_i18n( 13 )
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '5.2.2' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>Version %1$s</strong> addressed %2$s bug.',
-						'<strong>Version %1$s</strong> addressed %2$s bugs.',
-						33
-					),
-					'5.2.1',
-					number_format_i18n( 33 )
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '5.2.1' )
-					)
-				);
-				?>
-			</p>
-		</div>
-
-		<div class="headline-feature">
-			<h2><?php _e( 'Keeping Your Site Safe' ); ?></h2>
-			<p class="lead-description"><?php _e( 'WordPress 5.2 gives you even more robust tools for identifying and fixing configuration issues and fatal errors. Whether you are a developer helping clients or you manage your site solo, these tools can help get you the right information when you need it.' ); ?></p>
-			<div class="inline-svg aligncenter">
-				<img src="https://s.w.org/images/core/5.2/about_maintain-wordpress-v2.svg" alt="">
+		<div class="about__header">
+			<div class="about__header-title">
+				<h1>
+					<?php _e( 'WordPress' ); ?>
+					<?php echo $display_version; ?>
+				</h1>
 			</div>
+
+			<div class="about__header-text">
+				<?php _e( 'The next stop on the road to full site editing' ); ?>
+			</div>
+
+			<nav class="about__header-navigation nav-tab-wrapper wp-clearfix" aria-label="<?php esc_attr_e( 'Secondary menu' ); ?>">
+				<a href="about.php" class="nav-tab nav-tab-active" aria-current="page"><?php _e( 'What&#8217;s New' ); ?></a>
+				<a href="credits.php" class="nav-tab"><?php _e( 'Credits' ); ?></a>
+				<a href="freedoms.php" class="nav-tab"><?php _e( 'Freedoms' ); ?></a>
+				<a href="privacy.php" class="nav-tab"><?php _e( 'Privacy' ); ?></a>
+			</nav>
 		</div>
 
 		<hr />
 
-		<div class="feature-section is-wide has-2-columns is-wider-left">
-			<div class="column is-vertically-aligned-center">
-				<h3><?php _e( 'Site Health Check' ); ?></h3>
+		<div class="about__section changelog">
+			<div class="column">
+				<h2><?php _e( 'Maintenance and Security Releases' ); ?></h2>
 				<p>
 					<?php
 					printf(
-						/* translators: 1: link to the WordPress 5.1 release post */
-						__( 'Building on <a href="%1$s">the Site Health features introduced in 5.1</a>, this release adds two new pages to help debug common configuration issues. It also adds space where developers can include debugging information for site maintainers.' ),
-						__( 'https://wordpress.org/news/2019/02/betty/' )
+						/* translators: 1: WordPress version number, 2: plural number of bugs. */
+						_n(
+							'<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug.',
+							'<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs.',
+							60
+						),
+						'5.8.1',
+						number_format_i18n( 60 )
 					);
-
-					if ( current_user_can( 'install_plugins' ) ) {
-						printf(
-							/* translators: 1: link to /wp-admin/site-health.php 2: link to /wp-admin/site-health.php?tab=debug */
-							__( ' <a href="%1$s">Check your site status</a>, and <a href="%2$s">learn how to debug issues</a>.' ),
-							admin_url( 'site-health.php' ),
-							admin_url( 'site-health.php?tab=debug' )
-						);
-					}
+					?>
+					<?php
+					printf(
+						/* translators: %s: HelpHub URL */
+						__( 'For more information, see <a href="%s">the release notes</a>.' ),
+						sprintf(
+							/* translators: %s: WordPress version */
+							esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
+							sanitize_title( '5.8.1' )
+						)
+					);
 					?>
 				</p>
 			</div>
-			<div class="column">
-				<div class="inline-svg aligncenter">
-					<img src="https://s.w.org/images/core/5.2/about_site-health.svg" alt="">
-				</div>
-			</div>
 		</div>
 
-		<hr />
+		<hr class="is-large" />
 
-		<div class="feature-section is-wide has-2-columns is-wider-right">
-			<div class="column">
-				<div class="inline-svg aligncenter">
-					<img src="https://s.w.org/images/core/5.2/about_error-protection.svg" alt="">
-				</div>
-			</div>
-			<div class="column is-vertically-aligned-center">
-				<h3><?php _e( 'PHP Error Protection' ); ?></h3>
-				<p><?php _e( 'This administrator-focused update will let you safely fix or manage fatal errors without requiring a developer. It features better handling of the so-called “white screen of death”, and a way to enter recovery mode, which pauses error-causing plugins or themes.' ); ?></p>
-			</div>
+		<div class="about__section">
+			<h2 class="aligncenter">
+				<?php _e( 'Three Essential Powerhouses' ); ?>
+			</h2>
 		</div>
 
-		<hr />
-
-		<h3 class="aligncenter"><?php _e( 'Improvements for Everyone' ); ?></h3>
-
-		<div class="has-2-columns">
-			<div class="column aligncenter">
-				<h4><?php _e( 'Accessibility Updates' ); ?></h4>
-				<p><?php _e( 'A number of changes work together to improve contextual awareness and keyboard navigation flow for those using screen readers and other assistive technologies.' ); ?></p>
-			</div>
-			<div class="column aligncenter">
-				<h4><?php _e( 'New Dashboard Icons' ); ?></h4>
-				<p><?php _e( 'Thirteen new icons include Instagram, a suite of icons for BuddyPress, and rotated Earth icons for global inclusion. Find them in the Dashboard and have some fun!' ); ?></p>
-			</div>
-		</div>
-
-		<hr />
-
-		<h3 class="aligncenter"><?php _e( 'Developer Happiness' ); ?></h3>
-
-		<div class="has-2-columns is-fullwidth">
-			<div class="column">
-				<h4><a href="https://make.wordpress.org/core/2019/03/26/coding-standards-updates-for-php-5-6/"><?php _e( 'PHP Version Bump' ); ?></a></h4>
-				<p><?php _e( 'The minimum supported PHP version is now 5.6.20. As of WordPress 5.2, themes and plugins can safely take advantage of namespaces, anonymous functions, and more!' ); ?></p>
+		<div class="about__section has-2-columns is-wider-left">
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-widgets-blocks.png" alt="" />
 			</div>
 			<div class="column">
-				<h4><a href="https://make.wordpress.org/core/2019/04/24/developer-focused-privacy-updates-in-5-2/"><?php _e( 'Privacy Updates' ); ?></a></h4>
-				<p><?php _e( 'A new theme page template, a conditional function, and two CSS classes make designing and customizing the Privacy Policy page easier.' ); ?></p>
-			</div>
-		</div>
-		<div class="has-2-columns is-fullwidth">
-			<div class="column">
-				<h4><a href="https://make.wordpress.org/core/2019/04/24/miscellaneous-developer-updates-in-5-2/"><?php _e( 'New Body Tag Hook' ); ?></a></h4>
+				<h3>
+					<?php _e( 'Manage Widgets with Blocks' ); ?>
+				</h3>
 				<p>
 					<?php
 					printf(
-						/* translators: 1: wp_body_open 2: <body> */
-						__( '5.2 introduces a %1$s hook, which lets themes support injecting code right at the beginning of the %2$s element.' ),
-						'<code>wp_body_open</code>',
-						'<code>&lt;body&gt;</code>'
+						/* translators: %s: Widgets dev note link. */
+						__( 'After months of hard work, the power of blocks has come to both the Block Widgets Editor and the Customizer. Now you can add blocks both in widget areas across your site and with live preview through the Customizer. This opens up new possibilities to create content: from no-code mini layouts to the vast library of core and third-party blocks. For our developers, you can find more details in the <a href="%s">Widgets dev note</a>.' ),
+						'https://make.wordpress.org/core/2021/06/29/block-based-widgets-editor-in-wordpress-5-8/'
+					);
+					?>
+				</p>
+			</div>
+		</div>
+
+		<div class="about__section has-2-columns is-wider-right">
+			<div class="column">
+				<h3>
+					<?php _e( 'Display Posts with New Blocks and Patterns' ); ?>
+				</h3>
+				<p>
+					<?php _e( 'The Query Loop Block makes it possible to display posts based on specified parameters; like a PHP loop without the code. Easily display posts from a specific category, to do things like create a portfolio or a page full of your favorite recipes. Think of it as a more complex and powerful Latest Posts Block! Plus, pattern suggestions make it easier than ever to create a list of posts with the design you want.' ); ?>
+				</p>
+			</div>
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-query-loop.png" alt="" />
+			</div>
+		</div>
+
+		<div class="about__section has-2-columns is-wider-left">
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-template.png" alt="" />
+			</div>
+			<div class="column">
+				<h3>
+					<?php _e( 'Edit the Templates Around Posts' ); ?>
+				</h3>
+				<p>
+					<?php
+					_e( 'You can use the familiar block editor to edit templates that hold your content—simply activate a block theme or a theme that has opted in for this feature. Switch from editing your posts to editing your pages and back again, all while using a familiar block editor. There are more than 20 new blocks available within compatible themes. Read more about this feature and how to experiment with it in the release notes.' );
+					?>
+				</p>
+			</div>
+		</div>
+
+		<hr class="is-large" />
+
+		<div class="about__section">
+			<h2 class="aligncenter">
+				<?php _e( 'Three Workflow Helpers' ); ?>
+			</h2>
+		</div>
+
+		<div class="about__section has-2-columns is-wider-left">
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-list-view.png" alt="" />
+			</div>
+			<div class="column">
+				<h3>
+					<?php _e( 'Overview of the Page Structure' ); ?>
+				</h3>
+				<p>
+					<?php
+					_e( 'Sometimes you need a simple landing page, but sometimes you need something a little more robust. As blocks increase, patterns emerge, and content creation gets easier, new solutions are needed to make complex content easy to navigate. List View is the best way to jump between layers of content and nested blocks. Since the List View gives you an overview of all the blocks in your content, you can now navigate quickly to the precise block you need. Ready to focus completely on your content? Toggle it on or off to suit your workflow.' );
+					?>
+				</p>
+			</div>
+		</div>
+
+		<div class="about__section has-2-columns is-wider-right">
+			<div class="column">
+				<h3>
+					<?php _e( 'Suggested Patterns for Blocks' ); ?>
+				</h3>
+				<p>
+					<?php
+					_e( 'Starting in this release the Pattern Transformations tool will suggest block patterns based on the block you are using. Right now, you can give it a try in the Query Block and Social Icon Block. As more patterns are added, you will be able to get inspiration for how to style your site without ever leaving the editor!' );
+					?>
+				</p>
+			</div>
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-pattern-suggestions.png" alt="" />
+			</div>
+		</div>
+
+		<div class="about__section has-2-columns is-wider-left">
+			<div class="column about__image is-vertically-aligned-center">
+				<img src="https://s.w.org/images/core/5.8/about-duotone.png" alt="" />
+			</div>
+			<div class="column">
+				<h3>
+					<?php _e( 'Style and Colorize Images' ); ?>
+				</h3>
+				<p>
+					<?php
+					_e( 'Colorize your image and cover blocks with duotone filters! Duotone can add a pop of color to your designs and style your images (or videos in the cover block) to integrate well with your themes. You can think of the duotone effect as a black and white filter, but instead of the shadows being black and the highlights being white, you pick your own colors for the shadows and highlights. There’s more to learn about how it works in the documentation.' );
+					?>
+				</p>
+			</div>
+		</div>
+
+		<hr class="is-large" />
+
+		<div class="about__section">
+			<h2 class="aligncenter" style="margin-bottom:0;">
+				<?php _e( 'For Developers to Explore' ); ?>
+			</h2>
+			<div class="column about__image is-vertically-aligned-center">
+				<picture>
+					<source srcset="https://s.w.org/images/core/5.8/about-theme-json.png, https://s.w.org/images/core/5.8/about-theme-json-2x.png 2x" />
+					<img src="https://s.w.org/images/core/5.8/about-theme-json.png" alt="" />
+				</picture>
+			</div>
+		</div>
+
+		<div class="about__section has-1-column">
+			<div class="column">
+				<h3>
+					<?php _e( 'Theme.json' ); ?>
+				</h3>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: Theme.json dev note link. */
+						__( 'Introducing the Global Styles and Global Settings APIs: control the editor settings, available customization tools, and style blocks using a theme.json file in the active theme. This configuration file enables or disables features and sets default styles for both a website and blocks. If you build themes, you can experiment with this early iteration of a useful new feature. For more about what is currently available and how it works, <a href="%s">check out this dev note</a>.' ),
+						'https://make.wordpress.org/core/2021/06/25/introducing-theme-json-in-wordpress-5-8/'
+					);
+					?>
+				</p>
+			</div>
+		</div>
+
+		<div class="about__section has-3-columns">
+			<div class="column">
+				<h3>
+					<?php _e( 'Dropping support for Internet Explorer 11' ); ?>
+				</h3>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: Link to Browse Happy. */
+						__( 'Support for Internet Explorer 11 has been dropped as of this release. This means you may have issues managing your site that will not be fixed in the future. If you are currently using IE11, it is strongly recommended that you <a href="%s">switch to a more modern browser</a>.' ),
+						'https://browsehappy.com/'
 					);
 					?>
 				</p>
 			</div>
 			<div class="column">
-				<h4><a href="https://make.wordpress.org/core/2019/03/25/building-javascript/"><?php _e( 'Building JavaScript' ); ?></a></h4>
-				<p><?php _e( 'With the addition of webpack and Babel configurations in the @wordpress/scripts package, developers won&#8217;t have to worry about setting up complex build tools to write modern JavaScript.' ); ?></p>
+				<h3>
+					<?php _e( 'Adding support for WebP' ); ?>
+				</h3>
+				<p>
+					<?php
+					_e( 'WebP is a modern image format that provides improved lossless and lossy compression for images on the web. WebP images are around 30% smaller on average than their JPEG or PNG equivalents, resulting in sites that are faster and use less bandwidth.' );
+					?>
+				</p>
+			</div>
+			<div class="column">
+				<h3>
+					<?php _e( 'Adding Additional Block Supports' ); ?>
+				</h3>
+				<p>
+					<?php
+					printf(
+						/* translators: %1$s: Link to 5.6's block dev notes. %2$s: Link to 5.7's block dev notes. %3$s: Link to 5.8's block dev notes. */
+						__( 'Expanding on previously implemented block supports in WordPress <a href="%1$s">5.6</a> and <a href="%2$s">5.7</a>, WordPress 5.8 introduces several new block support flags and new options to customize your registered blocks. More information is available in the <a href="%3$s">block supports dev note</a>.' ),
+						'https://make.wordpress.org/core/2020/11/18/block-supports-in-wordpress-5-6/',
+						'https://make.wordpress.org/core/2021/02/24/changes-to-block-editor-components-and-blocks/',
+						'https://make.wordpress.org/core/2021/06/25/block-supports-api-updates-for-wordpress-5-8/'
+					);
+					?>
+				</p>
+			</div>
+		</div>
+
+		<hr class="is-small" />
+
+		<div class="about__section">
+			<div class="column">
+				<h3><?php _e( 'Check the Field Guide for more!' ); ?></h3>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: WordPress 5.8 Field Guide link. */
+						__( 'Check out the latest version of the WordPress Field Guide. It highlights developer notes for each change you may want to be aware of. <a href="%s">WordPress 5.8 Field Guide.</a>' ),
+						'https://make.wordpress.org/core/2021/07/03/wordpress-5-8-field-guide/'
+					);
+					?>
+				</p>
 			</div>
 		</div>
 
@@ -254,15 +281,16 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 		<div class="return-to-dashboard">
 			<?php if ( current_user_can( 'update_core' ) && isset( $_GET['updated'] ) ) : ?>
 				<a href="<?php echo esc_url( self_admin_url( 'update-core.php' ) ); ?>">
-					<?php is_multisite() ? _e( 'Return to Updates' ) : _e( 'Return to Dashboard &rarr; Updates' ); ?>
+					<?php is_multisite() ? _e( 'Go to Updates' ) : _e( 'Go to Dashboard &rarr; Updates' ); ?>
 				</a> |
 			<?php endif; ?>
 			<a href="<?php echo esc_url( self_admin_url() ); ?>"><?php is_blog_admin() ? _e( 'Go to Dashboard &rarr; Home' ) : _e( 'Go to Dashboard' ); ?></a>
 		</div>
 	</div>
-<?php
 
-include( ABSPATH . 'wp-admin/admin-footer.php' );
+<?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+
+<?php
 
 // These are strings we may use to describe maintenance/security releases, where we aim for no new strings.
 return;
@@ -276,28 +304,28 @@ __( 'Security Releases' );
 __( 'Maintenance and Security Release' );
 __( 'Maintenance and Security Releases' );
 
-/* translators: %s: WordPress version number */
+/* translators: %s: WordPress version number. */
 __( '<strong>Version %s</strong> addressed one security issue.' );
-/* translators: %s: WordPress version number */
+/* translators: %s: WordPress version number. */
 __( '<strong>Version %s</strong> addressed some security issues.' );
 
-/* translators: 1: WordPress version number, 2: plural number of bugs. */
+/* translators: 1: WordPress version number, 2: Plural number of bugs. */
 _n_noop(
 	'<strong>Version %1$s</strong> addressed %2$s bug.',
 	'<strong>Version %1$s</strong> addressed %2$s bugs.'
 );
 
-/* translators: 1: WordPress version number, 2: plural number of bugs. Singular security issue. */
+/* translators: 1: WordPress version number, 2: Plural number of bugs. Singular security issue. */
 _n_noop(
 	'<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug.',
 	'<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs.'
 );
 
-/* translators: 1: WordPress version number, 2: plural number of bugs. More than one security issue. */
+/* translators: 1: WordPress version number, 2: Plural number of bugs. More than one security issue. */
 _n_noop(
 	'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
 	'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.'
 );
 
-/* translators: %s: Codex URL */
+/* translators: %s: Documentation URL. */
 __( 'For more information, see <a href="%s">the release notes</a>.' );
