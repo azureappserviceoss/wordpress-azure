@@ -10,3 +10,4 @@
 - For configuring database, please add the database connection string to App Service configuration.
 - By default SSL is enabled for MYSQL database connections. You can add a new App setting **DB_SSL_CONNECTION** and set it to false to disable the SSL option.
 
+[More Details](https://wordpress.org/) on WordPress.
