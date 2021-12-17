@@ -1,6 +1,0 @@
-{
-    "require": {
-        "fbett/le_acme2": "^1.5",
-        "plesk/api-php-lib": "^1.0"
-    }
-}

@@ -1,3 +1,0 @@
-phpunit:
-  arguments: '--stop-on-failure'
-  timeout: 0
