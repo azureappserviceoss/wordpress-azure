@@ -13,7 +13,7 @@
  * * Database table prefix
  * * ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
  *
  * @package WordPress
  */
@@ -89,27 +89,27 @@ $table_prefix = 'wp_';
  * in their development environments.
  *
  * For information on other constants that can be used for debugging,
- * visit the Codex.
+ * visit the documentation.
  *
- * @link https://codex.wordpress.org/Debugging_in_WordPress
+ * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define( 'WP_DEBUG', false );
 
 /* That's all, stop editing! Happy blogging. */
-/**https://codex.wordpress.org/Function_Reference/is_ssl */
+/**https://developer.wordpress.org/reference/functions/is_ssl/ */
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
 	$_SERVER['HTTPS'] = 'on';
 
 //Relative URLs for swapping across app service deployment slots
-define('WP_HOME', 'http://'. $_SERVER['HTTP_HOST']);
-define('WP_SITEURL', 'http://'. $_SERVER['HTTP_HOST']);
+define('WP_HOME', 'https://'. $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', 'https://'. $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+	define( 'ABSPATH', __DIR__ . '/' );
 }
-	
+
 /** Sets up WordPress vars and included files. */
-require_once(ABSPATH . 'wp-settings.php');
+require_once ABSPATH . 'wp-settings.php';
