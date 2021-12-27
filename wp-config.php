@@ -110,8 +110,8 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 	$_SERVER['HTTPS'] = 'on';
 
 //Relative URLs for swapping across app service deployment slots
-define('WP_HOME', 'https://'. $_SERVER['HTTP_HOST']);
-define('WP_SITEURL', 'https://'. $_SERVER['HTTP_HOST']);
+define('WP_HOME', 'http://'. $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', 'http://'. $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
