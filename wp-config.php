@@ -19,7 +19,7 @@
  */
 
 //Using environment variables for memory limits
-$wp_memory_limit =  = (getenv('WP_MEMORY_LIMIT')) ? getenv('WP_MEMORY_LIMIT') : '128M';
+$wp_memory_limit = (getenv('WP_MEMORY_LIMIT')) ? getenv('WP_MEMORY_LIMIT') : '128M';
 $wp_max_memory_limit = (getenv('WP_MAX_MEMORY_LIMIT')) ? getenv('WP_MAX_MEMORY_LIMIT') : '256M';
 
 /** General WordPress memory limit for PHP scripts*/
