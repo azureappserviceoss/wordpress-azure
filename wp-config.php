@@ -19,8 +19,8 @@
  */
 
 //Using environment variables for memory limits
-$wp_memory_limit = (getenv('WP_MEMORY_LIMIT')) ? getenv('WP_MEMORY_LIMIT') : '128M';
-$wp_max_memory_limit = (getenv('WP_MAX_MEMORY_LIMIT')) ? getenv('WP_MAX_MEMORY_LIMIT') : '256M';
+$wp_memory_limit = (getenv('WP_MEMORY_LIMIT') && preg_match("/^[0-9]+M$/", getenv('WP_MEMORY_LIMIT'))) ? getenv('WP_MEMORY_LIMIT') : '128M';
+$wp_max_memory_limit = (getenv('WP_MAX_MEMORY_LIMIT') && preg_match("/^[0-9]+M$/", getenv('WP_MAX_MEMORY_LIMIT'))) ? getenv('WP_MAX_MEMORY_LIMIT') : '256M';
 
 /** General WordPress memory limit for PHP scripts*/
 define('WP_MEMORY_LIMIT', $wp_memory_limit );
@@ -109,9 +109,14 @@ define( 'WP_DEBUG', false );
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
 	$_SERVER['HTTPS'] = 'on';
 
+$http_protocol='http://';
+if (!is_numeric(strpos($_SERVER['HTTP_HOST'], "127.0.0.1")) && !is_numeric(strpos(strtolower($_SERVER['HTTP_HOST']), "localhost"))) {
+	$http_protocol='https://';
+}
+
 //Relative URLs for swapping across app service deployment slots
-define('WP_HOME', 'https://'. $_SERVER['HTTP_HOST']);
-define('WP_SITEURL', 'https://'. $_SERVER['HTTP_HOST']);
+define('WP_HOME', $http_protocol . $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', $http_protocol . $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
