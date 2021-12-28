@@ -110,7 +110,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 	$_SERVER['HTTPS'] = 'on';
 
 $http_protocol='http://';
-if (!is_numeric(strpos($_SERVER['HTTP_HOST'], "127.0.0.1")) && !is_numeric(strpos(strtolower($_SERVER['HTTP_HOST']), "localhost"))) {
+if (!preg_match("/^localhost(:[0-9])*/", $_SERVER['HTTP_HOST']) && !preg_match("/^127\.0\.0\.1(:[0-9])*/", $_SERVER['HTTP_HOST'])) {
 	$http_protocol='https://';
 }
 
