@@ -18,17 +18,26 @@
  * @package WordPress
  */
 
+//Using environment variables for memory limits
+$wp_memory_limit = (getenv('WP_MEMORY_LIMIT') && preg_match("/^[0-9]+M$/", getenv('WP_MEMORY_LIMIT'))) ? getenv('WP_MEMORY_LIMIT') : '128M';
+$wp_max_memory_limit = (getenv('WP_MAX_MEMORY_LIMIT') && preg_match("/^[0-9]+M$/", getenv('WP_MAX_MEMORY_LIMIT'))) ? getenv('WP_MAX_MEMORY_LIMIT') : '256M';
+
+/** General WordPress memory limit for PHP scripts*/
+define('WP_MEMORY_LIMIT', $wp_memory_limit );
+
+/** WordPress memory limit for Admin panel scripts */
+define('WP_MAX_MEMORY_LIMIT', $wp_max_memory_limit );
+
+
 //Using environment variables for DB connection information
 
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-
 $connectstr_dbhost = getenv('DATABASE_HOST');
 $connectstr_dbname = getenv('DATABASE_NAME');
 $connectstr_dbusername = getenv('DATABASE_USERNAME');
 $connectstr_dbpassword = getenv('DATABASE_PASSWORD');
 
-
+/** The name of the database for WordPress */
 define('DB_NAME', $connectstr_dbname);
 
 /** MySQL database username */
@@ -100,9 +109,14 @@ define( 'WP_DEBUG', false );
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
 	$_SERVER['HTTPS'] = 'on';
 
+$http_protocol='http://';
+if (!preg_match("/^localhost(:[0-9])*/", $_SERVER['HTTP_HOST']) && !preg_match("/^127\.0\.0\.1(:[0-9])*/", $_SERVER['HTTP_HOST'])) {
+	$http_protocol='https://';
+}
+
 //Relative URLs for swapping across app service deployment slots
-define('WP_HOME', 'https://'. $_SERVER['HTTP_HOST']);
-define('WP_SITEURL', 'https://'. $_SERVER['HTTP_HOST']);
+define('WP_HOME', $http_protocol . $_SERVER['HTTP_HOST']);
+define('WP_SITEURL', $http_protocol . $_SERVER['HTTP_HOST']);
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', $_SERVER['HTTP_HOST']);
 
