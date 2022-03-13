@@ -1,0 +1,2 @@
+jQuery((function(t){"use strict";t("body").on("click","a.smush-stats-details",(function(s){if(t(this).prop("disabled"))return!1;s.preventDefault();var e=t(this).find(".stats-toggle");t(this).parents().eq(1).find(".smush-stats-wrapper").slideToggle(),e.text("+"==e.text()?"-":"+")}))}));
+//# sourceMappingURL=smush-admin-common.min.js.map

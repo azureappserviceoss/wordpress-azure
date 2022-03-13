@@ -1,0 +1,18 @@
+/* ****************************************************************************
+ * MODULE: VARIABLES
+ */
+
+$font--path: "../fonts" !default;
+$img--path: "../images" !default;
+
+$sui-font-path: '~@wpmudev/shared-ui/dist/fonts/';
+
+$summary-image: '#{$img--path}/smush-graphic-dashboard-summary.svg';
+
+// Promo banners for free footer
+$cross-sell-1:       'hummingbird';
+$cross-sell-2:       'defender';
+$cross-sell-3:       'smartcrawl';
+
+$upgrade-image: '../../app/assets/images/hero@2x.png';
+$upgrade-image-mobile: '../../app/assets/images/hero.png';

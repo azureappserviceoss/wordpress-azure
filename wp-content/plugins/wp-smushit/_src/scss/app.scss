@@ -1,0 +1,58 @@
+// This needs to be here.
+@import "modules/variables";
+
+// Share UI styles
+@import "~@wpmudev/shared-ui/scss/functions";
+@import "~@wpmudev/shared-ui/scss/colors";
+@import "~@wpmudev/shared-ui/scss/variables";
+@import "~@wpmudev/shared-ui/scss/mixins";
+@import "~@wpmudev/shared-ui/scss/accessibility";
+@import "~@wpmudev/shared-ui/scss/animations";
+@import "~@wpmudev/shared-ui/scss/typography";
+@import "~@wpmudev/shared-ui/scss/icons";
+@import "~@wpmudev/shared-ui/scss/buttons";
+@import "~@wpmudev/shared-ui/scss/toggles";
+@import "~@wpmudev/shared-ui/scss/boxes";
+@import "~@wpmudev/shared-ui/scss/box-settings";
+@import "~@wpmudev/shared-ui/scss/layout";
+@import "~@wpmudev/shared-ui/scss/notifications";
+@import "~@wpmudev/shared-ui/scss/header";
+@import "~@wpmudev/shared-ui/scss/summary";
+@import "~@wpmudev/shared-ui/scss/list";
+@import "~@wpmudev/shared-ui/scss/tooltips";
+@import "~@wpmudev/shared-ui/scss/select2";
+@import "~@wpmudev/shared-ui/scss/tags";
+@import "~@wpmudev/shared-ui/scss/forms";
+@import "~@wpmudev/shared-ui/scss/radio-checkbox";
+@import "~@wpmudev/shared-ui/scss/tabs";;
+@import "~@wpmudev/shared-ui/scss/sidenav";
+@import "~@wpmudev/shared-ui/scss/dropdowns";
+@import "~@wpmudev/shared-ui/scss/scores";
+@import "~@wpmudev/shared-ui/scss/footer";
+@import "~@wpmudev/shared-ui/scss/progress-bars";
+@import "~@wpmudev/shared-ui/scss/modals";
+@import "~@wpmudev/shared-ui/scss/utility";
+@import "~@wpmudev/shared-ui/scss/wp-admin-notices";
+@import "~@wpmudev/shared-ui/scss/tables";
+@import "~@wpmudev/shared-ui/scss/accordions";
+// Used on lazy loading page (since 3.2.2).
+@import "~@wpmudev/shared-ui/scss/box-selectors";
+@import "~@wpmudev/shared-ui/scss/upload";
+@import "~@wpmudev/shared-ui/scss/_colorpickers.scss";
+// Upgrade page (since 3.2.3).
+@import "~@wpmudev/shared-ui/scss/upgrade-page";
+@import "~@wpmudev/shared-ui/scss/reviews";
+// Used on WebP page (since 3.8.0).
+@import "~@wpmudev/shared-ui/scss/_code-snippet.scss";
+// Upsells (since 3.9.1).
+@import "~@wpmudev/shared-ui/scss/upsells";
+
+// App styles
+@import "modules/admin";
+@import "modules/directory-smush";
+@import "modules/cdn";
+@import "modules/webp";
+
+// SUI Color Accessibility
+@import "~@wpmudev/shared-ui/scss/color-accessibility";
+@import "accessibility/color-accessibility";

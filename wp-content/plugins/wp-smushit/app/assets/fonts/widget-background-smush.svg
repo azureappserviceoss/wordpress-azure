@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1160px" height="282px" viewBox="0 0 1160 282" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 63.1 (101010) - https://sketch.com -->
+    <title>746CD678-3498-40DD-881C-3BDFFD316D52@3x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M45.2434076,1.09077368 L209.345,278.415757 L15.8088163,278.420668 C5.52850892,245.342422 0,210.243077 0,173.88174 C0,111.246765 16.4044688,52.3564314 45.2434076,1.09077368 Z M735,173.88174 C735,210.242944 729.471531,245.342166 719.191296,278.420305 L521.611,278.415757 L686.362,0.000757320254 L689.140534,0.000128493021 C718.361795,51.5204993 735,110.802121 735,173.88174 Z" id="path-1"></path>
+    </defs>
+    <g id="Bulk-Smush" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Free-/-Bulk-Smush---Large-screen" transform="translate(-410.000000, -242.000000)">
+            <g id="Body" transform="translate(410.000000, 0.000000)">
+                <g id="Bulk-Smush-/-Advanced-Settings---Free-Upsell-widget-large-screen" transform="translate(0.000000, 183.000000)">
+                    <g id="Graphic/widget-background-smush-icon" transform="translate(0.000000, 59.225748)">
+                        <rect id="Rectangle" fill="#F6F6F6" x="0" y="1" width="1160" height="280.395286"></rect>
+                        <rect id="Rectangle" fill="#FAFAFA" x="259" y="1" width="642" height="280.395286"></rect>
+                        <rect id="Rectangle" fill="#FFFFFF" transform="translate(580.000000, 0.506346) scale(1, -1) translate(-580.000000, -0.506346) " x="0" y="0.0126926564" width="1160" height="1"></rect>
+                        <g id="smush-icon-background" transform="translate(216.000000, 1.987307)">
+                            <g id="Combined-Shape">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use fill="#F6F6F6" xlink:href="#path-1"></use>
+                            </g>
+                            <polygon id="Rectangle" fill="#EAEAEA" opacity="0.364653088" points="244 80.3950266 491 80.3950266 367.5 279.407978"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

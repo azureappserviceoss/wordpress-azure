@@ -1,0 +1,2 @@
+!function(){"use strict";document.addEventListener("DOMContentLoaded",(function(){var t=document.getElementById("smush-dismiss-conflict-notice");t&&t.addEventListener("click",n);var e=document.querySelector("#smush-conflict-notice > .notice-dismiss");function n(){var t=new XMLHttpRequest;t.open("POST",ajaxurl+"?action=dismiss_check_for_conflicts",!0),t.onload=function(){var t=document.querySelector("#smush-conflict-notice > button.notice-dismiss");t&&t.trigger("click")},t.send()}e&&e.addEventListener("click",n)}))}();
+//# sourceMappingURL=smush-global.min.js.map
