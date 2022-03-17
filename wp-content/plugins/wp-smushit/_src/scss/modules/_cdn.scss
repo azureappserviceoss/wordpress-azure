@@ -1,0 +1,66 @@
+@import "variables";
+
+/**
+ * CDN styles
+ *
+ * @since 3.0
+ */
+
+@include body-class {
+
+    .sui-wrap {
+
+        .sui-box-settings-row .sui-box-settings-col-1 {
+            vertical-align: top;
+        }
+
+        &.wrap-smush-cdn .sui-block-content-center p {
+            max-width: 600px;
+            margin: 20px auto 30px;
+        }
+
+        .sui-cdn {
+            form p:first-of-type {
+                margin-top: 0;
+            }
+        }
+
+        .wp-smush-stats {
+            display: flex;
+            align-items: center;
+            line-height: 0;
+
+            .sui-tooltip {
+                line-height: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        /* Filename Extensions Icons */
+        .smush-filename-extension {
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 43px;
+            height: 30px;
+            margin: 0 5px 0 0;
+            width: 30px;
+
+            &.smush-extension-jpeg,
+            &.smush-extension-jpg { background-color: #F7E100; }
+            &.smush-extension-png { background-color: #FFB694; }
+            &.smush-extension-gif { background-color: #72D5D4; }
+            &.smush-extension-webp { background-color: #72ADD5; }
+            &.smush-extension-svg { background-color: #88D572; }
+            &.smush-extension-iframe {
+                background-color: #8772D5;
+                font-size: 7px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'wpmudev-close-icon';
+    src:  url('../fonts/wpmudev-close-icon.eot?v4kr59');
+    src:  url('../fonts/wpmudev-close-icon.eot?v4kr59#iefix') format('embedded-opentype'),
+    url('../fonts/wpmudev-close-icon.woff2?v4kr59') format('woff2'),
+    url('../fonts/wpmudev-close-icon.ttf?v4kr59') format('truetype'),
+    url('../fonts/wpmudev-close-icon.woff?v4kr59') format('woff'),
+    url('../fonts/wpmudev-close-icon.svg?v4kr59#wpmudev-close-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'wpmudev-close-icon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-close:before {
+    content: "\29";
+    color: #AAAAAA;
+
+    -webkit-transition: ease-in-out .2s;
+    transition: ease-in-out .2s;
+}
+
+.wpmudev-recommended-plugins {
+    position: relative;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    padding: 25px 30px 30px;
+    -webkit-box-shadow: 0 2px 0 #E6E6E6;
+    box-shadow: 0 2px 0 #E6E6E6;
+    margin-bottom: 30px;
+    -webkit-transition: ease-in-out .2s;
+    transition: ease-in-out .2s;
+}
+
+
+.wpmudev-recommended-plugins .wpmudev-recommended-plugins-dismiss {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.wpmudev-recommended-plugins .wpmudev-recommended-plugins-dismiss a {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.wpmudev-recommended-plugins .wpmudev-recommended-plugins-dismiss:hover .icon-close:before {
+    color: #888888;
+}
+div.wpmudev-recommended-plugins p.wpmudev-notice-status {
+    font-size: 13px;
+    color: #888888;
+    margin-bottom: 25px !important;
+    line-height: 22px;
+}
+
+.wpmudev-recommended-plugins h3.wpmudev-plugin-name {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 22px;
+    margin-bottom: 2px;
+    -webkit-transition: ease-in-out .2s;
+    transition: ease-in-out .2s;
+}
+
+.wpmudev-recommended-plugins p.wpmudev-plugin-description {
+    font-family: "Roboto", Arial, sans-serif;
+    color: #888888;
+    font-size: 13px;
+    letter-spacing: -0.25px;
+    line-height: 18px;
+    margin: 0;
+}
+
+
+.wpmudev-recommended-plugin-blocks {
+    display: flex;
+}
+.wpmudev-recommended-plugin-block {
+    width: 50%;
+    min-height: 60px;
+}
+
+.wpmudev-recommended-plugin-block-image {
+    position: absolute;
+}
+.wpmudev-recommended-plugin-block-detail {
+    margin: 0 15px 0 75px;
+}
+
+.wpmudev-recommended-plugin-block-detail {
+    vertical-align: middle;
+}
+.wpmudev-recommended-plugin-block-image img {
+    border-radius: 4px;
+    width: 60px;
+    -webkit-transition: ease-in-out .2s;
+    transition: ease-in-out .2s;
+}
+.wpmudev-recommended-plugin-block:hover img {
+    opacity: .8;
+}
+.wpmudev-recommended-plugin-block:hover h3.wpmudev-plugin-name {
+    color: #666666;
+}
+
+
+/* Don't display the notice on screens smaller than 782px */
+@media only screen and (max-width: 782px) {
+    .wpmudev-recommended-plugins {
+        display: none;
+    }
+}
+
+/* Color accessible close icon */
+.sui-wrap.sui-color-accessible .wpmudev-recommended-plugins .wpmudev-recommended-plugins-dismiss .icon-close:before {
+    color: #000000;
+}

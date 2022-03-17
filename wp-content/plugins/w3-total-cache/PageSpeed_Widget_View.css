@@ -1,0 +1,60 @@
+.w3tcps_error {
+    position: absolute;
+}
+
+.w3tcps_scores {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.w3tcps_scores p {
+	padding: 0 10px;
+}
+
+.w3tcps_scores section {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.w3tcps_metric {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.w3tcps_barline {
+	display: flex;
+    font-size: 14px;
+	margin-bottom: 2px;
+}
+
+.w3tcps_barline div {
+	text-align: left;
+	padding-left: 10px;
+	min-width: 38px;
+	position: relative;
+}
+
+.w3tcps_barfast {
+	background-color: #0cc66b;
+	color: #fff;
+}
+
+.w3tcps_baraverage {
+	background-color: #ffa400;
+	color: #000;
+}
+
+.w3tcps_barslow {
+	background-color: #ff4e42;
+	color: #fff;
+}
+
+.w3tcps_buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.w3tcps_buttons .button {
+	margin: 5px;
+}
