@@ -9,6 +9,17 @@
 - For configuring database, please add the database connection string to App Service configuration.
 - By default SSL is enabled for MYSQL database connections. You can add a new App setting **DB_SSL_CONNECTION** and set it to false to disable the SSL option.
 
+## Template Parameters
+
+- Resource Group - Select a resource group for the template resources
+- Region - Resource group region, automatically selected when selecting the resource group
+- Site Name - Globally unique name of site, final site URL will be [Site Name]+.azurewebsites.net
+- Hosting Plan Name - App Service Plan name
+- Site Location - Region for the site
+- Sku - Free, Basic or Standard
+- Repo Url - Url of this Wordpress for Azure App Services repo (https://github.com/azureappserviceoss/wordpress-azure) or another repo
+- Branch - Branch name of above repo
+
 ## Overview of WordPress
 
 WordPress is a free and open source content management system (CMS) based on PHP and MySQL. It is the most widely used CMS software in the world, and as of June 2021, it powers more than 40% of the top 10 million websites and has an estimated 64% market share of all websites built using a CMS.
