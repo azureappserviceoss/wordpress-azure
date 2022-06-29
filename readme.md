@@ -1,4 +1,4 @@
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/). 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazureappserviceoss%2Fwordpress-azure%2Fmaster%2Fazuredeploy.json). 
 
 
 # Wordpress for Azure App Services (Windows)
