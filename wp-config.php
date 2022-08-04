@@ -129,7 +129,8 @@ define('WP_SITEURL', 'http://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_S
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
 
-
+/* Multisite */
+define( 'WP_ALLOW_MULTISITE', true );
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
