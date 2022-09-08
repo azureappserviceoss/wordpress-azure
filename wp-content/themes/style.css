@@ -1,0 +1,115 @@
+/* Theme name: Skebopub_tema
+Description: Skebopubens ny hemsida
+Author: Ingrida Kutriene/Intromedia
+Version: 1.0
+*/
+
+
+
+* {
+    outline: none;
+
+}
+
+
+.navbar {
+    background-color: #E7E7E7 !important;
+    display: flex;
+
+}
+
+.collapse.navbar-collapse {
+    justify-content: right;
+}
+
+a.nav-item {
+    color: rgba(3, 29, 69) !important;
+}
+
+a.nav-item:hover {
+    color: rgb(6, 65, 154) !important;
+
+}
+
+.social_ic {
+
+    border-style: none none none solid;
+    border-width: 1px;
+    margin-left: 2%;
+    padding-left: 4%;
+    padding: 1%;
+    
+}
+
+.bg { 
+    background-image: url("/wp-content/uploads/2022/09/backgr.jpg");
+    height: 100%; 
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+
+  }
+
+
+.logo img {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    width: 25%;
+    height: 25%;
+    opacity: 0.8;
+    padding-top: 10%;
+   
+}
+
+ @media only screen and (min-width: 548px) and (max-width: 846px)   {
+
+    .logo img {
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        width: 40%;
+        height: 40%;
+        opacity: 0.8;
+        padding-top: 15%;
+       
+    }
+
+    button.navbar-toggler {
+        margin: 0 auto;
+    }
+
+
+}
+
+@media only screen and (max-width: 548px) {
+    
+
+    .logo img {
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        width: 70%;
+        height: 70%;
+        opacity: 0.8;
+        padding-top: 30%;
+       
+    }
+
+    button.navbar-toggler {
+        margin: 0 auto;
+    }
+  
+
+}
+
+
+
+
+
+
+
+
+
