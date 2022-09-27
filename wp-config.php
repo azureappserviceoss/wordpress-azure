@@ -36,6 +36,12 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
+if (empty($connectstr_dbhost) && empty($_ENV['AZURE_MYSQL_HOST']) == false) {
+    $connectstr_dbhost = $_ENV['AZURE_MYSQL_HOST'];
+    $connectstr_dbname = $_ENV['AZURE_MYSQL_DBNAME'];
+    $connectstr_dbusername = $_ENV['AZURE_MYSQL_USERNAME'];
+    $connectstr_dbpassword = $_ENV['AZURE_MYSQL_PASSWORD'];
+}
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -60,6 +66,9 @@ define('DB_COLLATE', '');
 
 /** Enabling support for connecting external MYSQL over SSL*/
 $mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
+if (empty($mysql_sslconnect) && empty($_ENV['AZURE_MYSQL_FLAG']) == false && strpos($_ENV['AZURE_MYSQL_FLAG'], "MYSQLI_CLIENT_SSL") >= 0) {
+	$mysql_sslconnect = 'true';
+}
 if (strtolower($mysql_sslconnect) != 'false' && !is_numeric(strpos($connectstr_dbhost, "127.0.0.1")) && !is_numeric(strpos(strtolower($connectstr_dbhost), "localhost"))) {
 	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
 }
