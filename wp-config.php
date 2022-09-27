@@ -36,11 +36,11 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
-if (empty($connectstr_dbhost) && empty($_ENV['AZURE_MYSQL_HOST']) == false) {
-    $connectstr_dbhost = $_ENV['AZURE_MYSQL_HOST'];
-    $connectstr_dbname = $_ENV['AZURE_MYSQL_DBNAME'];
-    $connectstr_dbusername = $_ENV['AZURE_MYSQL_USERNAME'];
-    $connectstr_dbpassword = $_ENV['AZURE_MYSQL_PASSWORD'];
+if (empty($connectstr_dbhost) && empty(getenv('AZURE_MYSQL_HOST')) == false) {
+    $connectstr_dbhost = getenv('AZURE_MYSQL_HOST');
+    $connectstr_dbname = getenv('AZURE_MYSQL_DBNAME');
+    $connectstr_dbusername = getenv('AZURE_MYSQL_USERNAME');
+    $connectstr_dbpassword = getenv('AZURE_MYSQL_PASSWORD');
 }
 
 // ** MySQL settings - You can get this info from your web host ** //
@@ -62,17 +62,15 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
-
-
 /** Enabling support for connecting external MYSQL over SSL*/
 $mysql_sslconnect = (getenv('DB_SSL_CONNECTION')) ? getenv('DB_SSL_CONNECTION') : 'true';
-if (empty($mysql_sslconnect) && empty($_ENV['AZURE_MYSQL_FLAG']) == false && strpos($_ENV['AZURE_MYSQL_FLAG'], "MYSQLI_CLIENT_SSL") >= 0) {
+if (empty($mysql_sslconnect) && empty(getenv('AZURE_MYSQL_FLAG')) == false && strpos(getenv('AZURE_MYSQL_FLAG'), "MYSQLI_CLIENT_SSL") >= 0) {
 	$mysql_sslconnect = 'true';
 }
 if (strtolower($mysql_sslconnect) != 'false' && !is_numeric(strpos($connectstr_dbhost, "127.0.0.1")) && !is_numeric(strpos(strtolower($connectstr_dbhost), "localhost"))) {
-	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL);
+	define('MYSQL_SSL_CA', 'BaltimoreCyberTrustRoot.crt.pem');
+	define('MYSQL_CLIENT_FLAGS', MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
 }
-
 
 /**#@+
  * Authentication unique keys and salts.
@@ -138,6 +136,12 @@ define('WP_SITEURL', 'http://'. filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_S
 define('WP_CONTENT_URL', '/wp-content');
 define('DOMAIN_CURRENT_SITE', filter_input(INPUT_SERVER, 'HTTP_HOST', FILTER_SANITIZE_STRING));
 
+
+// If we're behind a proxy server and using HTTPS, we need to alert Wordpress of that fact
+// see also http://codex.wordpress.org/Administration_Over_SSL#Using_a_Reverse_Proxy
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+	$_SERVER['HTTPS'] = 'on';
+}
 
 /* That's all, stop editing! Happy publishing. */
 
