@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -70,8 +76,11 @@
  */
 :root {
   --wp-admin-theme-color: #007cba;
+  --wp-admin-theme-color--rgb: 0, 124, 186;
   --wp-admin-theme-color-darker-10: #006ba1;
+  --wp-admin-theme-color-darker-10--rgb: 0, 107, 161;
   --wp-admin-theme-color-darker-20: #005a87;
+  --wp-admin-theme-color-darker-20--rgb: 0, 90, 135;
   --wp-admin-border-width-focus: 2px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -108,7 +117,7 @@
 }
 @media (min-width: 782px) {
   .customize-widgets-header {
-    margin-bottom: 76px;
+    margin-bottom: 44px;
   }
 }
 .customize-widgets-header.is-fixed-toolbar-active {
@@ -175,9 +184,6 @@
 .customize-widgets-keyboard-shortcut-help-modal__section {
   margin: 0 0 2rem 0;
 }
-.customize-widgets-keyboard-shortcut-help-modal__main-shortcuts .customize-widgets-keyboard-shortcut-help-modal__shortcut-list {
-  margin-top: -25px;
-}
 .customize-widgets-keyboard-shortcut-help-modal__section-title {
   font-size: 0.9rem;
   font-weight: 600;
@@ -223,39 +229,6 @@
   margin: 0 0.2rem 0 0;
 }
 
-.customize-widgets-more-menu {
-  margin-right: -4px;
-}
-.customize-widgets-more-menu .components-button {
-  width: auto;
-  padding: 0 2px;
-}
-@media (min-width: 600px) {
-  .customize-widgets-more-menu {
-    margin-right: 0;
-  }
-  .customize-widgets-more-menu .components-button {
-    padding: 0 4px;
-  }
-}
-
-.customize-widgets-more-menu__content .components-popover__content {
-  min-width: 280px;
-}
-@media (min-width: 480px) {
-  .customize-widgets-more-menu__content .components-popover__content {
-    width: auto;
-    max-width: 480px;
-  }
-}
-.customize-widgets-more-menu__content .components-popover__content .components-dropdown-menu__menu {
-  padding: 0;
-}
-
-.components-popover.customize-widgets-more-menu__content {
-  z-index: 99998;
-}
-
 .block-editor-block-contextual-toolbar.is-fixed {
   top: 0;
   margin-right: -12px;
@@ -266,8 +239,13 @@
 }
 
 .customize-control-sidebar_block_editor .block-editor-block-list__block-popover {
-  position: fixed;
+  position: fixed !important;
   z-index: 7;
+}
+
+.customize-widgets-popover .components-popover,
+.customize-control-sidebar_block_editor .components-popover {
+  position: fixed !important;
 }
 
 .customize-widgets-welcome-guide__image__wrapper {

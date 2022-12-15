@@ -42,6 +42,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -72,15 +78,13 @@
 .wp-block-separator {
   border-top: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
-}
-.wp-block-separator.is-style-wide {
-  border-bottom-width: 1px;
+  border-left: none;
+  border-right: none;
 }
 .wp-block-separator.is-style-dots {
   background: none !important;
   border: none;
   text-align: center;
-  width: none;
   line-height: 1;
   height: auto;
 }

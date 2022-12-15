@@ -1,3 +1,9 @@
+<?php
+
+//phpcs:disable VariableAnalysis
+// There are "undefined" variables here because they're defined in the code that includes this file as a template.
+
+?>
 <div id="akismet-plugin-container">
 	<div class="akismet-masthead">
 		<div class="akismet-masthead__inside-container">
@@ -15,21 +21,23 @@
 				<?php Akismet::view( 'notice', $notice ); ?>
 			<?php } ?>
 		<?php } ?>
-		<?php if ( $stat_totals && isset( $stat_totals['all'] ) && (int) $stat_totals['all']->spam > 0 ) : ?>
-			<div class="akismet-card">
-				<div class="akismet-section-header">
-					<div class="akismet-section-header__label">
-						<span><?php esc_html_e( 'Statistics' , 'akismet'); ?></span>
-					</div>
-					<div class="akismet-section-header__actions">
-						<a href="<?php echo esc_url( Akismet_Admin::get_page_url( 'stats' ) ); ?>">
-							<?php esc_html_e( 'Detailed Stats' , 'akismet');?>
-						</a>
-					</div>
+
+		<div class="akismet-card">
+			<div class="akismet-section-header">
+				<div class="akismet-section-header__label">
+					<span><?php esc_html_e( 'Statistics', 'akismet' ); ?></span>
 				</div>
-				
+
+			<?php if ( $stat_totals && isset( $stat_totals['all'] ) && (int) $stat_totals['all']->spam > 0 ) : ?>
+				<div class="akismet-section-header__actions">
+					<a href="<?php echo esc_url( Akismet_Admin::get_page_url( 'stats' ) ); ?>">
+						<?php esc_html_e( 'Detailed Stats', 'akismet' ); ?>
+					</a>
+				</div>
+			</div> <!-- close akismet-section-header -->
+
 				<div class="akismet-new-snapshot">
-					<iframe allowtransparency="true" scrolling="no" frameborder="0" style="width: 100%; height: 220px; overflow: hidden;" src="<?php printf( '//akismet.com/web/1.0/snapshot.php?blog=%s&api_key=%s&height=200&locale=%s', urlencode( get_option( 'home' ) ), Akismet::get_api_key(), get_locale() );?>"></iframe>
+					<iframe allowtransparency="true" scrolling="no" frameborder="0" style="width: 100%; height: 220px; overflow: hidden;" src="<?php echo esc_url( sprintf( 'https://tools.akismet.com/1.0/snapshot.php?blog=%s&api_key=%s&height=200&locale=%s', urlencode( get_option( 'home' ) ), Akismet::get_api_key(), get_locale() ) ); ?>"></iframe>
 					<ul>
 						<li>
 							<h3><?php esc_html_e( 'Past six months' , 'akismet');?></h3>
@@ -49,11 +57,18 @@
 							<?php printf( _n( '%s false positive', '%s false positives', $stat_totals['all']->false_positives, 'akismet' ), number_format( $stat_totals['all']->false_positives ) ); ?>
 						</li>
 					</ul>
-				</div>
-			</div>
-		<?php endif;?>
+				</div> <!-- close akismet-new-snapshot -->
 
-		<?php if ( $akismet_user ):?>
+			<?php else : ?>
+			</div> <!-- close akismet-section-header -->
+			<div class="inside">
+				<p>Akismet is active and ready to stop spam. Your site's spam statistics will be displayed here.</p>
+			</div>
+			<?php endif; ?>
+
+		</div> <!-- close akismet-card -->
+
+		<?php if ( $akismet_user ) : ?>
 			<div class="akismet-card">
 				<div class="akismet-section-header">
 					<div class="akismet-section-header__label">
@@ -67,7 +82,9 @@
 							<tbody>
 								<?php if ( ! Akismet::predefined_api_key() ) { ?>
 								<tr>
-									<th class="akismet-api-key" width="10%" align="left" scope="row"><?php esc_html_e('API Key', 'akismet');?></th>
+									<th class="akismet-api-key" width="10%" align="left" scope="row">
+										<label for="key"><?php esc_html_e( 'API Key', 'akismet' ); ?></label>
+									</th>
 									<td width="5%"/>
 									<td align="left">
 										<span class="api-key"><input id="key" name="key" type="text" size="15" value="<?php echo esc_attr( get_option('wordpress_api_key') ); ?>" class="<?php echo esc_attr( 'regular-text code ' . $akismet_user->status ); ?>"></span>

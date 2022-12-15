@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -72,16 +78,16 @@
   margin: 0 0 1em 0;
   padding: 3em 0;
   text-align: center;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+.wp-block-pullquote p,
+.wp-block-pullquote blockquote,
+.wp-block-pullquote cite {
+  color: inherit;
 }
 .wp-block-pullquote.alignleft, .wp-block-pullquote.alignright {
   max-width: 420px;
-}
-.wp-block-pullquote.alignleft p, .wp-block-pullquote.alignright p {
-  font-size: 1.25em;
-}
-.wp-block-pullquote p {
-  font-size: 1.75em;
-  line-height: 1.6;
 }
 .wp-block-pullquote cite,
 .wp-block-pullquote footer {
@@ -91,8 +97,12 @@
   color: inherit;
 }
 
-.wp-block-pullquote:not(.is-style-solid-color) {
-  background: none;
+.wp-block-pullquote.has-text-align-left blockquote {
+  text-align: left;
+}
+
+.wp-block-pullquote.has-text-align-right blockquote {
+  text-align: right;
 }
 
 .wp-block-pullquote.is-style-solid-color {
@@ -101,7 +111,6 @@
 .wp-block-pullquote.is-style-solid-color blockquote {
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
   max-width: 60%;
 }
 .wp-block-pullquote.is-style-solid-color blockquote p {

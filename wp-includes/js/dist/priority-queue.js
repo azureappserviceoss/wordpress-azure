@@ -1,103 +1,312 @@
-this["wp"] = this["wp"] || {}; this["wp"]["priorityQueue"] =
-/******/ (function(modules) { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 3159:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}(function(){
+	'use strict';
+	var scheduleStart, throttleDelay, lazytimer, lazyraf;
+	var root = typeof window != 'undefined' ?
+		window :
+		typeof __webpack_require__.g != undefined ?
+			__webpack_require__.g :
+			this || {};
+	var requestAnimationFrame = root.cancelRequestAnimationFrame && root.requestAnimationFrame || setTimeout;
+	var cancelRequestAnimationFrame = root.cancelRequestAnimationFrame || clearTimeout;
+	var tasks = [];
+	var runAttempts = 0;
+	var isRunning = false;
+	var remainingTime = 7;
+	var minThrottle = 35;
+	var throttle = 125;
+	var index = 0;
+	var taskStart = 0;
+	var tasklength = 0;
+	var IdleDeadline = {
+		get didTimeout(){
+			return false;
+		},
+		timeRemaining: function(){
+			var timeRemaining = remainingTime - (Date.now() - taskStart);
+			return timeRemaining < 0 ? 0 : timeRemaining;
+		},
+	};
+	var setInactive = debounce(function(){
+		remainingTime = 22;
+		throttle = 66;
+		minThrottle = 0;
+	});
+
+	function debounce(fn){
+		var id, timestamp;
+		var wait = 99;
+		var check = function(){
+			var last = (Date.now()) - timestamp;
+
+			if (last < wait) {
+				id = setTimeout(check, wait - last);
+			} else {
+				id = null;
+				fn();
+			}
+		};
+		return function(){
+			timestamp = Date.now();
+			if(!id){
+				id = setTimeout(check, wait);
+			}
+		};
+	}
+
+	function abortRunning(){
+		if(isRunning){
+			if(lazyraf){
+				cancelRequestAnimationFrame(lazyraf);
+			}
+			if(lazytimer){
+				clearTimeout(lazytimer);
+			}
+			isRunning = false;
+		}
+	}
+
+	function onInputorMutation(){
+		if(throttle != 125){
+			remainingTime = 7;
+			throttle = 125;
+			minThrottle = 35;
+
+			if(isRunning) {
+				abortRunning();
+				scheduleLazy();
+			}
+		}
+		setInactive();
+	}
+
+	function scheduleAfterRaf() {
+		lazyraf = null;
+		lazytimer = setTimeout(runTasks, 0);
+	}
+
+	function scheduleRaf(){
+		lazytimer = null;
+		requestAnimationFrame(scheduleAfterRaf);
+	}
+
+	function scheduleLazy(){
+
+		if(isRunning){return;}
+		throttleDelay = throttle - (Date.now() - taskStart);
+
+		scheduleStart = Date.now();
+
+		isRunning = true;
+
+		if(minThrottle && throttleDelay < minThrottle){
+			throttleDelay = minThrottle;
+		}
+
+		if(throttleDelay > 9){
+			lazytimer = setTimeout(scheduleRaf, throttleDelay);
+		} else {
+			throttleDelay = 0;
+			scheduleRaf();
+		}
+	}
+
+	function runTasks(){
+		var task, i, len;
+		var timeThreshold = remainingTime > 9 ?
+			9 :
+			1
+		;
+
+		taskStart = Date.now();
+		isRunning = false;
+
+		lazytimer = null;
+
+		if(runAttempts > 2 || taskStart - throttleDelay - 50 < scheduleStart){
+			for(i = 0, len = tasks.length; i < len && IdleDeadline.timeRemaining() > timeThreshold; i++){
+				task = tasks.shift();
+				tasklength++;
+				if(task){
+					task(IdleDeadline);
+				}
+			}
+		}
+
+		if(tasks.length){
+			scheduleLazy();
+		} else {
+			runAttempts = 0;
+		}
+	}
+
+	function requestIdleCallbackShim(task){
+		index++;
+		tasks.push(task);
+		scheduleLazy();
+		return index;
+	}
+
+	function cancelIdleCallbackShim(id){
+		var index = id - 1 - tasklength;
+		if(tasks[index]){
+			tasks[index] = null;
+		}
+	}
+
+	if(!root.requestIdleCallback || !root.cancelIdleCallback){
+		root.requestIdleCallback = requestIdleCallbackShim;
+		root.cancelIdleCallback = cancelIdleCallbackShim;
+
+		if(root.document && document.addEventListener){
+			root.addEventListener('scroll', onInputorMutation, true);
+			root.addEventListener('resize', onInputorMutation);
+
+			document.addEventListener('focus', onInputorMutation, true);
+			document.addEventListener('mouseover', onInputorMutation, true);
+			['click', 'keypress', 'touchstart', 'mousedown'].forEach(function(name){
+				document.addEventListener(name, onInputorMutation, {capture: true, passive: true});
+			});
+
+			if(root.MutationObserver){
+				new MutationObserver( onInputorMutation ).observe( document.documentElement, {childList: true, subtree: true, attributes: true} );
+			}
+		}
+	} else {
+		try{
+			root.requestIdleCallback(function(){}, {timeout: 0});
+		} catch(e){
+			(function(rIC){
+				var timeRemainingProto, timeRemaining;
+				root.requestIdleCallback = function(fn, timeout){
+					if(timeout && typeof timeout.timeout == 'number'){
+						return rIC(fn, timeout.timeout);
+					}
+					return rIC(fn);
+				};
+				if(root.IdleCallbackDeadline && (timeRemainingProto = IdleCallbackDeadline.prototype)){
+					timeRemaining = Object.getOwnPropertyDescriptor(timeRemainingProto, 'timeRemaining');
+					if(!timeRemaining || !timeRemaining.configurable || !timeRemaining.get){return;}
+					Object.defineProperty(timeRemainingProto, 'timeRemaining', {
+						value:  function(){
+							return timeRemaining.get.call(this);
+						},
+						enumerable: true,
+						configurable: true,
+					});
+				}
+			})(root.requestIdleCallback)
+		}
+	}
+
+	return {
+		request: requestIdleCallbackShim,
+		cancel: cancelIdleCallbackShim,
+	};
+}));
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "XPKI");
-/******/ })
+/******/ 	
 /************************************************************************/
-/******/ ({
-
-/***/ "XPKI":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+!function() {
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
-__webpack_require__.d(__webpack_exports__, "createQueue", function() { return /* binding */ createQueue; });
+__webpack_require__.d(__webpack_exports__, {
+  "createQueue": function() { return /* binding */ createQueue; }
+});
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/priority-queue/build-module/request-idle-callback.js
+// EXTERNAL MODULE: ./node_modules/requestidlecallback/index.js
+var requestidlecallback = __webpack_require__(3159);
+;// CONCATENATED MODULE: ./node_modules/@wordpress/priority-queue/build-module/request-idle-callback.js
+/**
+ * External dependencies
+ */
+
 /**
  * @typedef {( timeOrDeadline: IdleDeadline | number ) => void} Callback
  */
@@ -105,6 +314,7 @@ __webpack_require__.d(__webpack_exports__, "createQueue", function() { return /*
 /**
  * @return {(callback: Callback) => void} RequestIdleCallback
  */
+
 function createRequestIdleCallback() {
   if (typeof window === 'undefined') {
     return callback => {
@@ -112,11 +322,11 @@ function createRequestIdleCallback() {
     };
   }
 
-  return window.requestIdleCallback || window.requestAnimationFrame;
+  return window.requestIdleCallback;
 }
 /* harmony default export */ var request_idle_callback = (createRequestIdleCallback());
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/priority-queue/build-module/index.js
+;// CONCATENATED MODULE: ./node_modules/@wordpress/priority-queue/build-module/index.js
 /**
  * Internal dependencies
  */
@@ -156,9 +366,10 @@ function createRequestIdleCallback() {
  *
  * @typedef {Object} WPPriorityQueue
  *
- * @property {WPPriorityQueueAdd}   add   Add callback to queue for context.
- * @property {WPPriorityQueueFlush} flush Flush queue for context.
- * @property {WPPriorityQueueReset} reset Reset queue.
+ * @property {WPPriorityQueueAdd}   add    Add callback to queue for context.
+ * @property {WPPriorityQueueFlush} flush  Flush queue for context.
+ * @property {WPPriorityQueueFlush} cancel Clear queue for context.
+ * @property {WPPriorityQueueReset} reset  Reset queue.
  */
 
 /**
@@ -271,6 +482,29 @@ const createQueue = () => {
     return true;
   };
   /**
+   * Clears the queue for a given context, cancelling the callbacks without
+   * executing them. Returns `true` if there were scheduled callbacks to cancel,
+   * or `false` if there was is no queue for the given context.
+   *
+   * @type {WPPriorityQueueFlush}
+   *
+   * @param {WPPriorityQueueContext} element Context object.
+   *
+   * @return {boolean} Whether any callbacks got cancelled.
+   */
+
+
+  const cancel = element => {
+    if (!elementsMap.has(element)) {
+      return false;
+    }
+
+    const index = waitingList.indexOf(element);
+    waitingList.splice(index, 1);
+    elementsMap.delete(element);
+    return true;
+  };
+  /**
    * Reset the queue without running the pending callbacks.
    *
    * @type {WPPriorityQueueReset}
@@ -286,11 +520,12 @@ const createQueue = () => {
   return {
     add,
     flush,
+    cancel,
     reset
   };
 };
 
-
-/***/ })
-
-/******/ });
+}();
+(window.wp = window.wp || {}).priorityQueue = __webpack_exports__;
+/******/ })()
+;

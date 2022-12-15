@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -83,9 +89,6 @@
   position: relative;
   cursor: text;
 }
-.wp-block-button:not(.has-text-color):not(.is-style-outline) [data-rich-text-placeholder]::after {
-  color: #fff;
-}
 .wp-block-button:focus {
   box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--wp-admin-theme-color);
   outline: 2px solid transparent;
@@ -123,7 +126,6 @@
 .is-selected .wp-block-button__inline-link {
   height: auto;
   overflow: visible;
-  margin-top: 16px;
 }
 
 .wp-button-label__width .components-button-group {
@@ -135,4 +137,8 @@
 
 div[data-type="core/button"] {
   display: table;
+}
+
+.editor-styles-wrapper .wp-block-button[style*=text-decoration] .wp-block-button__link {
+  text-decoration: inherit;
 }

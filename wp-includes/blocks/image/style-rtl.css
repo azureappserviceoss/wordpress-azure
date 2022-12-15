@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -68,26 +74,29 @@
 /**
  * Reset the WP Admin page styles for Gutenberg-like pages.
  */
-.wp-block-image {
-  margin: 0 0 1em 0;
-}
 .wp-block-image img {
+  height: auto;
   max-width: 100%;
+  vertical-align: bottom;
+  box-sizing: border-box;
 }
-.wp-block-image:not(.is-style-rounded) img {
-  border-radius: inherit;
+.wp-block-image.has-custom-border img {
+  box-sizing: border-box;
 }
 .wp-block-image.aligncenter {
   text-align: center;
 }
 .wp-block-image.alignfull img, .wp-block-image.alignwide img {
+  height: auto;
   width: 100%;
 }
+.wp-block-image.alignleft, .wp-block-image.alignright, .wp-block-image.aligncenter,
 .wp-block-image .alignleft,
 .wp-block-image .alignright,
 .wp-block-image .aligncenter {
   display: table;
 }
+.wp-block-image.alignleft > figcaption, .wp-block-image.alignright > figcaption, .wp-block-image.aligncenter > figcaption,
 .wp-block-image .alignleft > figcaption,
 .wp-block-image .alignright > figcaption,
 .wp-block-image .aligncenter > figcaption {
@@ -116,7 +125,8 @@
   margin-top: 0.5em;
   margin-bottom: 1em;
 }
-.wp-block-image.is-style-rounded img {
+.wp-block-image.is-style-rounded img,
+.wp-block-image .is-style-rounded img {
   border-radius: 9999px;
 }
 .wp-block-image.is-style-circle-mask img {
@@ -137,6 +147,36 @@
             mask-position: center;
     border-radius: 0;
   }
+}
+.wp-block-image :where(.has-border-color) {
+  border-style: solid;
+}
+.wp-block-image :where([style*="border-top-color"]) {
+  border-top-style: solid;
+}
+.wp-block-image :where([style*="border-right-color"]) {
+  border-left-style: solid;
+}
+.wp-block-image :where([style*="border-bottom-color"]) {
+  border-bottom-style: solid;
+}
+.wp-block-image :where([style*="border-left-color"]) {
+  border-right-style: solid;
+}
+.wp-block-image :where([style*="border-width"]) {
+  border-style: solid;
+}
+.wp-block-image :where([style*="border-top-width"]) {
+  border-top-style: solid;
+}
+.wp-block-image :where([style*="border-right-width"]) {
+  border-left-style: solid;
+}
+.wp-block-image :where([style*="border-bottom-width"]) {
+  border-bottom-style: solid;
+}
+.wp-block-image :where([style*="border-left-width"]) {
+  border-right-style: solid;
 }
 
 .wp-block-image figure {

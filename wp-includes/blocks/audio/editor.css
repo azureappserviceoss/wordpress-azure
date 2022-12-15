@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -71,4 +77,15 @@
 .wp-block-audio {
   margin-left: 0;
   margin-right: 0;
+  position: relative;
+}
+.wp-block-audio.is-transient audio {
+  opacity: 0.3;
+}
+.wp-block-audio .components-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
 }

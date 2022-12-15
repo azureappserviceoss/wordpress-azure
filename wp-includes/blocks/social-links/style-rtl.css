@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -69,12 +75,12 @@
  * Reset the WP Admin page styles for Gutenberg-like pages.
  */
 .wp-block-social-links {
-  display: flex;
-  flex-wrap: wrap;
+  box-sizing: border-box;
   padding-right: 0;
   padding-left: 0;
   text-indent: 0;
   margin-right: 0;
+  background: none;
 }
 .wp-block-social-links .wp-social-link a,
 .wp-block-social-links .wp-social-link a:hover {
@@ -82,15 +88,17 @@
   border-bottom: 0;
   box-shadow: none;
 }
-.wp-block-social-links .wp-social-link.wp-social-link.wp-social-link {
-  margin: 4px 0 4px 8px;
-}
 .wp-block-social-links .wp-social-link a {
   padding: 0.25em;
 }
 .wp-block-social-links .wp-social-link svg {
   width: 1em;
   height: 1em;
+}
+.wp-block-social-links .wp-social-link span:not(.screen-reader-text) {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.65em;
 }
 .wp-block-social-links.has-small-icon-size {
   font-size: 16px;
@@ -125,7 +133,8 @@
   }
 }
 .wp-block-social-link a {
-  display: block;
+  align-items: center;
+  display: flex;
   line-height: 0;
   transition: transform 0.1s ease;
 }
@@ -240,7 +249,7 @@
   color: #fff;
 }
 .wp-block-social-links:not(.is-style-logos-only) .wp-social-link-reddit {
-  background-color: #fe4500;
+  background-color: #ff4500;
   color: #fff;
 }
 .wp-block-social-links:not(.is-style-logos-only) .wp-social-link-skype {
@@ -292,6 +301,10 @@
   background-color: #3499cd;
   color: #fff;
 }
+.wp-block-social-links:not(.is-style-logos-only) .wp-social-link-whatsapp {
+  background-color: #25d366;
+  color: #fff;
+}
 .wp-block-social-links:not(.is-style-logos-only) .wp-social-link-yelp {
   background-color: #d32422;
   color: #fff;
@@ -303,7 +316,13 @@
 
 .wp-block-social-links.is-style-logos-only .wp-social-link {
   background: none;
-  padding: 4px;
+}
+.wp-block-social-links.is-style-logos-only .wp-social-link a {
+  padding: 0;
+}
+.wp-block-social-links.is-style-logos-only .wp-social-link svg {
+  width: 1.25em;
+  height: 1.25em;
 }
 .wp-block-social-links.is-style-logos-only .wp-social-link-amazon {
   color: #f90;
@@ -378,7 +397,7 @@
   color: #ef4155;
 }
 .wp-block-social-links.is-style-logos-only .wp-social-link-reddit {
-  color: #fe4500;
+  color: #ff4500;
 }
 .wp-block-social-links.is-style-logos-only .wp-social-link-skype {
   color: #0478d7;
@@ -413,6 +432,9 @@
 }
 .wp-block-social-links.is-style-logos-only .wp-social-link-vk {
   color: #4680c2;
+}
+.wp-block-social-links.is-style-logos-only .wp-social-link-whatsapp {
+  color: #25d366;
 }
 .wp-block-social-links.is-style-logos-only .wp-social-link-wordpress {
   color: #3499cd;

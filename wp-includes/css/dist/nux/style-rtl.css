@@ -41,6 +41,12 @@
  * These variables do not appear to be used anywhere else.
  */
 /**
+*  Converts a hex value into the rgb equivalent.
+*
+* @param {string} hex - the hexadecimal value to convert
+* @return {string} comma separated rgb values
+*/
+/**
  * Breakpoint mixins
  */
 /**
@@ -70,8 +76,11 @@
  */
 :root {
   --wp-admin-theme-color: #007cba;
+  --wp-admin-theme-color--rgb: 0, 124, 186;
   --wp-admin-theme-color-darker-10: #006ba1;
+  --wp-admin-theme-color-darker-10--rgb: 0, 107, 161;
   --wp-admin-theme-color-darker-20: #005a87;
+  --wp-admin-theme-color-darker-20--rgb: 0, 90, 135;
   --wp-admin-border-width-focus: 2px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -111,8 +120,6 @@
 }
 .nux-dot-tip .components-popover__content {
   width: 350px;
-}
-.nux-dot-tip .components-popover__content > div {
   padding: 20px 18px;
 }
 @media (min-width: 600px) {
@@ -169,9 +176,9 @@
 .nux-dot-tip.components-popover:not([data-y-axis=middle])[data-y-axis=left] .components-popover__content {
   margin-right: 0;
 }
-.nux-dot-tip.components-popover.edit-post-more-menu__content:not([data-y-axis=middle])[data-y-axis=right] .components-popover__content {
+.nux-dot-tip.components-popover.interface-more-menu-dropdown__content:not([data-y-axis=middle])[data-y-axis=right] .components-popover__content {
   margin-left: -12px;
 }
-.nux-dot-tip.components-popover.edit-post-more-menu__content:not([data-y-axis=middle])[data-y-axis=left] .components-popover__content {
+.nux-dot-tip.components-popover.interface-more-menu-dropdown__content:not([data-y-axis=middle])[data-y-axis=left] .components-popover__content {
   margin-right: -12px;
 }

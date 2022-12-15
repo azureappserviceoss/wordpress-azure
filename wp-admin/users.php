@@ -20,8 +20,10 @@ if ( ! current_user_can( 'list_users' ) ) {
 
 $wp_list_table = _get_list_table( 'WP_Users_List_Table' );
 $pagenum       = $wp_list_table->get_pagenum();
-$title         = __( 'Users' );
-$parent_file   = 'users.php';
+
+// Used in the HTML title tag.
+$title       = __( 'Users' );
+$parent_file = 'users.php';
 
 add_screen_option( 'per_page' );
 
@@ -56,6 +58,10 @@ if ( is_multisite() ) {
 	$help .= '<li>' . __( '<strong>Remove</strong> allows you to remove a user from your site. It does not delete their content. You can also remove multiple users at once by using bulk actions.' ) . '</li>';
 } else {
 	$help .= '<li>' . __( '<strong>Delete</strong> brings you to the Delete Users screen for confirmation, where you can permanently remove a user from your site and delete their content. You can also delete multiple users at once by using bulk actions.' ) . '</li>';
+}
+
+if ( current_user_can( 'edit_users' ) ) {
+	$help .= '<li>' . __( '<strong>Send password reset</strong> sends the user an email with a link to set a new password.' ) . '</li>';
 }
 
 $help .= '</ul>';
@@ -400,7 +406,7 @@ switch ( $wp_list_table->current_action() ) {
 		check_admin_referer( 'remove-users' );
 
 		if ( ! is_multisite() ) {
-			wp_die( __( 'You can&#8217;t remove users.' ), 400 );
+			wp_die( __( 'You cannot remove users.' ), 400 );
 		}
 
 		if ( empty( $_REQUEST['users'] ) ) {
@@ -432,7 +438,7 @@ switch ( $wp_list_table->current_action() ) {
 		check_admin_referer( 'bulk-users' );
 
 		if ( ! is_multisite() ) {
-			wp_die( __( 'You can&#8217;t remove users.' ), 400 );
+			wp_die( __( 'You cannot remove users.' ), 400 );
 		}
 
 		if ( empty( $_REQUEST['users'] ) && empty( $_REQUEST['user'] ) ) {
@@ -573,14 +579,14 @@ switch ( $wp_list_table->current_action() ) {
 					$messages[] = '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Other user roles have been changed.' ) . '</p></div>';
 					break;
 				case 'err_admin_del':
-					$messages[] = '<div id="message" class="error notice is-dismissible"><p>' . __( 'You can&#8217;t delete the current user.' ) . '</p></div>';
+					$messages[] = '<div id="message" class="error notice is-dismissible"><p>' . __( 'You cannot delete the current user.' ) . '</p></div>';
 					$messages[] = '<div id="message" class="updated notice is-dismissible"><p>' . __( 'Other users have been deleted.' ) . '</p></div>';
 					break;
 				case 'remove':
 					$messages[] = '<div id="message" class="updated notice is-dismissible fade"><p>' . __( 'User removed from this site.' ) . '</p></div>';
 					break;
 				case 'err_admin_remove':
-					$messages[] = '<div id="message" class="error notice is-dismissible"><p>' . __( "You can't remove the current user." ) . '</p></div>';
+					$messages[] = '<div id="message" class="error notice is-dismissible"><p>' . __( 'You cannot remove the current user.' ) . '</p></div>';
 					$messages[] = '<div id="message" class="updated notice is-dismissible fade"><p>' . __( 'Other users have been removed.' ) . '</p></div>';
 					break;
 			}
