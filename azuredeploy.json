@@ -55,12 +55,13 @@
         "serverFarmId": "[parameters('hostingPlanName')]",
         "siteConfig": {
           "localMySqlEnabled": true,
-           "appSettings": [
+          "appSettings": [
             { "name": "WEBSITE_MYSQL_ENABLED", "value": "1" },
             { "name": "WEBSITE_MYSQL_GENERAL_LOG", "value": "0" },
             { "name": "WEBSITE_MYSQL_SLOW_QUERY_LOG", "value": "0" },
             { "name": "WEBSITE_MYSQL_ARGUMENTS", "value": "--max_allowed_packet=16M" }
-          ]
+          ],
+          "linuxFxVersion": "NODE|14-lts"
         }
       },
       "resources": [
@@ -75,17 +76,6 @@
             "RepoUrl": "[parameters('repoUrl')]",
             "branch": "[parameters('branch')]",
             "IsManualIntegration": true
-          }
-        },
-        {
-          "apiVersion": "2014-06-01",
-          "name": "web",
-          "type": "config",
-          "dependsOn": [
-            "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
-          ],
-          "properties": {
-            "phpVersion": "7.4"
           }
         }
       ]
